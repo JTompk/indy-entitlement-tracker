@@ -200,7 +200,8 @@ function render(){
     const active = p.group==='city' ? state.cityTypes.has(p.type) : state.agendaTypes.has(p.type);
     if(!active) return;
     if(state.board && p.board!==state.board) return;
-    if(state.year && String(p.year)!==String(state.year)) return;
+    if(state.yearFrom && (!p.year || p.year < +state.yearFrom)) return;
+    if(state.yearTo && (!p.year || p.year > +state.yearTo)) return;
     if(state.q){
       const hay=`${p.case||''} ${p.address||''} ${p.summary||''} ${p.board||''}`.toLowerCase();
       if(!hay.includes(state.q)) return;
