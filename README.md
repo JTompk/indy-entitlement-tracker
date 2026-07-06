@@ -4,8 +4,7 @@ A self-updating map of development filings before the Indianapolis Department of
 Metropolitan Development — MDC, Hearing Examiner, BZA I–III, and the Plat
 Committee. Every Monday morning a GitHub Action pulls the newest agenda PDFs
 from the [DMD meetings portal](https://indianapolis-in.municodemeetings.com/DMDmeetings),
-extracts each petition, geocodes it, and republishes the map. Total hosting
-cost: $0.
+extracts each petition, geocodes it, and republishes the map. 
 
 ## How the pipeline works
 
@@ -26,10 +25,7 @@ cost: $0.
    GitHub Pages serves alongside `docs/index.html`, a Leaflet map with filters
    for filing type, board, year, and free-text search.
 5. **Automate** — `.github/workflows/update.yml` runs the whole thing every
-   Monday at 6 AM Eastern and commits the result. You can also trigger it
-   manually anytime from the Actions tab.
-
-
+   Monday at 6 AM Eastern and commits the result. 
 
 
 ## Caveats
@@ -38,9 +34,7 @@ cost: $0.
   every popup links to the source PDF for verification.
 - This reads *public agendas*, which are published in advance of hearings —
   it shows what's filed and scheduled, not what's decided.
-- Municode redesigns will occasionally require a scraper tweak. The listing
-  parser is deliberately loose (it grabs any agenda PDF link) to minimize
-  breakage.
+
 
 ## City GIS layers (v1.1)
 
