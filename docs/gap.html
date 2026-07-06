@@ -10,7 +10,7 @@
 <style>
   :root{
     --ink:#1b2a33; --ink-soft:#2b3d48; --paper:#f5f3ec; --paper-dim:#c9c4b4; --rule:#8fa0aa;
-    --u:#e3002b; --o:#0091cf; --c:#9aa76b; --x:#8a5a44; --ctx:#7a8b99; --walk:#fcb81f;
+    --u:#e3002b; --ug:#b08a2e; --o:#0091cf; --c:#9aa76b; --x:#8a5a44; --ctx:#7a8b99; --walk:#fcb81f;
   }
   *{box-sizing:border-box;margin:0}
   html,body{height:100%}
@@ -68,7 +68,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const CODES = {
-  "U":  {label:"Underzoned — plan intends more", color:getCss('--u'),  on:true},
+  "U":  {label:"Underzoned (urban infill)",      color:getCss('--u'),  on:true},
+  "UG": {label:"Greenfield gap (D-A/D-S fringe)", color:getCss('--ug'), on:false},
   "O":  {label:"Overzoned — code allows more",   color:getCss('--o'),  on:true},
   "C":  {label:"Congruent",                      color:getCss('--c'),  on:false},
   "C*": {label:"Congruent (auto-oriented form)", color:getCss('--c'),  on:false},
@@ -88,21 +89,23 @@ let walkLayer = L.layerGroup();
 fetch('data/gap.geojson').then(r=>r.json()).then(gj=>{
   Object.keys(CODES).forEach(c=>{groups[c]=L.layerGroup(); acres[c]=0;});
   gj.features.forEach(f=>{
-    const p=f.properties, meta=CODES[p.code]||CODES.ctx;
-    acres[p.code]=(acres[p.code]||0)+(p.acres||0);
+    const p=f.properties;
+    const code = CODES[p.code] ? p.code : 'ctx';
+    const meta = CODES[code];
+    acres[code]=(acres[code]||0)+(p.acres||0);
     const lyr=L.geoJSON(f,{style:{color:meta.color,weight:.7,fillColor:meta.color,fillOpacity:.45}})
       .bindPopup(`<div class="pop"><span class="z">${esc(p.district)}</span> under
         <strong>${esc(p.typology)}</strong><br>${(p.acres||0).toLocaleString()} acres
         <br><span class="code" style="background:${meta.color}">${esc(meta.label)}</span></div>`);
-    lyr.addTo(groups[p.code]);
+    lyr.addTo(groups[code]);
     if(p.walkable) L.geoJSON(f,{style:{color:getCss('--walk'),weight:1.4,fill:false,dashArray:'4 3'}}).addTo(walkLayer);
   });
   buildPanel(); document.getElementById('loading').remove();
-}).catch(()=>{document.querySelector('#loading .card').textContent='NO GAP DATA YET — run scraper/gap_map.py and push.';});
+}).catch(err=>{document.querySelector('#loading .card').textContent='LOAD ERROR: '+err.message+' — if data/gap.geojson exists, hard-refresh; else run scraper/gap_map.py and push.';});
 
 fetch('data/gap_stats.json').then(r=>r.json()).then(s=>{
   const el=document.getElementById('stats');
-  const rows=[["Analyzed", s.total_acres],["Underzoned", s.by_code.U],
+  const rows=[["Analyzed", s.total_acres],["Underzoned (infill)", s.by_code.U],["Greenfield gap", s.by_code.UG],
     ["Overzoned", s.by_code.O],["Walkable-zoned", s.walkable_acres]];
   el.innerHTML=rows.filter(r=>r[1]!=null).map(([k,v])=>
     `<div class="stat"><span>${k}</span><b>${(+v).toLocaleString()} ac</b></div>`).join('');
