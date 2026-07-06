@@ -47,7 +47,8 @@
   .pop .summary{font-size:12px;line-height:1.45;max-height:110px;overflow:auto;color:#33404a}
   .pop a{font-size:12px}
 
-  #empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:900;pointer-events:none}#empty[hidden]{display:none}
+  #empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:900;pointer-events:none}
+  #empty[hidden]{display:none}
   #empty .card{pointer-events:auto;background:var(--ink);color:var(--paper);border:1px solid var(--rule);max-width:420px;padding:22px;font-size:14px;line-height:1.55}
   #empty code{font-family:'IBM Plex Mono',monospace;background:var(--ink-soft);padding:1px 5px;border-radius:2px;font-size:12.5px}
 
@@ -77,7 +78,7 @@
   <h2>Board</h2>
   <select id="boardFilter"><option value="">All boards</option></select>
 
- <h2>Years</h2>
+  <h2>Years</h2>
   <div style="display:flex;gap:8px">
     <select id="yearFrom" style="flex:1"><option value="">From</option></select>
     <select id="yearTo" style="flex:1"><option value="">To</option></select>
@@ -129,7 +130,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
   {attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19}).addTo(map);
 
 let features = [], layerGroup = L.layerGroup().addTo(map);
-const state = { agendaTypes:new Set(), cityTypes:new Set(), board:'', year:'', q:'' };
+const state = { agendaTypes:new Set(), cityTypes:new Set(), board:'', yearFrom:'', yearTo:'', q:'' };
 
 Promise.allSettled([
   fetch('data/filings.geojson').then(r=>r.json()),
@@ -176,18 +177,22 @@ function buildFilters(){
     checkboxRow(tf,t,aCounts[t],AGENDA_COLORS[t]||AGENDA_COLORS.Other,false,
       on=>{on?state.agendaTypes.add(t):state.agendaTypes.delete(t);render()});
   });
+  const cf=document.getElementById('cityFilters');
+  const cKeys=Object.keys(cCounts).sort();
+  if(!cKeys.length) cf.innerHTML='<span class="count">— none yet —</span>';
+  cKeys.forEach(t=>{
+    state.cityTypes.add(t);
+    checkboxRow(cf,t,cCounts[t],colorFor({group:'city',type:t}),true,
+      on=>{on?state.cityTypes.add(t):state.cityTypes.delete(t);render()});
+  });
+  const bf=document.getElementById('boardFilter');
+  [...boards].sort().forEach(b=>bf.add(new Option(b,b)));
+  bf.addEventListener('change',()=>{state.board=bf.value;render()});
   const sorted=[...years].sort((a,b)=>b-a);
   const yFrom=document.getElementById('yearFrom'), yTo=document.getElementById('yearTo');
   sorted.forEach(y=>{yFrom.add(new Option(y,y));yTo.add(new Option(y,y))});
   yFrom.addEventListener('change',()=>{state.yearFrom=yFrom.value;render()});
   yTo.addEventListener('change',()=>{state.yearTo=yTo.value;render()});
-  });
-  const bf=document.getElementById('boardFilter');
-  [...boards].sort().forEach(b=>bf.add(new Option(b,b)));
-  bf.addEventListener('change',()=>{state.board=bf.value;render()});
-  const yf=document.getElementById('yearFilter');
-  [...years].sort((a,b)=>b-a).forEach(y=>yf.add(new Option(y,y)));
-  yf.addEventListener('change',()=>{state.year=yf.value;render()});
   document.getElementById('q').addEventListener('input',e=>{
     state.q=e.target.value.toLowerCase();render();
   });
