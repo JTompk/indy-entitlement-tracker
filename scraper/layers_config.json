@@ -1,0 +1,45 @@
+{
+  "_notes": [
+    "Layers 1/2/3/5 of the MapIndy Zoning service are confirmed point layers keyed by CASE_NUM.",
+    "Field names below are best guesses pending a probe run - probe_layers.py prints the real ones.",
+    "Tighten 'where' clauses once you know the date field, e.g. \"DATE_FIELD >= DATE '2024-01-01'\".",
+    "The Permits entry is a placeholder: run probe_layers.py, find the permits layer, paste its URL and fields here, set enabled=true."
+  ],
+  "layers": [
+    {
+      "name": "Zoning Variances (city)",
+      "url": "https://gis.indy.gov/server/rest/services/MapIndy/Zoning/MapServer/1",
+      "where": "1=1",
+      "fields": {"case": "CASE_NUM"},
+      "enabled": true
+    },
+    {
+      "name": "Legal Non-Conforming Use (city)",
+      "url": "https://gis.indy.gov/server/rest/services/MapIndy/Zoning/MapServer/2",
+      "where": "1=1",
+      "fields": {"case": "CASE_NUM"},
+      "enabled": true
+    },
+    {
+      "name": "Approvals (city)",
+      "url": "https://gis.indy.gov/server/rest/services/MapIndy/Zoning/MapServer/3",
+      "where": "1=1",
+      "fields": {"case": "CASE_NUM"},
+      "enabled": true
+    },
+    {
+      "name": "Rezoning (city, historical)",
+      "url": "https://gis.indy.gov/server/rest/services/MapIndy/Zoning/MapServer/5",
+      "where": "1=1",
+      "fields": {"case": "CASE_NUM"},
+      "enabled": true
+    },
+    {
+      "name": "Building Permits (city)",
+      "url": "PASTE_PERMITS_LAYER_URL_HERE",
+      "where": "1=1",
+      "fields": {"case": "PERMIT_NO", "date": "ISSUE_DATE", "address": "ADDRESS"},
+      "enabled": false
+    }
+  ]
+}

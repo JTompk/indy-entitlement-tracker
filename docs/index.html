@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indy Entitlement Tracker</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b2a33; --ink-soft:#2b3d48; --paper:#f5f3ec; --paper-dim:#c9c4b4;
+    --rule:#8fa0aa;
+    --c-rezoning:#d64b2a; --c-variance:#2e6fb0; --c-plat:#3e8e5a;
+    --c-devplan:#7a4fa3; --c-mod:#c9932b; --c-commit:#7a8b99; --c-other:#5c6670;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{font-family:'Public Sans',system-ui,sans-serif;color:var(--paper);background:var(--ink);display:flex}
+
+  #panel{width:320px;min-width:320px;height:100%;overflow-y:auto;padding:18px 18px 28px;background:var(--ink);border-right:1px solid var(--rule)}
+  .titleblock{border:1px solid var(--paper);padding:12px 12px 10px;position:relative}
+  .titleblock::after{content:"";position:absolute;inset:3px;border:1px solid var(--rule);pointer-events:none}
+  .titleblock h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:27px;letter-spacing:.04em;line-height:1.05;text-transform:uppercase}
+  .titleblock .sub{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-dim);margin-top:6px;letter-spacing:.03em}
+  .stamp{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-dim);display:flex;justify-content:space-between;margin-top:14px;padding-top:8px;border-top:1px solid var(--rule)}
+  .stamp b{color:var(--paper);font-weight:500}
+
+  h2{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-dim);margin:22px 0 8px}
+  .filters label.row{display:flex;align-items:center;gap:8px;padding:5px 2px;font-size:13.5px;cursor:pointer;border-radius:3px}
+  .filters label.row:hover{background:var(--ink-soft)}
+  .swatch{width:12px;height:12px;border-radius:50%;flex:none}
+  .swatch.ring{background:transparent!important;border:2.5px solid;border-radius:50%}
+  .count{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper-dim)}
+  select,input[type=search]{width:100%;padding:8px;background:var(--ink-soft);color:var(--paper);border:1px solid var(--rule);border-radius:3px;font:inherit;font-size:13.5px}
+  input[type=checkbox]{accent-color:var(--paper)}
+  .note{font-size:12px;color:var(--paper-dim);line-height:1.5;margin-top:24px;padding-top:12px;border-top:1px solid var(--ink-soft)}
+  .note a{color:var(--paper)}
+
+  #map{flex:1;height:100%;background:#e8e6df}
+  .leaflet-popup-content-wrapper{border-radius:4px;font-family:'Public Sans',sans-serif}
+  .pop .case{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px}
+  .pop .badge{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#fff;border-radius:2px;padding:2px 6px;margin-left:6px;vertical-align:1px}
+  .pop .addr{font-weight:600;font-size:14px;margin:6px 0 2px}
+  .pop .meta{font-size:12px;color:#48555e;margin-bottom:6px}
+  .pop .zoning{font-family:'IBM Plex Mono',monospace;font-size:12px;background:#eef1f3;border-radius:2px;padding:2px 5px;display:inline-block;margin-bottom:6px}
+  .pop .summary{font-size:12px;line-height:1.45;max-height:110px;overflow:auto;color:#33404a}
+  .pop a{font-size:12px}
+
+  #empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:900;pointer-events:none}
+  #empty .card{pointer-events:auto;background:var(--ink);color:var(--paper);border:1px solid var(--rule);max-width:420px;padding:22px;font-size:14px;line-height:1.55}
+  #empty code{font-family:'IBM Plex Mono',monospace;background:var(--ink-soft);padding:1px 5px;border-radius:2px;font-size:12.5px}
+
+  @media (max-width:760px){
+    body{flex-direction:column}
+    #panel{width:100%;min-width:0;height:auto;max-height:46vh;order:2;border-right:none;border-top:1px solid var(--rule)}
+    #map{order:1;min-height:54vh}
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<aside id="panel">
+  <div class="titleblock">
+    <h1>Indy Entitlement<br>Tracker</h1>
+    <div class="sub">MDC · HEARING EXAMINER · BZA I–III · PLAT · CITY GIS</div>
+    <div class="stamp"><span>SOURCE: DMD + MAPINDY</span><span>UPDATED <b id="updated">—</b></span></div>
+  </div>
+
+  <h2>Filing type — weekly agendas</h2>
+  <div class="filters" id="typeFilters"></div>
+
+  <h2>City case layers</h2>
+  <div class="filters" id="cityFilters"></div>
+
+  <h2>Board</h2>
+  <select id="boardFilter"><option value="">All boards</option></select>
+
+  <h2>Year</h2>
+  <select id="yearFilter"><option value="">All years</option></select>
+
+  <h2>Search</h2>
+  <input type="search" id="q" placeholder="Case no., address, petitioner…">
+
+  <div class="stamp" style="border:none;margin-top:18px"><span>RECORDS SHOWN</span><span><b id="shown">0</b> / <span id="total">0</span></span></div>
+
+  <p class="note">Solid dots are petitions compiled weekly from public DMD board
+  agendas. Ring markers are case layers served by the city's own MapIndy GIS.
+  Locations may be approximate; verify against the linked source.</p>
+</aside>
+
+<div id="map">
+  <div id="empty" hidden><div class="card">
+    <strong>No data loaded yet.</strong><br><br>
+    Run <code>python scraper/scrape.py --backfill</code> and
+    <code>python scraper/arcgis_pull.py</code>, or trigger the
+    <em>Weekly filings update</em> workflow from the Actions tab, then reload.
+  </div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const AGENDA_COLORS = {
+  "Rezoning": getCss('--c-rezoning'),
+  "Variance / Special Exception": getCss('--c-variance'),
+  "Plat / Subdivision": getCss('--c-plat'),
+  "Development Plan": getCss('--c-devplan'),
+  "Modification": getCss('--c-mod'),
+  "Commitment / Covenant": getCss('--c-commit'),
+  "Approval / Appeal": getCss('--c-commit'),
+  "Other": getCss('--c-other'),
+};
+const CITY_PALETTE = ['#b0413e','#3a7ca5','#5e8c61','#8d6cab','#b08a2e','#5f7480','#8a5a44','#476a6f'];
+const cityColors = {};
+function getCss(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function colorFor(p){
+  return p.group==='city'
+    ? (cityColors[p.type] ??= CITY_PALETTE[Object.keys(cityColors).length % CITY_PALETTE.length])
+    : (AGENDA_COLORS[p.type] || AGENDA_COLORS.Other);
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+const map = L.map('map').setView([39.7838,-86.1520],11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  {attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19}).addTo(map);
+
+let features = [], layerGroup = L.layerGroup().addTo(map);
+const state = { agendaTypes:new Set(), cityTypes:new Set(), board:'', year:'', q:'' };
+
+Promise.allSettled([
+  fetch('data/filings.geojson').then(r=>r.json()),
+  fetch('data/city_layers.geojson').then(r=>r.json())
+]).then(([agenda, city])=>{
+  let updated = null;
+  if(agenda.status==='fulfilled'){
+    (agenda.value.features||[]).forEach(f=>{f.properties.group='agenda';features.push(f)});
+    updated = agenda.value.updated || updated;
+  }
+  if(city.status==='fulfilled'){
+    (city.value.features||[]).forEach(f=>{f.properties.group='city';features.push(f)});
+    updated = city.value.updated || updated;
+  }
+  document.getElementById('updated').textContent = updated ? updated.slice(0,10) : '—';
+  document.getElementById('total').textContent = features.length;
+  if(!features.length){document.getElementById('empty').hidden=false;}
+  buildFilters(); render();
+});
+
+function checkboxRow(container, label, count, color, ring, onToggle){
+  const l=document.createElement('label'); l.className='row';
+  l.innerHTML=`<input type="checkbox" checked>
+    <span class="swatch${ring?' ring':''}" style="${ring?'border-color:'+color:'background:'+color}"></span>
+    <span>${esc(label)}</span><span class="count">${count}</span>`;
+  l.querySelector('input').addEventListener('change',e=>onToggle(e.target.checked));
+  container.appendChild(l);
+}
+
+function buildFilters(){
+  const aCounts={}, cCounts={}, boards=new Set(), years=new Set();
+  features.forEach(f=>{
+    const p=f.properties;
+    (p.group==='city'?cCounts:aCounts)[p.type]=((p.group==='city'?cCounts:aCounts)[p.type]||0)+1;
+    if(p.board) boards.add(p.board);
+    if(p.year) years.add(p.year);
+  });
+  const tf=document.getElementById('typeFilters');
+  const order=Object.keys(AGENDA_COLORS).filter(t=>aCounts[t])
+    .concat(Object.keys(aCounts).filter(t=>!(t in AGENDA_COLORS)));
+  if(!order.length) tf.innerHTML='<span class="count">— none yet —</span>';
+  order.forEach(t=>{
+    state.agendaTypes.add(t);
+    checkboxRow(tf,t,aCounts[t],AGENDA_COLORS[t]||AGENDA_COLORS.Other,false,
+      on=>{on?state.agendaTypes.add(t):state.agendaTypes.delete(t);render()});
+  });
+  const cf=document.getElementById('cityFilters');
+  const cKeys=Object.keys(cCounts).sort();
+  if(!cKeys.length) cf.innerHTML='<span class="count">— none yet —</span>';
+  cKeys.forEach(t=>{
+    state.cityTypes.add(t);
+    checkboxRow(cf,t,cCounts[t],colorFor({group:'city',type:t}),true,
+      on=>{on?state.cityTypes.add(t):state.cityTypes.delete(t);render()});
+  });
+  const bf=document.getElementById('boardFilter');
+  [...boards].sort().forEach(b=>bf.add(new Option(b,b)));
+  bf.addEventListener('change',()=>{state.board=bf.value;render()});
+  const yf=document.getElementById('yearFilter');
+  [...years].sort((a,b)=>b-a).forEach(y=>yf.add(new Option(y,y)));
+  yf.addEventListener('change',()=>{state.year=yf.value;render()});
+  document.getElementById('q').addEventListener('input',e=>{
+    state.q=e.target.value.toLowerCase();render();
+  });
+}
+
+function render(){
+  layerGroup.clearLayers(); let shown=0;
+  features.forEach(f=>{
+    const p=f.properties;
+    const active = p.group==='city' ? state.cityTypes.has(p.type) : state.agendaTypes.has(p.type);
+    if(!active) return;
+    if(state.board && p.board!==state.board) return;
+    if(state.year && String(p.year)!==String(state.year)) return;
+    if(state.q){
+      const hay=`${p.case||''} ${p.address||''} ${p.summary||''} ${p.board||''}`.toLowerCase();
+      if(!hay.includes(state.q)) return;
+    }
+    shown++;
+    const [lon,lat]=f.geometry.coordinates;
+    const c=colorFor(p);
+    const style = p.group==='city'
+      ? {radius:6, weight:2.5, color:c, fillColor:c, fillOpacity:.15}
+      : {radius:7, weight:1.5, color:'#ffffff', fillColor:c, fillOpacity:.9};
+    L.circleMarker([lat,lon],style).bindPopup(popup(p),{maxWidth:320}).addTo(layerGroup);
+  });
+  document.getElementById('shown').textContent=shown;
+}
+
+function popup(p){
+  const zoning = p.zoning_from&&p.zoning_to
+    ? `<div class="zoning">${esc(p.zoning_from)} → ${esc(p.zoning_to)}</div>` : '';
+  const meta=[p.board,p.meeting_date,
+    p.township?`${esc(p.township)} Twp`:null,
+    p.council_district?`Council #${p.council_district}`:null
+  ].filter(Boolean).join(' · ');
+  const link = p.agenda_url
+    ? `<a href="${esc(p.agenda_url)}" target="_blank" rel="noopener">View agenda PDF →</a>`
+    : (p.source_url?`<a href="${esc(p.source_url)}" target="_blank" rel="noopener">City GIS layer →</a>`:'');
+  return `<div class="pop">
+    <span class="case">${esc(p.case||'')}</span>
+    <span class="badge" style="background:${colorFor(p)}">${esc(p.type)}</span>
+    <div class="addr">${esc(p.address||'')}</div>
+    <div class="meta">${meta}</div>
+    ${zoning}
+    <div class="summary">${esc(p.summary||'')}</div>
+    ${link}
+  </div>`;
+}
+</script>
+</body>
+</html>
