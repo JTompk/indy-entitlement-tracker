@@ -3,9 +3,9 @@
 IndyIMBY digest generator.
 
 Reads docs/data/filings.geojson (built by scrape.py), pulls everything
-ingested in the last N days, and drafts a Monday digest post in IndyIMBY's
-markdown format. The draft lands in digest_drafts/ — edit for voice, then
-drop it into the site repo's content/posts/ and push.
+ingested in the last N days, and writes a publishable Monday digest post
+to digest_drafts/. The Monday noon workflow ships it to the site as-is;
+edit the draft before noon Eastern and your version ships instead.
 
 Usage:
   python scraper/digest.py               # last 7 days
@@ -30,20 +30,22 @@ def plural(n, word):
     return f"{n} {word}{'' if n == 1 else 's'}"
 
 
+def nice_date(d):
+    return f"{d.strftime('%B')} {d.day}, {d.year}"
+
+
 def load_recent(days):
-    gj = json.loads(GEOJSON_PATH.read_text())
+    gj = json.loads(GEOJSON_PATH.read_text(encoding="utf-8"))
     cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).date().isoformat()
-    recent = [f["properties"] for f in gj.get("features", [])
-              if (f["properties"].get("ingested") or "") >= cutoff]
-    return recent
+    return [f["properties"] for f in gj.get("features", [])
+            if (f["properties"].get("ingested") or "") >= cutoff]
 
 
 def upcoming_hearings(records):
     today = datetime.now(timezone.utc).date().isoformat()
-    dates = sorted({(r.get("meeting_date"), r.get("board"))
-                    for r in records
-                    if r.get("meeting_date") and r["meeting_date"] >= today})
-    return dates
+    return sorted({(r.get("meeting_date"), r.get("board"))
+                   for r in records
+                   if r.get("meeting_date") and r["meeting_date"] >= today})
 
 
 def notable(records, limit=5):
@@ -68,18 +70,16 @@ def fmt_case(r):
         line += f". `{r['zoning_from']} → {r['zoning_to']}`"
     summary = (r.get("summary") or "").strip()
     if summary:
-        # keep the first ~180 chars of the parsed block as a starting point
         line += f". {summary[:180].rstrip()}…"
     if r.get("agenda_url"):
         line += f" [Agenda]({r['agenda_url']})."
-    line += "\n  <!-- TODO: your one-line take -->"
     return f"- {line}"
 
 
 def build(days):
     records = load_recent(days)
     now = datetime.now(timezone.utc).date()
-    title_date = now.strftime("%B %-d, %Y") if hasattr(now, "strftime") else str(now)
+    title_date = nice_date(now)
 
     if not records:
         body = (f"No new filings appeared on DMD agendas in the last {days} days.\n\n"
@@ -95,11 +95,18 @@ def build(days):
                               for t, n in types.most_common())
         twp_line = ", ".join(f"{t} ({n})" for t, n in townships.most_common(5))
 
+        top_t, top_n = types.most_common(1)[0]
+        busiest_twp = townships.most_common(1)[0][0] if townships else None
+        lede_bits = [f"{plural(len(records), 'new filing')} hit the DMD dockets this week"]
+        if busiest_twp:
+            lede_bits.append(f"with activity heaviest in {busiest_twp} Township")
+        lede = ", ".join(lede_bits) + "."
+        if top_t == "Rezoning" and top_n > 1:
+            lede += f" {top_n} rezonings lead the docket — land looking to become something else."
         lines = [
-            "<!-- TODO: 2–3 sentence editorial lede: what's the pattern this week? -->",
+            lede,
             "",
-            f"**{plural(len(records), 'new filing')}** hit the DMD dockets this "
-            f"week: {type_line}.",
+            f"The full breakdown: {type_line}.",
         ]
         if twp_line:
             lines.append(f"Activity concentrated in {twp_line} — "
@@ -121,9 +128,8 @@ def build(days):
                   f"DMD agendas. See something we got wrong? Reply and "
                   f"tell us.*"]
         body = "\n".join(lines)
-        top_type, top_n = types.most_common(1)[0]
         summary = (f"{len(records)} new filings this week, led by "
-                   f"{top_n} {top_type.lower()}{'' if top_n == 1 else 's'}"
+                   f"{top_n} {top_t.lower()}{'' if top_n == 1 else 's'}"
                    + (f"; busiest township: {townships.most_common(1)[0][0]}."
                       if townships else "."))
 
@@ -147,9 +153,8 @@ def main():
     out = Path(args.out) if args.out else \
         DRAFTS_DIR / f"{datetime.now(timezone.utc).date().isoformat()}-this-week.md"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(md)
+    out.write_text(md, encoding="utf-8")
     print(f"[done] draft written to {out}")
-    print("Edit for voice, then move it to the site repo's content/posts/ and push.")
 
 
 if __name__ == "__main__":
