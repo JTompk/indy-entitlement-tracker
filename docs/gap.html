@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Zoning Gap — Indy Entitlement Tracker</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b2a33; --ink-soft:#2b3d48; --paper:#f5f3ec; --paper-dim:#c9c4b4; --rule:#8fa0aa;
+    --u:#e3002b; --o:#0091cf; --c:#9aa76b; --x:#8a5a44; --ctx:#7a8b99; --walk:#fcb81f;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{font-family:'Public Sans',system-ui,sans-serif;color:var(--paper);background:var(--ink);display:flex}
+  #panel{width:340px;min-width:340px;height:100%;overflow-y:auto;padding:18px 18px 28px;background:var(--ink);border-right:1px solid var(--rule)}
+  .titleblock{border:1px solid var(--paper);padding:12px 12px 10px;position:relative}
+  .titleblock::after{content:"";position:absolute;inset:3px;border:1px solid var(--rule);pointer-events:none}
+  .titleblock h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:27px;letter-spacing:.04em;line-height:1.05;text-transform:uppercase}
+  .titleblock .sub{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-dim);margin-top:6px;letter-spacing:.03em}
+  h2{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-dim);margin:22px 0 8px}
+  label.row{display:flex;align-items:center;gap:8px;padding:5px 2px;font-size:13.5px;cursor:pointer;border-radius:3px}
+  label.row:hover{background:var(--ink-soft)}
+  .swatch{width:12px;height:12px;flex:none;border-radius:2px}
+  .count{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper-dim)}
+  input[type=checkbox]{accent-color:var(--paper)}
+  .stat{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:4px 0;border-bottom:1px solid var(--ink-soft)}
+  .stat b{color:var(--walk)}
+  .note{font-size:12px;color:var(--paper-dim);line-height:1.5;margin-top:22px;padding-top:12px;border-top:1px solid var(--ink-soft)}
+  .note a{color:var(--paper)}
+  #map{flex:1;height:100%;background:#e8e6df}
+  .pop{font-family:'Public Sans',sans-serif;font-size:13px}
+  .pop .z{font-family:'IBM Plex Mono',monospace;font-weight:500}
+  .pop .code{display:inline-block;color:#fff;border-radius:2px;padding:2px 6px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+  #loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:900;background:rgba(27,42,51,.55)}
+  #loading .card{background:var(--ink);border:1px solid var(--rule);padding:18px 22px;font-family:'IBM Plex Mono',monospace;font-size:13px}
+  @media (max-width:760px){body{flex-direction:column}#panel{width:100%;min-width:0;height:auto;max-height:48vh;order:2;border-top:1px solid var(--rule);border-right:none}#map{order:1;min-height:52vh}}
+</style>
+</head>
+<body>
+<aside id="panel">
+  <div class="titleblock">
+    <h1>The Zoning Gap</h1>
+    <div class="sub">ZONING CODE × MARION COUNTY LAND USE PLAN</div>
+  </div>
+
+  <h2>Classification</h2>
+  <div id="layers"></div>
+
+  <h2>Overlay</h2>
+  <label class="row"><input type="checkbox" id="walkToggle">
+    <span class="swatch" style="background:transparent;border:2.5px solid var(--walk)"></span>
+    <span>Walkable districts</span></label>
+
+  <h2>County totals</h2>
+  <div id="stats"></div>
+
+  <p class="note">Every polygon is a piece of ground classified by comparing
+  its zoning district against the Land Use Plan typology mapped over it.
+  <strong>Underzoned</strong> means the plan already intends more than the
+  code allows. <a href="https://indyimby.com/zoning-gap/">Read the method</a>
+  · <a href="index.html">Back to the tracker</a></p>
+</aside>
+<div id="map"><div id="loading"><div class="card">LOADING COUNTY POLYGONS…</div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const CODES = {
+  "U":  {label:"Underzoned — plan intends more", color:getCss('--u'),  on:true},
+  "O":  {label:"Overzoned — code allows more",   color:getCss('--o'),  on:true},
+  "C":  {label:"Congruent",                      color:getCss('--c'),  on:false},
+  "C*": {label:"Congruent (auto-oriented form)", color:getCss('--c'),  on:false},
+  "X":  {label:"Use mismatch",                   color:getCss('--x'),  on:false},
+  "ctx":{label:"Evaluate individually",          color:getCss('--ctx'),on:false},
+};
+function getCss(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+const map = L.map('map').setView([39.7838,-86.1520],11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  {attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19}).addTo(map);
+
+const groups = {}, acres = {};
+let walkLayer = L.layerGroup();
+
+fetch('data/gap.geojson').then(r=>r.json()).then(gj=>{
+  Object.keys(CODES).forEach(c=>{groups[c]=L.layerGroup(); acres[c]=0;});
+  gj.features.forEach(f=>{
+    const p=f.properties, meta=CODES[p.code]||CODES.ctx;
+    acres[p.code]=(acres[p.code]||0)+(p.acres||0);
+    const lyr=L.geoJSON(f,{style:{color:meta.color,weight:.7,fillColor:meta.color,fillOpacity:.45}})
+      .bindPopup(`<div class="pop"><span class="z">${esc(p.district)}</span> under
+        <strong>${esc(p.typology)}</strong><br>${(p.acres||0).toLocaleString()} acres
+        <br><span class="code" style="background:${meta.color}">${esc(meta.label)}</span></div>`);
+    lyr.addTo(groups[p.code]);
+    if(p.walkable) L.geoJSON(f,{style:{color:getCss('--walk'),weight:1.4,fill:false,dashArray:'4 3'}}).addTo(walkLayer);
+  });
+  buildPanel(); document.getElementById('loading').remove();
+}).catch(()=>{document.querySelector('#loading .card').textContent='NO GAP DATA YET — run scraper/gap_map.py and push.';});
+
+fetch('data/gap_stats.json').then(r=>r.json()).then(s=>{
+  const el=document.getElementById('stats');
+  const rows=[["Analyzed", s.total_acres],["Underzoned", s.by_code.U],
+    ["Overzoned", s.by_code.O],["Walkable-zoned", s.walkable_acres]];
+  el.innerHTML=rows.filter(r=>r[1]!=null).map(([k,v])=>
+    `<div class="stat"><span>${k}</span><b>${(+v).toLocaleString()} ac</b></div>`).join('');
+}).catch(()=>{});
+
+function buildPanel(){
+  const el=document.getElementById('layers');
+  Object.entries(CODES).forEach(([code,meta])=>{
+    if(!(acres[code]>0)) return;
+    const l=document.createElement('label'); l.className='row';
+    l.innerHTML=`<input type="checkbox" ${meta.on?'checked':''}>
+      <span class="swatch" style="background:${meta.color}"></span>
+      <span>${meta.label}</span><span class="count">${Math.round(acres[code]).toLocaleString()} ac</span>`;
+    l.querySelector('input').addEventListener('change',e=>{
+      e.target.checked?groups[code].addTo(map):map.removeLayer(groups[code]);});
+    el.appendChild(l);
+    if(meta.on) groups[code].addTo(map);
+  });
+  document.getElementById('walkToggle').addEventListener('change',e=>{
+    e.target.checked?walkLayer.addTo(map):map.removeLayer(walkLayer);});
+}
+</script>
+</body>
+</html>

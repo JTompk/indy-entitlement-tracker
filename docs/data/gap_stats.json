@@ -1,0 +1,65 @@
+{
+ "total_acres": 165307,
+ "by_code": {
+  "C": 93260,
+  "C*": 536,
+  "O": 14653,
+  "U": 1731,
+  "UG": 13086,
+  "X": 7395,
+  "ctx": 34645
+ },
+ "top_underzoned": [
+  {
+   "district": "D-3",
+   "typology": "Traditional Neighborhood",
+   "acres": 460
+  },
+  {
+   "district": "D-3",
+   "typology": "Village Mixed-Use",
+   "acres": 195
+  },
+  {
+   "district": "D-2",
+   "typology": "Traditional Neighborhood",
+   "acres": 190
+  },
+  {
+   "district": "C-1",
+   "typology": "Community Commercial",
+   "acres": 149
+  },
+  {
+   "district": "I-2",
+   "typology": "Heavy Industrial",
+   "acres": 147
+  },
+  {
+   "district": "D-4",
+   "typology": "Village Mixed-Use",
+   "acres": 127
+  },
+  {
+   "district": "C-1",
+   "typology": "Village Mixed-Use",
+   "acres": 123
+  },
+  {
+   "district": "C-1",
+   "typology": "Office/Industrial Mixed-Use",
+   "acres": 64
+  },
+  {
+   "district": "D-2",
+   "typology": "Village Mixed-Use",
+   "acres": 56
+  },
+  {
+   "district": "CBD-3",
+   "typology": "Core Mixed-Use",
+   "acres": 36
+  }
+ ],
+ "walkable_acres": 23331
+}
