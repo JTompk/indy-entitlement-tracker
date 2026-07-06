@@ -176,13 +176,11 @@ function buildFilters(){
     checkboxRow(tf,t,aCounts[t],AGENDA_COLORS[t]||AGENDA_COLORS.Other,false,
       on=>{on?state.agendaTypes.add(t):state.agendaTypes.delete(t);render()});
   });
-  const cf=document.getElementById('cityFilters');
-  const cKeys=Object.keys(cCounts).sort();
-  if(!cKeys.length) cf.innerHTML='<span class="count">— none yet —</span>';
-  cKeys.forEach(t=>{
-    state.cityTypes.add(t);
-    checkboxRow(cf,t,cCounts[t],colorFor({group:'city',type:t}),true,
-      on=>{on?state.cityTypes.add(t):state.cityTypes.delete(t);render()});
+  const sorted=[...years].sort((a,b)=>b-a);
+  const yFrom=document.getElementById('yearFrom'), yTo=document.getElementById('yearTo');
+  sorted.forEach(y=>{yFrom.add(new Option(y,y));yTo.add(new Option(y,y))});
+  yFrom.addEventListener('change',()=>{state.yearFrom=yFrom.value;render()});
+  yTo.addEventListener('change',()=>{state.yearTo=yTo.value;render()});
   });
   const bf=document.getElementById('boardFilter');
   [...boards].sort().forEach(b=>bf.add(new Option(b,b)));
