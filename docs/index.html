@@ -77,8 +77,11 @@
   <h2>Board</h2>
   <select id="boardFilter"><option value="">All boards</option></select>
 
-  <h2>Year</h2>
-  <select id="yearFilter"><option value="">All years</option></select>
+ <h2>Years</h2>
+  <div style="display:flex;gap:8px">
+    <select id="yearFrom" style="flex:1"><option value="">From</option></select>
+    <select id="yearTo" style="flex:1"><option value="">To</option></select>
+  </div>
 
   <h2>Search</h2>
   <input type="search" id="q" placeholder="Case no., address, petitioner…">
