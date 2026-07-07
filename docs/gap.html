@@ -60,6 +60,10 @@
   <label class="row"><input type="checkbox" id="walkToggle">
     <span class="swatch" style="background:transparent;border:2.5px solid var(--walk)"></span>
     <span>Walkable districts</span></label>
+  <p style="font-size:11.5px;color:var(--paper-dim);line-height:1.5;margin:4px 0 0 20px">Districts whose form and intensity support walking:
+  compact and multifamily residential (D-5 through D-10), the mixed-use
+  family (MU-1–4), the CBD districts, and the hospital and university
+  districts. Dashed gold outline on the map.</p>
 
   <h2>County totals</h2>
   <div id="stats"></div>
@@ -200,6 +204,7 @@ async function lookupAddress(){
     ${d.summary?esc(d.summary)+'<br>':''}
     ${d.housing?('<em>Housing by right:</em> '+esc(d.housing)+'<br>'):''}
     <br><span style="font-family:'IBM Plex Mono',monospace">LAND USE PLAN</span> — <strong>${esc(p.typology)}</strong><br>
+    ${p.walkable?'<br><em>This is a walkable-form district.</em><br>':''}
     ${verdict?('<br>'+esc(verdict)+'<br>'):''}
     ${overlays.length?('<br><span style="font-family:\'IBM Plex Mono\',monospace">OVERLAYS</span><br>'+overlays.join('<br>')+'<br>'):''}
     <br><span style="color:var(--paper-dim);font-size:11.5px">Summary only — not a zoning determination. Verify with DMD or the Consolidated Ordinance. <a href="https://maps.indy.gov/MapIndy/" target="_blank" rel="noopener" style="color:var(--paper)">MapIndy property report →</a></span>`;
