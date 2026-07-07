@@ -217,10 +217,34 @@ function render(){
     const style = p.group==='city'
       ? {radius:6, weight:2.5, color:c, fillColor:c, fillOpacity:.15}
       : {radius:7, weight:1.5, color:'#ffffff', fillColor:c, fillOpacity:.9};
-    L.circleMarker([lat,lon],style).bindPopup(popup(p),{maxWidth:320}).addTo(layerGroup);
+    const mk=L.circleMarker([lat,lon],style).bindPopup(popup(p),{maxWidth:320});
+    mk.feature=p; mk.addTo(layerGroup);
   });
   document.getElementById('shown').textContent=shown;
 }
+
+map.on('popupopen', async e=>{
+  const src=e.popup._source, p=src&&src.feature;
+  if(!p || p.group!=='city' || p.address || p._parcelTried) return;
+  p._parcelTried=true;
+  try{
+    const ll=src.getLatLng();
+    const u='https://gis.indy.gov/server/rest/services/MapIndy/MapIndyProperty/MapServer/10/query'
+      +'?geometry='+ll.lng+','+ll.lat+'&geometryType=esriGeometryPoint&inSR=4326'
+      +'&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json';
+    const j=await (await fetch(u)).json();
+    const a=(j.features&&j.features[0]&&j.features[0].attributes)||{};
+    const addr=a.ADDRESS||a.PROP_ADDR||a.SITE_ADDR||a.FULL_ADDR||a.PROPADDR||a.LOCATION||null;
+    const parc=a.PARCEL_C||a.PARCELNO||a.PARCEL||a.PARCNO||null;
+    const label=addr||(parc?('Parcel '+parc):null);
+    if(label){
+      p.address=String(label);
+      const el=e.popup.getElement()&&e.popup.getElement().querySelector('.addr');
+      if(el){el.textContent=p.address;}
+      else e.popup.setContent(popup(p));
+    }
+  }catch(err){/* parcel service unavailable — popup stays as-is */}
+});
 
 function popup(p){
   const zoning = p.zoning_from&&p.zoning_to
