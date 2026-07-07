@@ -226,8 +226,12 @@ async function inspect(lat, lon, label, zoom){
   if(parcel&&parcel.geometry){
     parcelLayer=L.geoJSON(parcel,{style:{color:'#1b2a33',weight:2.5,fill:false,dashArray:'2 3'}}).addTo(map);
     const pa=parcel.properties||{};
-    const pAddr=pa.ADDRESS||pa.PROP_ADDR||pa.SITE_ADDR||pa.FULL_ADDR||null;
+    const pAddr=[pa.STNUMBER,pa.PRE_DIR,pa.STREET_NAME,pa.SUFFIX,pa.SUF_DIR]
+      .filter(x=>x&&String(x).trim()).join(' ');
     if(!label&&pAddr) label=pAddr;
+    window._parcelExtra=[pa.FULLOWNERNAME?('Owner: '+String(pa.FULLOWNERNAME).replace(/,\s*,/g,',').replace(/,\s*$/,'').trim()):null,
+      pa.ACREAGE?(pa.ACREAGE+' ac'):null,
+      pa.PROPERTY_CLASS?String(pa.PROPERTY_CLASS):null].filter(Boolean).join(' · ');
   }
   if(!label) label=lat.toFixed(5)+', '+lon.toFixed(5);
   const loc={lat,lon,label};
@@ -250,7 +254,7 @@ async function inspect(lat, lon, label, zoom){
     ${d.summary?esc(d.summary)+'<br>':''}
     ${d.housing?('<em>Housing by right:</em> '+esc(d.housing)+'<br>'):''}
     <br><span style="font-family:'IBM Plex Mono',monospace">LAND USE PLAN</span> — <strong>${esc(p.typology)}</strong><br>
-    ${parcelLayer?'<span style="color:var(--paper-dim);font-size:11.5px">Parcel outline shown (dashed).</span><br>':''}
+    ${parcelLayer?('<span style="color:var(--paper-dim);font-size:11.5px">'+esc(window._parcelExtra||'Parcel outline shown')+'</span><br>'):''}
     ${p.walkable?'<br><em>This is a walkable-form district.</em><br>':''}
     ${verdict?('<br>'+esc(verdict)+'<br>'):''}
     ${overlays.length?('<br><span style="font-family:\'IBM Plex Mono\',monospace">OVERLAYS</span><br>'+overlays.join('<br>')+'<br>'):''}

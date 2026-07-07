@@ -234,14 +234,16 @@ map.on('popupopen', async e=>{
       +'&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json';
     const j=await (await fetch(u)).json();
     const a=(j.features&&j.features[0]&&j.features[0].attributes)||{};
-    const addr=a.ADDRESS||a.PROP_ADDR||a.SITE_ADDR||a.FULL_ADDR||a.PROPADDR||a.LOCATION||null;
-    const parc=a.PARCEL_C||a.PARCELNO||a.PARCEL||a.PARCNO||null;
+    const addr=[a.STNUMBER,a.PRE_DIR,a.STREET_NAME,a.SUFFIX,a.SUF_DIR]
+      .filter(x=>x&&String(x).trim()).join(' ');
+    const parc=a.PARCEL_C||a.PARCELNO||null;
     const label=addr||(parc?('Parcel '+parc):null);
     if(label){
       p.address=String(label);
-      const el=e.popup.getElement()&&e.popup.getElement().querySelector('.addr');
-      if(el){el.textContent=p.address;}
-      else e.popup.setContent(popup(p));
+      const extra=[a.FULLOWNERNAME?('Owner: '+String(a.FULLOWNERNAME).replace(/,\s*,/g,',').replace(/,\s*$/,'').trim()):null,
+                   a.ACREAGE?(a.ACREAGE+' ac'):null].filter(Boolean).join(' · ');
+      if(extra && !(p.summary||'').startsWith('Owner:')) p.summary=extra+(p.summary?' · '+p.summary:'');
+      e.popup.setContent(popup(p));
     }
   }catch(err){/* parcel service unavailable — popup stays as-is */}
 });
