@@ -49,7 +49,7 @@ DISTRICTS = {
     # Institutional / other
     "HD": ("inst", 8), "UQ-1": ("inst", 7), "UQ-2": ("inst", 8),
     "PK-1": ("special", None), "PK-2": ("special", None),
-    "SU-*": ("special", None),
+    "SU-*": ("special", None), "SZ-*": ("special", None), "HP-*": ("special", None),
 }
 
 # Auto-oriented districts: intensity may fit, but form typically doesn't
@@ -77,6 +77,33 @@ TYPOLOGIES = {
     "Urban Mixed-Use":            ({"mu", "res", "com", "cbd"},   (6, 9)),
     "Core Mixed-Use":             ({"mu", "cbd", "res"},          (9, 10)),
     "Institution-Oriented MU/Campus": ({"inst", "mu"},            (6, 9)),
+    # ---- Legacy plan categories (pre-Pattern Book, still governing in
+    # ---- parts of the county). Density buckets map natively to ranks.
+    "Legacy: 0-1.75 du/ac":       ({"res"},                       (1, 2)),
+    "Legacy: 1.75-3.5 du/ac":     ({"res"},                       (2, 3)),
+    "Legacy: 3.5-5 du/ac":        ({"res"},                       (3, 4)),
+    "Legacy: 5-8 du/ac":          ({"res"},                       (4, 5)),
+    "Legacy: 8-15 du/ac":         ({"res"},                       (6, 7)),
+    "Legacy: 15-26 du/ac":        ({"res"},                       (7, 8)),
+    "Legacy: 27-49 du/ac":        ({"res"},                       (8, 9)),
+    "Legacy: 50+ du/ac":          ({"res"},                       (9, 10)),
+    "Legacy: Estate Residential": ({"res"},                       (1, 2)),
+    "Legacy: Single-Family":      ({"res"},                       (2, 4)),
+    "Legacy: Multi-Family":       ({"res"},                       (6, 8)),
+    "Legacy: Agricultural Preservation": ({"res"},                (1, 1)),
+    "Legacy: Office":             ({"com"},                       (4, 6)),
+    "Legacy: Commercial":         ({"com"},                       (5, 7)),
+    "Legacy: Auto Commercial":    ({"com"},                       (5, 7)),
+    "Legacy: Industrial":         ({"ind"},                       (5, 7)),
+    "Legacy: Research/Technology": ({"com", "ind"},               (5, 7)),
+    "Legacy: Institutional":      ({"inst"},                      (4, 8)),
+    "Legacy: Plan-specifies D-4": ({"res"},                       (4, 4)),
+    "Legacy: Plan-specifies D-5": ({"res"},                       (5, 5)),
+    "Legacy: Plan-specifies D-6": ({"res"},                       (5, 5)),
+    "Legacy: Plan-specifies D-8": ({"res"},                       (7, 7)),
+    "Legacy: Plan-specifies C-1": ({"com"},                       (4, 4)),
+    "Legacy: Plan-specifies C-2": ({"com"},                       (5, 5)),
+    "Legacy: Plan-specifies MU-2": ({"mu", "res"},                (6, 6)),
     # Working
     "Office Commercial":          ({"com"},                       (4, 6)),
     "Community Commercial":       ({"com", "mu"},                 (5, 7)),

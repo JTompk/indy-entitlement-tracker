@@ -1,13 +1,13 @@
 {
- "total_acres": 165307,
+ "total_acres": 213946,
  "by_code": {
-  "C": 93272,
+  "C": 99980,
   "C*": 571,
-  "O": 14653,
-  "U": 1685,
-  "UG": 13086,
-  "X": 7395,
-  "ctx": 34645
+  "O": 15567,
+  "U": 1893,
+  "UG": 13247,
+  "X": 7644,
+  "ctx": 75044
  },
  "top_underzoned": [
   {
@@ -36,6 +36,11 @@
    "acres": 147
   },
   {
+   "district": "D-6",
+   "typology": "Legacy: 8-15 du/ac",
+   "acres": 144
+  },
+  {
    "district": "D-4",
    "typology": "Village Mixed-Use",
    "acres": 127
@@ -54,12 +59,15 @@
    "district": "D-2",
    "typology": "Village Mixed-Use",
    "acres": 56
-  },
-  {
-   "district": "CBD-3",
-   "typology": "Core Mixed-Use",
-   "acres": 36
   }
  ],
- "walkable_acres": 23331
+ "walkable_acres": 27537,
+ "underzoned_by_plan": {
+  "legacy": 214,
+  "pattern_book": 1679
+ },
+ "acres_by_plan": {
+  "legacy": 48426,
+  "pattern_book": 165520
+ }
 }

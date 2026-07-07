@@ -121,6 +121,10 @@ def norm_district(raw, districts):
     v = v.replace(" ", "")
     if v.startswith("SU"):
         return "SU-*"
+    if v.startswith("SZ"):
+        return "SZ-*"
+    if v.startswith("HP"):
+        return "HP-*"
     # try exact, then hyphen-insertion (C3 -> C-3), longest match first
     cands = sorted(districts, key=len, reverse=True)
     for d in cands:
@@ -135,7 +139,67 @@ def norm_district(raw, districts):
     return None
 
 
+
+def _tkey(v):
+    return " ".join(str(v).upper().replace("-", " ").replace("/", " / ").split())
+
+LEGACY_ALIASES = {}
+def _reg(canon, *variants):
+    for v in variants:
+        LEGACY_ALIASES[_tkey(v)] = canon
+_reg("Legacy: 0-1.75 du/ac", "0 - 1.75 Residential Units per Acre", "0-1.75 Dwelling Units/Acre",
+     "Dwellings Less Than 1.75 Units per Acre")
+_reg("Legacy: 1.75-3.5 du/ac", "1.75 - 3.5 Residential Units per Acre", "1.75-3.5 Dwelling Units/Acre")
+_reg("Legacy: 3.5-5 du/ac", "3.5 - 5 Residential Units per Acre", "3.5-5 Dwelling Units/Acre",
+     "Dwellings 3.5 - 5 Units per Acre")
+_reg("Legacy: 5-8 du/ac", "5 - 8 Residential Units per Acre", "Dwellings 5 - 8 Units per Acre")
+_reg("Legacy: 8-15 du/ac", "8 - 15 Residential Units per Acre", "8-15 Dwelling Units/Acre",
+     "Dwellings 8 - 15 Units per Acre", "Residential 6 - 15 Dwelling Units per Acre")
+_reg("Legacy: 15-26 du/ac", "Over 15 Residential Units per Acre",
+     "Residential 16 - 26 Dwelling Units per Acre")
+_reg("Legacy: 27-49 du/ac", "Residential 27-49 Dwelling Units per Acre")
+_reg("Legacy: 50+ du/ac", "Residential 50+ Dwelling Units per Acre")
+_reg("Legacy: Estate Residential", "Estate Residential")
+_reg("Legacy: Single-Family", "Single Family Residential", "Single-Family Residential")
+_reg("Legacy: Multi-Family", "Multi-Family Residential")
+_reg("Legacy: Agricultural Preservation", "Agricultural Preservation")
+_reg("Legacy: Office", "Commercial Office", "Non-Core Office")
+_reg("Legacy: Commercial", "Commercial Retail and Service", "Commercial", "Non-Core Commercial")
+_reg("Legacy: Auto Commercial", "Auto Related Commercial")
+_reg("Legacy: Industrial", "General Industrial", "Industrial")
+_reg("Legacy: Research/Technology", "Research and Technology")
+_reg("Legacy: Institutional", "Institutional", "Public and Semi-Public")
+_reg("Legacy: Plan-specifies D-4", "D4 Zoning")
+_reg("Legacy: Plan-specifies D-5", "D5 Zoning")
+_reg("Legacy: Plan-specifies D-6", "D6 Zoning")
+_reg("Legacy: Plan-specifies D-8", "D8 Zoning")
+_reg("Legacy: Plan-specifies C-1", "C1 Zoning")
+_reg("Legacy: Plan-specifies C-2", "C2 Zoning")
+_reg("Legacy: Plan-specifies MU-2", "C3C Zoning (Now MU2)", "C3C (Now MU2) or D5 Zoning",
+     "C3C (Now MU2) or D8 Zoning")
+
+# Deliberately unclassified -> ctx via "__CTX__" (parks, water, special, ambiguous)
+CTX_VALUES = {_tkey(v) for v in [
+  "Floodway", "Bodies of Water", "Park", "Parks and Open Space", "Park and Open Space",
+  "Open Space", "Large-Scale Park", "Linear Park", "Cemetery",
+  "Special Use", "Special Use - Church", "Regional Special Use",
+  "Urban Conservation", "Airport Related Mixed Use", "Interchange Area Mixed-Use",
+  "Medium-Density Mixed-Use", "Mixed Use", "Mixed-Use",
+  "Planned Development, Primarily Residential", "Mobile Home Park",
+  "DP Zoning", "SU1 Zoning", "SU2 Zoning", "SU9 Zoning", "SU10 Zoning", "SU37 Zoning",
+  "PK1 Zoning", "PK1 Zoning (Linear Park)", "D5 or PK1 Zoning",
+  "Speedway N Crawfordsville Commercial District SZ-5",
+  "Speedway S Crawfordsville Commercial District SZ-4",
+  "Speedway Neighborhood Commercial District SZ-6",
+  "Speedway Regional Commercial District SZ-3",
+]}
+
 def norm_typology(raw, typologies):
+    k = _tkey(raw)
+    if k in LEGACY_ALIASES:
+        return LEGACY_ALIASES[k]
+    if k in CTX_VALUES:
+        return "__CTX__"
     v = str(raw).upper().strip().replace("-", " ")
     for t in typologies:
         if v == t.upper().replace("-", " "):
@@ -245,7 +309,11 @@ def main():
 
     gap["acres"] = gap.geometry.area / 43560.0
     gap = gap[gap["acres"] >= args.min_acres]
-    gap["code"] = gap.apply(lambda r: matrix.get((r.district, r.typology), "ctx"), axis=1)
+    gap["code"] = gap.apply(
+        lambda r: "ctx" if r.typology == "__CTX__"
+        else matrix.get((r.district, r.typology), "ctx"), axis=1)
+    gap["plan_gen"] = gap["typology"].map(
+        lambda t: "legacy" if str(t).startswith("Legacy") or t == "__CTX__" else "pattern_book")
     # D-A / D-S "underzoned" is greenfield awaiting development, not urban
     # infill gap — honest to separate it so the U headline is unimpeachable.
     gap.loc[(gap.code == "U") & gap.district.isin(["D-A", "D-S"]), "code"] = "UG"
@@ -256,7 +324,8 @@ def main():
     gap = gap.to_crs(4326)
     gap["acres"] = gap["acres"].round(1)
     OUT_GEOJSON.parent.mkdir(parents=True, exist_ok=True)
-    gap[["district", "typology", "code", "acres", "walkable", "geometry"]] \
+    gap["typology"] = gap["typology"].replace("__CTX__", "Unclassified plan category")
+    gap[["district", "typology", "code", "acres", "walkable", "plan_gen", "geometry"]] \
         .to_file(OUT_GEOJSON, driver="GeoJSON")
 
     print("[6/6] stats…")
@@ -270,6 +339,10 @@ def main():
             .groupby(["district", "typology"])["acres"].sum()
             .sort_values(ascending=False).head(10).items()],
         "walkable_acres": round(float(gap.loc[gap.walkable, "acres"].sum())),
+        "underzoned_by_plan": {g: round(float(a)) for g, a in
+            gap[gap.code == "U"].groupby("plan_gen")["acres"].sum().items()},
+        "acres_by_plan": {g: round(float(a)) for g, a in
+            gap.groupby("plan_gen")["acres"].sum().items()},
     }
     OUT_STATS.write_text(json.dumps(stats, indent=1))
     OUT_UNMATCHED.parent.mkdir(exist_ok=True)
