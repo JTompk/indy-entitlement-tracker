@@ -46,6 +46,13 @@
     <div class="sub">ZONING CODE × MARION COUNTY LAND USE PLAN</div>
   </div>
 
+  <h2>What's allowed at an address?</h2>
+  <div style="display:flex;gap:8px">
+    <input type="search" id="addr" placeholder="e.g. 1435 E 10th St" style="flex:1;padding:8px;background:var(--ink-soft);color:var(--paper);border:1px solid var(--rule);border-radius:3px;font:inherit;font-size:13.5px">
+    <button id="addrBtn" style="padding:8px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--walk);color:#1b2a33;border:none;cursor:pointer">Check</button>
+  </div>
+  <div id="result" style="display:none;margin-top:10px;border:1px solid var(--rule);padding:12px;font-size:13px;line-height:1.5"></div>
+
   <h2>Classification</h2>
   <div id="layers"></div>
 
@@ -87,6 +94,7 @@ const groups = {}, acres = {};
 let walkLayer = L.layerGroup();
 
 fetch('data/gap.geojson').then(r=>r.json()).then(gj=>{
+  gapFeatures=gj.features;
   Object.keys(CODES).forEach(c=>{groups[c]=L.layerGroup(); acres[c]=0;});
   gj.features.forEach(f=>{
     const p=f.properties;
@@ -110,6 +118,94 @@ fetch('data/gap_stats.json').then(r=>r.json()).then(s=>{
   el.innerHTML=rows.filter(r=>r[1]!=null).map(([k,v])=>
     `<div class="stat"><span>${k}</span><b>${(+v).toLocaleString()} ac</b></div>`).join('');
 }).catch(()=>{});
+
+
+// ---------- address lookup ----------
+let gapFeatures=[], overlayFeatures=null, districtInfo=null, addrMarker=null;
+
+function bboxOf(geom){
+  let minX=1e9,minY=1e9,maxX=-1e9,maxY=-1e9;
+  const scan=r=>r.forEach(([x,y])=>{if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y;});
+  (geom.type==='Polygon'?[geom.coordinates]:geom.coordinates).forEach(poly=>poly.forEach(scan));
+  return [minX,minY,maxX,maxY];
+}
+function ringContains(ring,x,y){
+  let inside=false;
+  for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+    const [xi,yi]=ring[i],[xj,yj]=ring[j];
+    if(((yi>y)!==(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi)) inside=!inside;
+  }
+  return inside;
+}
+function geomContains(geom,x,y){
+  const polys = geom.type==='Polygon'?[geom.coordinates]:geom.coordinates;
+  for(const poly of polys){
+    if(ringContains(poly[0],x,y)){
+      let inHole=false;
+      for(let k=1;k<poly.length;k++) if(ringContains(poly[k],x,y)){inHole=true;break;}
+      if(!inHole) return true;
+    }
+  }
+  return false;
+}
+function hitsAt(features,x,y){
+  return features.filter(f=>{
+    const b=f._bbox||(f._bbox=bboxOf(f.geometry));
+    return x>=b[0]&&x<=b[2]&&y>=b[1]&&y<=b[3]&&geomContains(f.geometry,x,y);
+  });
+}
+async function geocode(q){
+  try{
+    const r=await fetch('https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address='+encodeURIComponent(q+', Indianapolis, IN'));
+    const m=(await r.json()).result?.addressMatches||[];
+    if(m.length) return {lat:m[0].coordinates.y, lon:m[0].coordinates.x, label:m[0].matchedAddress};
+  }catch(e){}
+  try{
+    const r=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(q+', Indianapolis, Indiana'));
+    const j=await r.json();
+    if(j.length) return {lat:+j[0].lat, lon:+j[0].lon, label:j[0].display_name.split(',').slice(0,2).join(',')};
+  }catch(e){}
+  return null;
+}
+async function lookupAddress(){
+  const q=document.getElementById('addr').value.trim();
+  const box=document.getElementById('result');
+  if(!q) return;
+  box.style.display='block'; box.innerHTML='Looking up…';
+  if(!districtInfo){
+    try{districtInfo=await (await fetch('data/district_info.json')).json();}catch(e){districtInfo={districts:{},verdicts:{}};}
+  }
+  if(overlayFeatures===null){
+    try{overlayFeatures=(await (await fetch('data/overlays.geojson')).json()).features||[];}
+    catch(e){overlayFeatures=[];}
+  }
+  const loc=await geocode(q);
+  if(!loc){box.innerHTML='Address not found — try adding a ZIP or checking spelling.';return;}
+  const hits=hitsAt(gapFeatures,loc.lon,loc.lat);
+  const oHits=hitsAt(overlayFeatures,loc.lon,loc.lat);
+  if(addrMarker) map.removeLayer(addrMarker);
+  addrMarker=L.marker([loc.lat,loc.lon]).addTo(map);
+  map.setView([loc.lat,loc.lon],15);
+  if(!hits.length){
+    box.innerHTML=`<strong>${esc(loc.label)}</strong><br>No classified polygon here — likely right-of-way, water, or an excluded town. Try a neighboring address.`;
+    return;
+  }
+  const p=hits[0].properties;
+  const d=(districtInfo.districts||{})[p.district]||{};
+  const verdict=(districtInfo.verdicts||{})[p.code]||'';
+  const overlays=oHits.map(o=>`${esc(o.properties.source)}${o.properties.label?': '+esc(o.properties.label):''}`);
+  box.innerHTML=`
+    <strong>${esc(loc.label)}</strong><br><br>
+    <span style="font-family:'IBM Plex Mono',monospace">ZONING</span> — <strong>${esc(p.district)}</strong> ${d.name?('· '+esc(d.name)):''}<br>
+    ${d.summary?esc(d.summary)+'<br>':''}
+    ${d.housing?('<em>Housing by right:</em> '+esc(d.housing)+'<br>'):''}
+    <br><span style="font-family:'IBM Plex Mono',monospace">LAND USE PLAN</span> — <strong>${esc(p.typology)}</strong><br>
+    ${verdict?('<br>'+esc(verdict)+'<br>'):''}
+    ${overlays.length?('<br><span style="font-family:\'IBM Plex Mono\',monospace">OVERLAYS</span><br>'+overlays.join('<br>')+'<br>'):''}
+    <br><span style="color:var(--paper-dim);font-size:11.5px">Summary only — not a zoning determination. Verify with DMD or the Consolidated Ordinance. <a href="https://maps.indy.gov/MapIndy/" target="_blank" rel="noopener" style="color:var(--paper)">MapIndy property report →</a></span>`;
+}
+document.getElementById('addrBtn').addEventListener('click',lookupAddress);
+document.getElementById('addr').addEventListener('keydown',e=>{if(e.key==='Enter')lookupAddress();});
 
 function buildPanel(){
   const el=document.getElementById('layers');

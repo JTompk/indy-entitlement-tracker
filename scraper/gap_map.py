@@ -164,11 +164,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--inspect", action="store_true")
     ap.add_argument("--refresh", action="store_true", help="re-download layers, ignore cache")
+    ap.add_argument("--overlays", action="store_true", help="also build overlays.geojson")
     ap.add_argument("--min-acres", type=float, default=0.25,
                     help="drop intersection slivers below this size")
     ap.add_argument("--simplify", type=float, default=10.0,
                     help="simplify tolerance in meters")
     args = ap.parse_args()
+
+    if args.overlays and not args.inspect:
+        build_overlays()
 
     if args.inspect:
         for name, url in (("ZONING (layer 6)", ZONING_URL),
@@ -282,6 +286,74 @@ def main():
         print("       [note] file is heavy; rerun with --min-acres 0.5 "
               "--simplify 20, or we dissolve by code.")
 
+
+
+# ---------------------------------------------------------------- overlays
+OVERLAY_SOURCES = [
+    {"service": "https://gis.indy.gov/server/rest/services/DMDPortal/LandUsePlanOverlaysAndSpecificAreas/MapServer",
+     "layer_name": "Land Use Plan Overlays", "source": "Plan Overlay"},
+    {"service": "https://gis.indy.gov/server/rest/services/DMDPortal/LandUsePlanOverlaysAndSpecificAreas/MapServer",
+     "layer_name": "Specific Area Plan", "source": "Specific Area Plan"},
+    {"service": "https://gis.indy.gov/server/rest/services/DMDOpenGov/DMDOpenGov/MapServer",
+     "layer_name": "TOD Overlay", "source": "TOD Overlay"},
+    {"service": "https://gis.indy.gov/server/rest/services/MapIndy/Zoning/MapServer",
+     "layer_name": "Regional Center", "source": "Regional Center"},
+]
+OUT_OVERLAYS = ROOT / "docs" / "data" / "overlays.geojson"
+LABEL_FIELDS = ["TYPENAME", "NAME", "PLAN_NAME", "PLANNAME", "TYPE", "LABEL",
+                "SUBTYPE", "DESCRIPTION", "OVERLAY", "AREA_NAME"]
+
+
+def find_layer_id(service_url, name):
+    r = requests.get(service_url, params={"f": "json"}, headers=HEADERS, timeout=30)
+    for lyr in r.json().get("layers", []):
+        if lyr["name"].strip().lower() == name.strip().lower():
+            return lyr["id"]
+    return None
+
+
+def pick_label(props):
+    for f in LABEL_FIELDS:
+        for k, v in props.items():
+            if k.upper() == f and v not in (None, "", " "):
+                return str(v)[:80]
+    for k, v in props.items():
+        if isinstance(v, str) and v.strip() and not k.lower().startswith(("shape", "objectid")):
+            return v[:80]
+    return ""
+
+
+def build_overlays():
+    import geopandas as gpd
+    feats_out = []
+    for src_def in OVERLAY_SOURCES:
+        lid = find_layer_id(src_def["service"], src_def["layer_name"])
+        if lid is None:
+            print(f"[warn] overlay layer not found: {src_def['layer_name']}")
+            continue
+        url = f"{src_def['service']}/{lid}"
+        print(f"[overlay] {src_def['source']} (layer {lid})…")
+        try:
+            raw = fetch_layer(url)
+        except Exception as e:
+            print(f"[warn] {src_def['source']} failed: {e}")
+            continue
+        for f in raw:
+            g = f.get("geometry")
+            if not g or g.get("type") not in ("Polygon", "MultiPolygon"):
+                continue
+            feats_out.append({"type": "Feature", "geometry": g,
+                              "properties": {"source": src_def["source"],
+                                             "label": pick_label(f.get("properties") or {})}})
+    if not feats_out:
+        print("[warn] no overlay features collected")
+        return
+    gdf = gpd.GeoDataFrame.from_features(feats_out, crs=4326).to_crs(2965)
+    gdf["geometry"] = gdf.buffer(0).simplify(30)
+    gdf = gdf.to_crs(4326)
+    gdf.to_file(OUT_OVERLAYS, driver="GeoJSON")
+    print(f"[done] {len(gdf)} overlay polygons -> {OUT_OVERLAYS} "
+          f"({OUT_OVERLAYS.stat().st_size/1e6:.1f} MB)")
 
 if __name__ == "__main__":
     main()
