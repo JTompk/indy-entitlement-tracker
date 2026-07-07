@@ -1,79 +1,79 @@
 {
- "total_acres": 213946,
+ "total_acres": 220740,
  "by_code": {
-  "C": 99980,
-  "C*": 571,
-  "O": 15567,
-  "U": 1893,
-  "UG": 13247,
-  "X": 7644,
-  "ctx": 75044
+  "C": 103416,
+  "C*": 603,
+  "O": 17441,
+  "U": 2222,
+  "UG": 13259,
+  "X": 8108,
+  "ctx": 75691
  },
  "top_underzoned": [
   {
    "district": "D-3",
    "typology": "Traditional Neighborhood",
-   "acres": 460
-  },
-  {
-   "district": "D-3",
-   "typology": "Village Mixed-Use",
-   "acres": 195
+   "acres": 522
   },
   {
    "district": "D-2",
    "typology": "Traditional Neighborhood",
-   "acres": 190
+   "acres": 234
+  },
+  {
+   "district": "D-3",
+   "typology": "Village Mixed-Use",
+   "acres": 197
+  },
+  {
+   "district": "D-5",
+   "typology": "Legacy: 8-15 du/ac",
+   "acres": 156
   },
   {
    "district": "C-1",
    "typology": "Community Commercial",
-   "acres": 149
+   "acres": 152
   },
   {
    "district": "I-2",
    "typology": "Heavy Industrial",
-   "acres": 147
+   "acres": 148
   },
   {
    "district": "D-6",
    "typology": "Legacy: 8-15 du/ac",
-   "acres": 144
+   "acres": 146
   },
   {
    "district": "D-4",
    "typology": "Village Mixed-Use",
-   "acres": 127
+   "acres": 133
   },
   {
    "district": "C-1",
    "typology": "Village Mixed-Use",
-   "acres": 123
+   "acres": 129
   },
   {
    "district": "C-1",
    "typology": "Office/Industrial Mixed-Use",
    "acres": 64
-  },
-  {
-   "district": "D-2",
-   "typology": "Village Mixed-Use",
-   "acres": 56
   }
  ],
- "walkable_acres": 27537,
- "no_res_acres": 65596,
- "no_res_pct": 30.7,
- "no_apts_acres": 147616,
- "no_apts_pct": 69.0,
- "no_retail_acres": 128194,
- "no_retail_pct": 59.9,
+ "walkable_acres": 31719,
+ "no_res_acres": 66082,
+ "no_res_pct": 29.9,
+ "no_apts_acres": 153678,
+ "no_apts_pct": 69.6,
+ "no_retail_acres": 133942,
+ "no_retail_pct": 60.7,
  "underzoned_by_plan": {
-  "legacy": 214,
-  "pattern_book": 1679
+  "legacy": 398,
+  "pattern_book": 1824
  },
  "acres_by_plan": {
-  "legacy": 48426,
-  "pattern_book": 165520
+  "legacy": 53787,
+  "pattern_book": 166953
  }
 }

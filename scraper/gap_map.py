@@ -233,8 +233,8 @@ def main():
     ap.add_argument("--inspect", action="store_true")
     ap.add_argument("--refresh", action="store_true", help="re-download layers, ignore cache")
     ap.add_argument("--overlays", action="store_true", help="also build overlays.geojson")
-    ap.add_argument("--min-acres", type=float, default=0.25,
-                    help="drop intersection slivers below this size")
+    ap.add_argument("--min-acres", type=float, default=0.02,
+                    help="drop true slivers below this size (parcel-scale pieces are kept and dissolved)")
     ap.add_argument("--simplify", type=float, default=10.0,
                     help="simplify tolerance in meters")
     args = ap.parse_args()
@@ -312,7 +312,7 @@ def main():
                       how="intersection", keep_geom_type=True)
 
     gap["acres"] = gap.geometry.area / 43560.0
-    gap = gap[gap["acres"] >= args.min_acres]
+    gap = gap[gap["acres"] >= args.min_acres]  # true slivers only
     gap["code"] = gap.apply(
         lambda r: "ctx" if r.typology == "__CTX__"
         else matrix.get((r.district, r.typology), "ctx"), axis=1)
@@ -326,9 +326,24 @@ def main():
     gap["no_apts"] = gap["district"].isin(no_apts)
     gap["no_retail"] = gap["district"].isin(no_retail)
 
+    print("[4b/6] dissolving adjacent same-classification pieces into blocks…")
+    keys = ["district", "typology", "code", "walkable", "no_res",
+            "no_apts", "no_retail", "plan_gen"]
+    gap = gap.dissolve(by=keys, as_index=False)
+    gap = gap.explode(index_parts=False, ignore_index=True)
+    gap["acres"] = gap.geometry.area / 43560.0
+    gap = gap[gap["acres"] >= 0.05]
+    print(f"    {len(gap)} block-level polygons after dissolve")
+
     print("[5/6] simplifying + writing…")
     gap["geometry"] = gap.geometry.simplify(args.simplify * 3.28084)  # m -> ft
     gap = gap.to_crs(4326)
+    try:
+        import shapely
+        gap["geometry"] = shapely.set_precision(gap.geometry.values, 1e-5)
+        gap = gap[~gap.geometry.is_empty]
+    except Exception:
+        pass
     gap["acres"] = gap["acres"].round(1)
     OUT_GEOJSON.parent.mkdir(parents=True, exist_ok=True)
     gap["typology"] = gap["typology"].replace("__CTX__", "Unclassified plan category")
