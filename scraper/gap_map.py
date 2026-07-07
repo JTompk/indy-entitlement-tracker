@@ -109,10 +109,14 @@ def load_crosswalk():
     rows = list(csv.DictReader(CROSSWALK.open()))
     districts = [r["district"] for r in rows]
     typologies = [c for c in rows[0] if c not in
-                  ("district", "use_family", "intensity_rank", "walkable")]
+                  ("district", "use_family", "intensity_rank", "walkable",
+                   "no_residential", "no_apartments", "no_retail")]
     matrix = {(r["district"], t): r[t] for r in rows for t in typologies}
     walkable = {r["district"] for r in rows if r["walkable"] == "yes"}
-    return districts, typologies, matrix, walkable
+    no_res = {r["district"] for r in rows if r.get("no_residential") == "yes"}
+    no_apts = {r["district"] for r in rows if r.get("no_apartments") == "yes"}
+    no_retail = {r["district"] for r in rows if r.get("no_retail") == "yes"}
+    return districts, typologies, matrix, walkable, no_res, no_apts, no_retail
 
 
 def norm_district(raw, districts):
@@ -257,7 +261,7 @@ def main():
 
     import geopandas as gpd  # deferred so --inspect works without it
 
-    districts, typologies, matrix, walkable = load_crosswalk()
+    districts, typologies, matrix, walkable, no_res, no_apts, no_retail = load_crosswalk()
 
     def cached(name, url):
         cache = ROOT / "data" / f"gap_cache_{name}.json"
@@ -318,6 +322,9 @@ def main():
     # infill gap — honest to separate it so the U headline is unimpeachable.
     gap.loc[(gap.code == "U") & gap.district.isin(["D-A", "D-S"]), "code"] = "UG"
     gap["walkable"] = gap["district"].isin(walkable)
+    gap["no_res"] = gap["district"].isin(no_res)
+    gap["no_apts"] = gap["district"].isin(no_apts)
+    gap["no_retail"] = gap["district"].isin(no_retail)
 
     print("[5/6] simplifying + writing…")
     gap["geometry"] = gap.geometry.simplify(args.simplify * 3.28084)  # m -> ft
@@ -325,7 +332,8 @@ def main():
     gap["acres"] = gap["acres"].round(1)
     OUT_GEOJSON.parent.mkdir(parents=True, exist_ok=True)
     gap["typology"] = gap["typology"].replace("__CTX__", "Unclassified plan category")
-    gap[["district", "typology", "code", "acres", "walkable", "plan_gen", "geometry"]] \
+    gap[["district", "typology", "code", "acres", "walkable", "no_res",
+         "no_apts", "no_retail", "plan_gen", "geometry"]] \
         .to_file(OUT_GEOJSON, driver="GeoJSON")
 
     print("[6/6] stats…")
@@ -339,6 +347,15 @@ def main():
             .groupby(["district", "typology"])["acres"].sum()
             .sort_values(ascending=False).head(10).items()],
         "walkable_acres": round(float(gap.loc[gap.walkable, "acres"].sum())),
+        "no_res_acres": round(float(gap.loc[gap.no_res, "acres"].sum())),
+        "no_res_pct": round(100 * float(gap.loc[gap.no_res, "acres"].sum())
+                            / max(float(gap["acres"].sum()), 1), 1),
+        "no_apts_acres": round(float(gap.loc[gap.no_apts, "acres"].sum())),
+        "no_apts_pct": round(100 * float(gap.loc[gap.no_apts, "acres"].sum())
+                             / max(float(gap["acres"].sum()), 1), 1),
+        "no_retail_acres": round(float(gap.loc[gap.no_retail, "acres"].sum())),
+        "no_retail_pct": round(100 * float(gap.loc[gap.no_retail, "acres"].sum())
+                               / max(float(gap["acres"].sum()), 1), 1),
         "underzoned_by_plan": {g: round(float(a)) for g, a in
             gap[gap.code == "U"].groupby("plan_gen")["acres"].sum().items()},
         "acres_by_plan": {g: round(float(a)) for g, a in

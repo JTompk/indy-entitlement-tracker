@@ -55,6 +55,23 @@ DISTRICTS = {
 # Auto-oriented districts: intensity may fit, but form typically doesn't
 AUTO_ORIENTED = {"C-4", "C-5", "C-7"}
 
+# Districts where dwellings are NOT permitted by right (conservative list —
+# C-1/C-2/C-3 excluded because limited residential is possible; AICP review).
+NO_RESIDENTIAL = {"C-4", "C-5", "C-7", "I-1", "I-2", "I-3", "I-4",
+                  "PK-1", "PK-2", "SU-*"}
+
+# Districts where apartments (3+ units) are NOT permitted by right.
+# C-2/C-3 upper-floor dwellings are limited, not multifamily by right — AICP review.
+NO_APARTMENTS = {"D-A", "D-S", "D-1", "D-2", "D-3", "D-4", "D-5", "D-5II",
+                 "C-1", "C-2", "C-3", "C-4", "C-5", "C-7",
+                 "I-1", "I-2", "I-3", "I-4", "PK-1", "PK-2"}
+
+# Districts where neighborhood retail (corner store / cafe) is NOT permitted
+# by right. C-1 is office-only — AICP review. Industrial treated as permitted.
+NO_RETAIL = {"D-A", "D-S", "D-1", "D-2", "D-3", "D-4", "D-5", "D-5II",
+             "D-6", "D-6II", "D-7", "D-8", "D-9", "D-10",
+             "C-1", "PK-1", "PK-2"}
+
 # Walkable-district whitelist for the standalone walkability layer
 WALKABLE_DISTRICTS = {
     "D-5", "D-5II", "D-6", "D-6II", "D-7", "D-8", "D-9", "D-10",
@@ -141,11 +158,14 @@ def main():
     typ_names = list(TYPOLOGIES)
     with out.open("w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["district", "use_family", "intensity_rank", "walkable"]
-                   + typ_names)
+        w.writerow(["district", "use_family", "intensity_rank", "walkable",
+                    "no_residential", "no_apartments", "no_retail"] + typ_names)
         for d, (fam, rank) in DISTRICTS.items():
             w.writerow([d, fam, rank if rank is not None else "ctx",
-                        "yes" if d in WALKABLE_DISTRICTS else "no"]
+                        "yes" if d in WALKABLE_DISTRICTS else "no",
+                        "yes" if d in NO_RESIDENTIAL else "no",
+                        "yes" if d in NO_APARTMENTS else "no",
+                        "yes" if d in NO_RETAIL else "no"]
                        + [classify(d, t) for t in typ_names])
     # quick stats
     cells = [classify(d, t) for d in DISTRICTS for t in TYPOLOGIES]

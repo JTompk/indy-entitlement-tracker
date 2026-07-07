@@ -60,6 +60,15 @@
   <label class="row"><input type="checkbox" id="walkToggle">
     <span class="swatch" style="background:transparent;border:2.5px solid var(--walk)"></span>
     <span>Walkable districts</span></label>
+  <label class="row"><input type="checkbox" id="noResToggle">
+    <span class="swatch" style="background:#33404a"></span>
+    <span>Homes not allowed</span></label>
+  <label class="row"><input type="checkbox" id="noAptsToggle">
+    <span class="swatch" style="background:#8d6cab"></span>
+    <span>Apartments not allowed</span></label>
+  <label class="row"><input type="checkbox" id="noRetailToggle">
+    <span class="swatch" style="background:#b08a2e"></span>
+    <span>Neighborhood retail not allowed</span></label>
   <p style="font-size:11.5px;color:var(--paper-dim);line-height:1.5;margin:4px 0 0 20px">Districts whose form and intensity support walking:
   compact and multifamily residential (D-5 through D-10), the mixed-use
   family (MU-1–4), the CBD districts, and the hospital and university
@@ -134,9 +143,12 @@ fetch('data/gap.geojson').then(r=>r.json()).then(gj=>{
 fetch('data/gap_stats.json').then(r=>r.json()).then(s=>{
   const el=document.getElementById('stats');
   const rows=[["Analyzed", s.total_acres],["Underzoned (infill)", s.by_code.U],["Greenfield gap", s.by_code.UG],
-    ["Overzoned", s.by_code.O],["Walkable-zoned", s.walkable_acres]];
+    ["Overzoned", s.by_code.O],["Walkable-zoned", s.walkable_acres],
+    ["Homes not allowed", s.no_res_acres!=null?(s.no_res_acres.toLocaleString()+" ac ("+s.no_res_pct+"%)"):null],
+    ["Apartments not allowed", s.no_apts_acres!=null?(s.no_apts_acres.toLocaleString()+" ac ("+s.no_apts_pct+"%)"):null],
+    ["Nbhd retail not allowed", s.no_retail_acres!=null?(s.no_retail_acres.toLocaleString()+" ac ("+s.no_retail_pct+"%)"):null]];
   el.innerHTML=rows.filter(r=>r[1]!=null).map(([k,v])=>
-    `<div class="stat"><span>${k}</span><b>${(+v).toLocaleString()} ac</b></div>`).join('');
+    `<div class="stat"><span>${k}</span><b>${typeof v==='number'?v.toLocaleString()+' ac':v}</b></div>`).join('');
 }).catch(()=>{});
 
 
@@ -256,6 +268,9 @@ async function inspect(lat, lon, label, zoom){
     <br><span style="font-family:'IBM Plex Mono',monospace">LAND USE PLAN</span> — <strong>${esc(p.typology)}</strong><br>
     ${parcelLayer?('<span style="color:var(--paper-dim);font-size:11.5px">'+esc(window._parcelExtra||'Parcel outline shown')+'</span><br>'):''}
     ${p.walkable?'<br><em>This is a walkable-form district.</em><br>':''}
+    ${p.no_res?'<br><em>Homes are not permitted by right in this district.</em><br>':''}
+    ${(!p.no_res&&p.no_apts)?'<br><em>Apartments are not permitted by right in this district.</em><br>':''}
+    ${p.no_retail?'<em>Neighborhood retail is not permitted by right here.</em><br>':''}
     ${verdict?('<br>'+esc(verdict)+'<br>'):''}
     ${overlays.length?('<br><span style="font-family:\'IBM Plex Mono\',monospace">OVERLAYS</span><br>'+overlays.join('<br>')+'<br>'):''}
     <br><span style="color:var(--paper-dim);font-size:11.5px">Summary only — not a zoning determination. Verify with DMD or the Consolidated Ordinance. <a href="https://maps.indy.gov/MapIndy/" target="_blank" rel="noopener" style="color:var(--paper)">MapIndy property report →</a></span>`;
@@ -297,6 +312,24 @@ function buildPanel(){
   });
   document.getElementById('walkToggle').addEventListener('change',e=>{
     e.target.checked?walkLayer.addTo(map):map.removeLayer(walkLayer);});
+  const flagLayers={};
+  function wireFlag(toggleId, prop, color, label){
+    document.getElementById(toggleId).addEventListener('change',e=>{
+      if(!flagLayers[prop]){
+        const g=L.layerGroup();
+        gapFeatures.filter(f=>f.properties[prop]).forEach(f=>{
+          L.geoJSON(f,{style:{color:color,weight:.5,fillColor:color,fillOpacity:.55}})
+            .bindPopup(`<div class="pop"><span class="z">${esc(f.properties.district)}</span> — ${label}<br>${(f.properties.acres||0).toLocaleString()} acres</div>`)
+            .addTo(g);
+        });
+        flagLayers[prop]=g;
+      }
+      e.target.checked?flagLayers[prop].addTo(map):map.removeLayer(flagLayers[prop]);
+    });
+  }
+  wireFlag('noResToggle','no_res','#33404a','homes not permitted by right');
+  wireFlag('noAptsToggle','no_apts','#8d6cab','apartments not permitted by right');
+  wireFlag('noRetailToggle','no_retail','#b08a2e','neighborhood retail not permitted by right');
 }
 </script>
 </body>

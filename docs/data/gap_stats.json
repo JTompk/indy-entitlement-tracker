@@ -62,6 +62,12 @@
   }
  ],
  "walkable_acres": 27537,
+ "no_res_acres": 65596,
+ "no_res_pct": 30.7,
+ "no_apts_acres": 147616,
+ "no_apts_pct": 69.0,
+ "no_retail_acres": 128194,
+ "no_retail_pct": 59.9,
  "underzoned_by_plan": {
   "legacy": 214,
   "pattern_book": 1679
