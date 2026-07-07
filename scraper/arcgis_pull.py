@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "scraper" / "layers_config.json"
 OUT_PATH = ROOT / "docs" / "data" / "city_layers.geojson"
 
-HEADERS = {"User-Agent": "IndyEntitlementTracker/1.0 (civic mapping project; contact: jeffery@proformus.com)"}
+HEADERS = {"User-Agent": "IndyEntitlementTracker/1.0 (civic mapping project)"}
 PAGE_SIZE = 1000
 
 
@@ -89,10 +89,16 @@ def normalize(layer, raw):
 
         summary = pick("summary")
         if not summary:
-            # fall back to a compact dump of non-null attributes
-            summary = "; ".join(f"{k}: {v}" for k, v in a.items()
-                                if v not in (None, "", " ")
-                                and not k.lower().startswith(("shape", "objectid")))[:600]
+            bits = []
+            for k, v in a.items():
+                if v in (None, "", " ") or k.lower().startswith(("shape", "objectid")):
+                    continue
+                if k.upper() in ("CASE_NUM", "CASENO"):
+                    continue  # already shown as the case number
+                if isinstance(v, (int, float)) and v > 10_000_000_000:  # esri epoch ms
+                    v = datetime.fromtimestamp(v / 1000, tz=timezone.utc).date().isoformat()
+                bits.append(f"{k.replace('_', ' ').title()}: {v}")
+            summary = " · ".join(bits)[:600]
 
         out.append({
             "type": "Feature",
@@ -112,6 +118,45 @@ def normalize(layer, raw):
     return out
 
 
+def norm_case(c):
+    return "".join(ch for ch in str(c).upper() if ch.isalnum())
+
+
+def load_filings_index():
+    """Index our agenda-scraped petitions by normalized case number."""
+    path = ROOT / "docs" / "data" / "filings.geojson"
+    idx = {}
+    try:
+        gj = json.loads(path.read_text())
+        for f in gj.get("features", []):
+            p = f["properties"]
+            if p.get("case"):
+                idx.setdefault(norm_case(p["case"]), p)
+    except Exception:
+        pass
+    return idx
+
+
+def enrich(features, idx):
+    hits = 0
+    for f in features:
+        p = f["properties"]
+        m = idx.get(norm_case(p.get("case") or ""))
+        if not m:
+            continue
+        hits += 1
+        p["address"] = p.get("address") or m.get("address")
+        p["township"] = m.get("township")
+        p["council_district"] = m.get("council_district")
+        p["zoning_from"] = m.get("zoning_from")
+        p["zoning_to"] = m.get("zoning_to")
+        p["agenda_url"] = m.get("agenda_url")
+        if m.get("summary"):
+            p["summary"] = m["summary"][:600]
+    print(f"[info] enriched {hits} city case(s) from agenda filings")
+    return features
+
+
 def main():
     config = json.loads(CONFIG_PATH.read_text())
     all_feats = []
@@ -125,6 +170,7 @@ def main():
             all_feats.extend(normalize(layer, raw))
         except Exception as e:
             print(f"[warn] {layer['name']} failed: {e}")
+    all_feats = enrich(all_feats, load_filings_index())
     gj = {
         "type": "FeatureCollection",
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
