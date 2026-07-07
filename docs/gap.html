@@ -48,7 +48,7 @@
 
   <h2>What's allowed at an address?</h2>
   <div style="display:flex;gap:8px">
-    <input type="search" id="addr" placeholder="e.g. 1435 E 10th St" style="flex:1;padding:8px;background:var(--ink-soft);color:var(--paper);border:1px solid var(--rule);border-radius:3px;font:inherit;font-size:13.5px">
+    <input type="search" id="addr" placeholder="e.g. 1435 E 10th St — or click the map" style="flex:1;padding:8px;background:var(--ink-soft);color:var(--paper);border:1px solid var(--rule);border-radius:3px;font:inherit;font-size:13.5px">
     <button id="addrBtn" style="padding:8px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--walk);color:#1b2a33;border:none;cursor:pointer">Check</button>
   </div>
   <div id="result" style="display:none;margin-top:10px;border:1px solid var(--rule);padding:12px;font-size:13px;line-height:1.5"></div>
@@ -64,6 +64,22 @@
   compact and multifamily residential (D-5 through D-10), the mixed-use
   family (MU-1–4), the CBD districts, and the hospital and university
   districts. Dashed gold outline on the map.</p>
+
+  <h2>Plan overlays</h2>
+  <div class="filters" id="ovlFilters">
+    <label class="row"><input type="checkbox" data-src="TOD Overlay">
+      <span class="swatch" style="background:transparent;border:2.5px solid #fcb81f;border-radius:2px"></span>
+      <span>TOD Overlay</span></label>
+    <label class="row"><input type="checkbox" data-src="Regional Center">
+      <span class="swatch" style="background:transparent;border:2.5px solid #0091cf;border-radius:2px"></span>
+      <span>Regional Center</span></label>
+    <label class="row"><input type="checkbox" data-src="Plan Overlay">
+      <span class="swatch" style="background:transparent;border:2.5px solid #5e8c61;border-radius:2px"></span>
+      <span>Land Use Plan Overlays</span></label>
+    <label class="row"><input type="checkbox" data-src="Specific Area Plan">
+      <span class="swatch" style="background:transparent;border:2.5px solid #8d6cab;border-radius:2px"></span>
+      <span>Specific Area Plans</span></label>
+  </div>
 
   <h2>County totals</h2>
   <div id="stats"></div>
@@ -171,25 +187,55 @@ async function geocode(q){
   }catch(e){}
   return null;
 }
+let overlaysPromise=null, parcelLayer=null;
+function ensureOverlays(){
+  if(!overlaysPromise){
+    overlaysPromise = fetch('data/overlays.geojson').then(r=>r.json())
+      .then(gj=>{overlayFeatures=gj.features||[];return overlayFeatures;})
+      .catch(()=>{overlayFeatures=[];return overlayFeatures;});
+  }
+  return overlaysPromise;
+}
+async function fetchParcel(lat,lon){
+  try{
+    const u='https://gis.indy.gov/server/rest/services/MapIndy/MapIndyProperty/MapServer/10/query'
+      +'?geometry='+lon+','+lat+'&geometryType=esriGeometryPoint&inSR=4326'
+      +'&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=geojson';
+    const r=await fetch(u); const j=await r.json();
+    return (j.features&&j.features[0])||null;
+  }catch(e){return null;}
+}
 async function lookupAddress(){
   const q=document.getElementById('addr').value.trim();
-  const box=document.getElementById('result');
   if(!q) return;
+  const box=document.getElementById('result');
+  box.style.display='block'; box.innerHTML='Looking up…';
+  const loc=await geocode(q);
+  if(!loc){box.innerHTML='Address not found — try adding a ZIP or checking spelling.';return;}
+  inspect(loc.lat, loc.lon, loc.label, true);
+}
+async function inspect(lat, lon, label, zoom){
+  const box=document.getElementById('result');
   box.style.display='block'; box.innerHTML='Looking up…';
   if(!districtInfo){
     try{districtInfo=await (await fetch('data/district_info.json')).json();}catch(e){districtInfo={districts:{},verdicts:{}};}
   }
-  if(overlayFeatures===null){
-    try{overlayFeatures=(await (await fetch('data/overlays.geojson')).json()).features||[];}
-    catch(e){overlayFeatures=[];}
+  await ensureOverlays();
+  const parcel=await fetchParcel(lat,lon);
+  if(parcelLayer){map.removeLayer(parcelLayer);parcelLayer=null;}
+  if(parcel&&parcel.geometry){
+    parcelLayer=L.geoJSON(parcel,{style:{color:'#1b2a33',weight:2.5,fill:false,dashArray:'2 3'}}).addTo(map);
+    const pa=parcel.properties||{};
+    const pAddr=pa.ADDRESS||pa.PROP_ADDR||pa.SITE_ADDR||pa.FULL_ADDR||null;
+    if(!label&&pAddr) label=pAddr;
   }
-  const loc=await geocode(q);
-  if(!loc){box.innerHTML='Address not found — try adding a ZIP or checking spelling.';return;}
+  if(!label) label=lat.toFixed(5)+', '+lon.toFixed(5);
+  const loc={lat,lon,label};
   const hits=hitsAt(gapFeatures,loc.lon,loc.lat);
   const oHits=hitsAt(overlayFeatures,loc.lon,loc.lat);
   if(addrMarker) map.removeLayer(addrMarker);
   addrMarker=L.marker([loc.lat,loc.lon]).addTo(map);
-  map.setView([loc.lat,loc.lon],15);
+  if(zoom) map.setView([loc.lat,loc.lon],16);
   if(!hits.length){
     box.innerHTML=`<strong>${esc(loc.label)}</strong><br>No classified polygon here — likely right-of-way, water, or an excluded town. Try a neighboring address.`;
     return;
@@ -204,13 +250,33 @@ async function lookupAddress(){
     ${d.summary?esc(d.summary)+'<br>':''}
     ${d.housing?('<em>Housing by right:</em> '+esc(d.housing)+'<br>'):''}
     <br><span style="font-family:'IBM Plex Mono',monospace">LAND USE PLAN</span> — <strong>${esc(p.typology)}</strong><br>
+    ${parcelLayer?'<span style="color:var(--paper-dim);font-size:11.5px">Parcel outline shown (dashed).</span><br>':''}
     ${p.walkable?'<br><em>This is a walkable-form district.</em><br>':''}
     ${verdict?('<br>'+esc(verdict)+'<br>'):''}
     ${overlays.length?('<br><span style="font-family:\'IBM Plex Mono\',monospace">OVERLAYS</span><br>'+overlays.join('<br>')+'<br>'):''}
     <br><span style="color:var(--paper-dim);font-size:11.5px">Summary only — not a zoning determination. Verify with DMD or the Consolidated Ordinance. <a href="https://maps.indy.gov/MapIndy/" target="_blank" rel="noopener" style="color:var(--paper)">MapIndy property report →</a></span>`;
 }
+map.on('click',e=>inspect(e.latlng.lat,e.latlng.lng,null,false));
 document.getElementById('addrBtn').addEventListener('click',lookupAddress);
 document.getElementById('addr').addEventListener('keydown',e=>{if(e.key==='Enter')lookupAddress();});
+
+const ovlGroups={}, OVL_COLORS={"TOD Overlay":"#fcb81f","Regional Center":"#0091cf","Plan Overlay":"#5e8c61","Specific Area Plan":"#8d6cab"};
+document.querySelectorAll('#ovlFilters input').forEach(cb=>{
+  cb.addEventListener('change',async e=>{
+    const src=cb.dataset.src;
+    if(!ovlGroups[src]){
+      await ensureOverlays();
+      const g=L.layerGroup();
+      overlayFeatures.filter(f=>f.properties.source===src).forEach(f=>{
+        L.geoJSON(f,{style:{color:OVL_COLORS[src],weight:2,fill:false,dashArray:src==='TOD Overlay'?null:'5 4'}})
+          .bindPopup('<div class="pop"><strong>'+esc(src)+'</strong>'+(f.properties.label?('<br>'+esc(f.properties.label)):'')+'</div>')
+          .addTo(g);
+      });
+      ovlGroups[src]=g;
+    }
+    e.target.checked?ovlGroups[src].addTo(map):map.removeLayer(ovlGroups[src]);
+  });
+});
 
 function buildPanel(){
   const el=document.getElementById('layers');
