@@ -46852,7 +46852,99 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-f37d9330a61340539bb4c6b59c520434.pdf",
     "ingested": "2026-07-13"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.1024,
+     39.803534
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-014",
+    "title": "2026-A-014 Preliminary Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (",
+    "summary": "2026-A-014 Preliminary Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (Recommend approval of ten (10) years real property tax abatement.) 3.",
+    "address": "2505 North Sherman Drive",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "type": "Tax incentive",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.1024,
+     39.803534
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-015",
+    "title": "2026-A-015 Preliminary Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (",
+    "summary": "2026-A-015 Preliminary Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (Recommend approval of fifteen (15) years enhanced personal property tax abatement.) 4.",
+    "address": "2505 North Sherman Drive",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "type": "Tax incentive",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.244582,
+     39.802045
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-033",
+    "title": "2026-A-033 (For Public Hearing) Final Economic Revitalization Area Resolution for CCBCC Operations, LLC, located at 5000 West 25th Street, Council District #11,",
+    "summary": "2026-A-033 (For Public Hearing) Final Economic Revitalization Area Resolution for CCBCC Operations, LLC, located at 5000 West 25th Street, Council District #11, Wayne Township. (Recommend approval of four (4) years personal property tax abatement.) 6.",
+    "address": "5000 West 25th Street",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "type": "Tax incentive",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.04728,
+     39.761419
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-034",
+    "title": "2026-A-034 (For Public Hearing) Final Economic Revitalization Area Resolution for Zima International, Inc., located at 6900 English Avenue, Council District #20",
+    "summary": "2026-A-034 (For Public Hearing) Final Economic Revitalization Area Resolution for Zima International, Inc., located at 6900 English Avenue, Council District #20, Warren Township. (Recommend approval of seven (7) years personal property tax abatement.) Zoning Petitions: PETITIONS OF NO APPEAL (RECOMMENDED FOR APPROVAL): 7.",
+    "address": "6900 English Avenue",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "type": "Tax incentive",
+    "ingested": "2026-07-13"
+   }
   }
  ],
- "updated": "2026-07-13T14:37:43+00:00"
+ "updated": "2026-07-13T14:53:22+00:00"
 }
