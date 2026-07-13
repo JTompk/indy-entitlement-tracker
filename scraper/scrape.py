@@ -40,7 +40,7 @@ import pdfplumber
 import requests
 from bs4 import BeautifulSoup
 
-from agenda_items import parse_mdc_items, merge_and_save
+from agenda_items import parse_mdc_items, merge_and_save, score_item
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
@@ -331,8 +331,24 @@ def main():
             continue
         board = guess_board(agenda["title"])
         if board == "Metropolitan Development Commission":
-            mdc_items.extend(
-                parse_mdc_items(text, board, agenda["date"], agenda["url"]))
+            for item in parse_mdc_items(text, board, agenda["date"], agenda["url"]):
+                mdc_items.append(item)
+                # Geocode incentive/resolution items so they render on the map
+                # alongside petitions (type = priority tier for the legend).
+                key = (item["case"], agenda["url"])
+                coords = geocode(session, item["address"], cache) \
+                    if item.get("address") else None
+                if coords and key not in existing_keys:
+                    _, tier = score_item(item)
+                    geojson["features"].append({
+                        "type": "Feature",
+                        "geometry": {"type": "Point", "coordinates": coords},
+                        "properties": {**item,
+                                       "type": tier or "MDC Resolution",
+                                       "ingested": datetime.now(timezone.utc).date().isoformat()},
+                    })
+                    existing_keys.add(key)
+                    added += 1
         for pet in parse_petitions(text):
             key = (pet["case"], agenda["url"])
             if key in existing_keys:
