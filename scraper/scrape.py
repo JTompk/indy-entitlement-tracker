@@ -412,15 +412,23 @@ def main():
     save_json(CACHE_PATH, cache)
     save_json(UNMATCHED_PATH, unmatched)
 
-    # Compact feed of the most recent filings for the site homepage.
+    # Compact feed of the most recent filings for the site homepage,
+    # with the same plain-language summaries the digest uses.
+    from digest import plain_summary
     recent = sorted(geojson["features"],
                     key=lambda f: (f["properties"].get("ingested") or "",
                                    f["properties"].get("meeting_date") or ""),
                     reverse=True)[:10]
-    save_json(ROOT / "docs" / "data" / "latest.json",
-              [{k: f["properties"].get(k) for k in
-                ("case", "type", "address", "meeting_date", "board")}
-               for f in recent])
+    feed = []
+    for f in recent:
+        props = f["properties"]
+        _, tier = score_item(props)
+        entry = {k: props.get(k) for k in
+                 ("case", "type", "address", "meeting_date", "board")}
+        entry["summary"] = plain_summary(props, tier) \
+            or (props.get("summary") or "")[:140]
+        feed.append(entry)
+    save_json(ROOT / "docs" / "data" / "latest.json", feed)
 
 
 if __name__ == "__main__":
