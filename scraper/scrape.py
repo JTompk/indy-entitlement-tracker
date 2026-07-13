@@ -110,6 +110,13 @@ def guess_board(title: str) -> str:
             if n in t or f"DIVISION {roman}" in t or f"BOARD {roman}" in t:
                 return f"BZA {roman}"
         return "BZA"
+    # Post-migration Municode titles say just "Division II" without
+    # "Zoning Appeals" — those are still the BZAs. (Check III before II
+    # before I: "DIVISION II" is a substring of "DIVISION III".)
+    if "DIVISION" in t:
+        for roman in ("III", "II", "I"):
+            if f"DIVISION {roman}" in t:
+                return f"BZA {roman}"
     if "PLAT" in t:
         return "Plat Committee"
     if "REGIONAL CENTER" in t:
@@ -316,6 +323,20 @@ def main():
         for f in geojson["features"]
     }
 
+    # Repair board names on records saved before guess_board learned the
+    # post-migration "Division II" titles. Idempotent; persists on save.
+    for f in geojson["features"]:
+        props = f["properties"]
+        b = props.get("board") or ""
+        if "VIEW DETAILS" in b.upper() or "DIVISION" in b.upper():
+            props["board"] = guess_board(b)
+        # Resolution features saved without a year get one from their case
+        # number so the map's year filter doesn't silently hide them.
+        if props.get("kind") == "resolution" and not props.get("year"):
+            c = (props.get("case") or "")[:4]
+            if c.isdigit():
+                props["year"] = int(c)
+
     agendas = discover_agendas(session, backfill=args.backfill)
     new_agendas = [a for a in agendas if a["url"] not in processed]
     print(f"[info] {len(new_agendas)} agenda(s) not yet processed")
@@ -345,6 +366,8 @@ def main():
                         "geometry": {"type": "Point", "coordinates": coords},
                         "properties": {**item,
                                        "type": tier or "MDC Resolution",
+                                       "year": int(item["case"][:4])
+                                           if item["case"][:4].isdigit() else None,
                                        "ingested": datetime.now(timezone.utc).date().isoformat()},
                     })
                     existing_keys.add(key)
