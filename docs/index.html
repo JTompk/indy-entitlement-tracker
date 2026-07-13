@@ -106,7 +106,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const AGENDA_COLORS = {
-  "Tax incentive": '#d4a017',
+  "Tax incentive": '#c2186b',
   "DMD contract": '#7a7a7a',
   "MDC Resolution": '#9a8ab5',
   "Rezoning": getCss('--c-rezoning'),
@@ -196,7 +196,7 @@ function buildFilters(){
     const p=f.properties;
     (p.group==='city'?cCounts:aCounts)[p.type]=((p.group==='city'?cCounts:aCounts)[p.type]||0)+1;
     if(p.board) boards.add(p.board);
-    if(p.year) years.add(p.year);
+    if(p.year && p.year >= 1990 && p.year <= new Date().getFullYear() + 2) years.add(p.year);
   });
   const tf=document.getElementById('typeFilters');
   const order=Object.keys(AGENDA_COLORS).filter(t=>aCounts[t])
@@ -229,7 +229,7 @@ function buildFilters(){
 }
 
 function render(){
-  layerGroup.clearLayers(); let shown=0;
+  layerGroup.clearLayers(); let shown=0; render._stack={};
   features.forEach(f=>{
     const p=f.properties;
     if(state.week){
@@ -246,11 +246,20 @@ function render(){
       if(!hay.includes(state.q)) return;
     }
     shown++;
-    const [lon,lat]=f.geometry.coordinates;
+    let [lon,lat]=f.geometry.coordinates;
+    // Multiple resolutions often share one site (e.g. real + personal
+    // property abatements) — fan stacked incentive markers out slightly.
+    if(p.kind==='resolution'){
+      const ck = lon.toFixed(5)+','+lat.toFixed(5);
+      const n = (render._stack[ck] = (render._stack[ck]||0) + 1) - 1;
+      if(n > 0){ lon += 0.0006 * n; lat += 0.0003 * n; }
+    }
     const c=colorFor(p);
     const style = p.group==='city'
       ? {radius:6, weight:2.5, color:c, fillColor:c, fillOpacity:.15}
-      : {radius:7, weight:1.5, color:'#ffffff', fillColor:c, fillOpacity:.9};
+      : p.type==='Tax incentive'
+        ? {radius:10, weight:2, color:'#ffffff', fillColor:c, fillOpacity:.95}
+        : {radius:7, weight:1.5, color:'#ffffff', fillColor:c, fillOpacity:.9};
     const mk=L.circleMarker([lat,lon],style).bindPopup(popup(p),{maxWidth:320});
     mk.feature=p; mk.addTo(layerGroup);
   });
