@@ -84,6 +84,23 @@ RESOLUTION_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Street address inside resolution/abatement text, so incentive items can
+# be geocoded and mapped even though they aren't petitions.
+ITEM_ADDRESS_RE = re.compile(
+    r"\b\d{1,6}\s+(?:[NSEW]\.?\s+|North\s+|South\s+|East\s+|West\s+)?"
+    r"[A-Za-z0-9'. -]{2,40}?\s(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|"
+    r"Boulevard|Blvd|Lane|Ln|Way|Court|Ct|Circle|Cir|Place|Pl|Pike|Parkway|"
+    r"Pkwy|Trail|Terrace|Highway|Hwy)\b", re.IGNORECASE)
+
+DOLLAR_RE = re.compile(r"\$\s?([\d]{1,3}(?:,\d{3})+|\d{4,})(?:\.\d+)?")
+
+
+def max_dollar(text):
+    """Largest dollar figure in a text block, as int, or None."""
+    vals = [int(m.group(1).replace(",", "")) for m in DOLLAR_RE.finditer(text or "")]
+    return max(vals) if vals else None
+
+
 # Petition case numbers — used to AVOID double-counting blocks that the
 # petition parser already handles. Mirrors CASE_RE in scrape.py.
 CASE_RE = re.compile(r"\b(20\d{2})-([A-Z]{2,4}\d?)-(\d{1,4}[A-Z]?)\b")
@@ -185,11 +202,14 @@ def parse_mdc_items(text, board, meeting_date, agenda_url):
     out = []
     for res_no, block in items.items():
         label = res_no if MDC_ITEM_RE.fullmatch(res_no) else f"Res. {res_no}"
+        addr = ITEM_ADDRESS_RE.search(block)
         out.append({
             "kind": "resolution",
             "case": label,
             "title": block[:160],
             "summary": block[:600],
+            "address": addr.group(0) if addr else None,
+            "dollars": max_dollar(block),
             "board": board,
             "meeting_date": meeting_date,
             "agenda_url": agenda_url,
