@@ -23,6 +23,7 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
@@ -36,6 +37,108 @@ GEOJSON_PATH = ROOT / "docs" / "data" / "filings.geojson"
 ITEMS_PATH = ROOT / "data" / "agenda_items.json"
 DRAFTS_DIR = ROOT / "digest_drafts"
 MAP_URL = "https://map.indyimby.com"
+
+# ------------------------------------------------ plain language --
+# Plain-English names for zoning districts, used in auto-summaries.
+# CALIBRATE: adjust wording to match how you'd explain each to a neighbor.
+DISTRICT_NAMES = {
+    "D-1": "large-lot single-family", "D-2": "single-family", "D-3": "single-family",
+    "D-4": "single-family", "D-5": "compact single-family/two-family",
+    "D-6": "small-lot residential", "D-7": "townhome-scale residential",
+    "D-8": "low-rise apartment", "D-9": "apartment", "D-10": "apartment",
+    "D-11": "high-rise residential", "D-P": "planned residential",
+    "D-S": "suburban residential", "D-A": "agricultural/estate residential",
+    "C-1": "office", "C-2": "neighborhood commercial", "C-3": "general commercial",
+    "C-4": "community commercial", "C-5": "heavy commercial",
+    "C-6": "high-intensity commercial", "C-7": "high-intensity commercial",
+    "C-S": "planned commercial",
+    "MU-1": "mixed-use", "MU-2": "mixed-use", "MU-3": "mixed-use", "MU-4": "mixed-use",
+    "CBD-1": "downtown", "CBD-2": "downtown", "CBD-3": "downtown", "CBD-S": "downtown",
+    "I-1": "light industrial", "I-2": "industrial", "I-3": "industrial",
+    "I-4": "heavy industrial", "PK-1": "park", "HD-1": "hospital", "HD-2": "hospital",
+}
+
+ACRES_RE = re.compile(r"([\d.]+)[\s-]*acres?", re.IGNORECASE)
+PROVIDE_RE = re.compile(r"to provide for (?:an? |the )?(.{5,90}?)(?:[,.]|$)", re.IGNORECASE)
+PERMIT_RE = re.compile(r"to (?:permit|allow) (?:an? |the )?(.{5,90}?)(?:[,.]|$)", re.IGNORECASE)
+AMOUNT_RE = re.compile(r"not[- ]to[- ]exceed\s*\$?([\d,]+)", re.IGNORECASE)
+BENEFITS_FOR_RE = re.compile(
+    r"(?:statement of benefits|abatement)\s+for\s+(?:an? |the )?(.{5,90}?)(?:[,.]|$)",
+    re.IGNORECASE)
+ADDR_IN_TEXT_RE = re.compile(
+    r"\b\d{1,6}\s+(?:[NSEW]\.?\s+|North\s+|South\s+|East\s+|West\s+)?"
+    r"[A-Za-z0-9'. -]{2,40}?\s(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|"
+    r"Boulevard|Blvd|Lane|Ln|Way|Court|Ct|Circle|Cir|Place|Pl|Pike|Parkway|"
+    r"Pkwy|Trail|Terrace|Highway|Hwy)\b", re.IGNORECASE)
+
+
+def nice_addr(raw):
+    """Title-case an address without mangling ordinals (18Th -> 18th)."""
+    if not raw:
+        return None
+    t = str(raw).title()
+    t = re.sub(r"(\d)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), t)
+    return t.replace(" And ", " and ")
+
+
+def plain_district(code):
+    code = (code or "").upper().strip()
+    base = DISTRICT_NAMES.get(code)
+    if base:
+        return f"{base} ({code})"
+    return code or "its current zoning"
+
+
+def plain_summary(r, tier):
+    """One neighbor-friendly sentence for a record; None to fall back to raw."""
+    text = " ".join(str(r.get(k) or "") for k in ("title", "summary"))
+    tl = text.lower()
+    addr = nice_addr(r.get("address"))
+    if not addr:  # resolutions carry no address field; pull one from the text
+        m = ADDR_IN_TEXT_RE.search(text)
+        addr = nice_addr(m.group(0)) if m else "this site"
+    acres = ACRES_RE.search(text)
+    size = f"{acres.group(1)}-acre site" if acres else "property"
+    use = PROVIDE_RE.search(text) or PERMIT_RE.search(text)
+    use_txt = use.group(1).strip().rstrip(".") if use else None
+
+    if tier == "Tax incentive":
+        if "compliance" in tl:
+            return (f"The city is checking whether the tax-break recipient at {addr} "
+                    f"is keeping the job and investment promises attached to its abatement.")
+        detail = use_txt
+        if not detail:
+            b = BENEFITS_FOR_RE.search(text)
+            detail = b.group(1).strip().rstrip(".") if b else None
+        return (f"The city is considering a property-tax break (abatement) for a "
+                f"project at {addr}"
+                + (f" — {detail}" if detail else "") + ".")
+
+    if tier == "DMD contract":
+        amt = AMOUNT_RE.search(text)
+        return ("The MDC would authorize the planning department to sign a contract"
+                + (f" worth up to ${amt.group(1)}" if amt else "") + ".")
+
+    if r.get("zoning_from") and r.get("zoning_to"):
+        line = (f"A property owner wants to rezone the {size} at {addr} from "
+                f"{plain_district(r['zoning_from'])} to "
+                f"{plain_district(r['zoning_to'])} zoning")
+        if use_txt:
+            line += f" to build {use_txt}"
+        return line + "."
+
+    if "variance of use" in tl:
+        return (f"The owner of {addr} is asking permission for a use the current "
+                f"zoning doesn't allow"
+                + (f": {use_txt}" if use_txt else "") + ".")
+    if "variance of development standards" in tl or "development standards" in tl:
+        return (f"The owner of {addr} is asking to bend the site rules "
+                f"(things like setbacks, height, or parking) for a project there.")
+    if r.get("type") == "Plat / Subdivision":
+        return f"A landowner wants to split or replat the {size} at {addr} into new lots."
+    if use_txt:
+        return f"A filing at {addr} proposes {use_txt}."
+    return None
 
 LOOKAHEAD_DAYS = 10   # hearings this far out count as "this week"
 LOOKBACK_DAYS = 7     # "new" = first ingested within this window
@@ -79,11 +182,15 @@ def fmt_item(r, tier):
         head += f" ({loc})"
     if r.get("zoning_from") and r.get("zoning_to"):
         head += f". `{r['zoning_from']} → {r['zoning_to']}`"
-    summary = (r.get("summary") or "").strip()
-    if summary:
-        head += f". {summary[:200].rstrip()}…"
+    plain = plain_summary(r, tier)
+    if plain:
+        head += f". {plain}"
+    else:
+        raw = (r.get("summary") or "").strip()
+        if raw:
+            head += f". {raw[:200].rstrip()}…"
     if r.get("agenda_url"):
-        head += f" [Agenda]({r['agenda_url']})."
+        head += f" [Full agenda]({r['agenda_url']})."
     return f"- {head}"
 
 
@@ -147,7 +254,15 @@ def build(lookahead, lookback):
                              f"item{'s' if len(items) - MAX_PER_MEETING != 1 else ''} "
                              f"on this agenda.")
             lines.append("")
-        lines += ["If one of these is near you, "
+        # Live embedded map of this week's docket (iframe passes through
+        # markdown untouched; email clients strip it, so keep the link too).
+        lines += [f'<iframe src="{MAP_URL}/?week={today}&embed=1" '
+                  f'width="100%" height="420" '
+                  f'style="border:1px solid #ddd;border-radius:6px" '
+                  f'loading="lazy" title="This week\'s docket map"></iframe>', "",
+                  f"[**Open this week's docket map in full →**]"
+                  f"({MAP_URL}/?week={today})", "",
+                  "If one of these is near you, "
                   "[here's how to testify](/how-to-testify/).", ""]
     else:
         lines += ["No DMD hearings on the calendar in the next "
