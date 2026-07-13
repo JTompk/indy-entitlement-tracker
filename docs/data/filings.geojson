@@ -46488,7 +46488,371 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-f145f8598ab24decb72a7f48a1cf886b.pdf",
     "ingested": "2026-07-06"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.084951,
+     39.738257
+    ]
+   },
+   "properties": {
+    "case": "2026-APP-011",
+    "year": 2026,
+    "prefix": "APP",
+    "type": "Approval / Appeal",
+    "address": "5001 EAST RAYMOND STREET",
+    "township": "Center",
+    "council_district": 19,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-APP-011 | 5001 East Raymond Street Center Township, Council District #19 SU-9 (FW) (FF) City of Indianapolis, by Kevin Montgomery Special Use District Nine Approval to provide for a six-foot-tall fence within the front yard of Emerson Avenue, per plans filed. 8.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.113121,
+     39.759371
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-016",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "3030 SOUTHEASTERN AVENUE",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-016 | 3030 Southeastern Avenue Center Township, Council District #18 JO & CE Real Estate LLC, by Dylan Seesman Rezoning of 0.34-acre from D-5 (FF) to MU-2 (FF), for an existing building to be renovated for commercial retail uses and up to six dwelling units on the second floor. 9.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.130746,
+     39.790952
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-027",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "1611 EAST 18TH STREET",
+    "township": "Center",
+    "council_district": 8,
+    "zoning_from": "C-3",
+    "zoning_to": "D-8",
+    "summary": "2026-ZON-027 | 1611 East 18th Street Center Township, Council District #8 Diamonds Xellent Investments LLC (Diego Gomez), by Jorge Oscar Gonzales Vasquez Rezoning of 0.12-acre from the C-3 district to the D-8 district to provide for residential developmen 10.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.139712,
+     39.810591
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-029",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "1003 WEST 30TH STREET",
+    "township": "Center",
+    "council_district": 12,
+    "zoning_from": "C-3",
+    "zoning_to": "D-5",
+    "summary": "2026-ZON-029 | 1003 West 30th Street Center Township, Council District #12 Skyline General Contracting Corp, by Jorge Gonzales Rezoning of 0.09-acre from the C-3 district to the D-5 district to provide for residential use. development. 11.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.186908,
+     39.714592
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-030",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "3505 SOUTH HARDING STREET",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-030 (Amended) | 3505 South Harding Street Perry Township, Council District #22 Jose de Jesus Padilla Zavala, by Jorge Oscar Gonzales Rezoning of 0.24-acre from the D-4 (FF) district to the C-1 (FF) district to provide for a multi-tenant building. 12.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.139874,
+     39.743145
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-038",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "1830 SHELBY STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-038 | 1830 Shelby Street Center Township, Council District #18 Abiodun Babalola (Trueworth Realty LLC), by Leyla Paz Rezoning of 0.15 acres from the MU-1 (TOD) district to the D-5 district to provide for the construction of a duplex. 13.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.111724,
+     39.803457
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-046",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "3216 EAST 25TH STREET",
+    "township": "Center",
+    "council_district": 8,
+    "zoning_from": "C-3",
+    "zoning_to": "D-5",
+    "summary": "2026-ZON-046 | 3216 East 25th Street Center Township, Council District #8 Felipe M Mata, by RG Development, LLC (Josh Smith) Rezoning of .379-acre from the C-3 to the D-5 district to allow for residential uses. 14.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.149552,
+     39.752122
+    ]
+   },
+   "properties": {
+    "case": "2026-CZN-813",
+    "year": 2026,
+    "prefix": "CZN",
+    "type": "Rezoning",
+    "address": "1127 SOUTH EAST STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": "C-5",
+    "zoning_to": "D-8",
+    "summary": "2026-CZN-813 (Amended) | 1127 South East Street Center Township, Council District #18 Josh Smith Rezoning of 0.12-acre from the C-5 district to the D-8 district to provide for a multi-unit dwelling, consisting of two units. 15.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.09745,
+     39.769382
+    ]
+   },
+   "properties": {
+    "case": "2026-CAP-824",
+    "year": 2026,
+    "prefix": "CAP",
+    "type": "Commitment / Covenant",
+    "address": "4107 EAST WASHINGTON STREET",
+    "township": "Center",
+    "council_district": 13,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-CAP-824 | 4107 East Washington Street Center Township, Council District #13 SU-7 (TOD) Shepherd Community, Inc., by Mindy Westrick Brown Modification of Commitments related to",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.103883,
+     39.76906
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-057",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "3709 EAST WASHINGTON STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-057 | 3709 East Washington Street Center Township, Council District #18 Englewood Community Development Corporation, by Joseph D. Calderon Rezoning of 2.49 acres from the I-2 (TOD), C-4 (TOD) and D-10 (TOD) districts to the D-10 (TOD) district to provide for residential development. Additional Business: **The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. Copies of the proposals are available for examination prior to the hearing by emailing planneroncall@indy.gov. Written objections to a proposal are encouraged to be file",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-07-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.198679,
+     39.861894
+    ]
+   },
+   "properties": {
+    "case": "2026-UV2-009",
+    "year": 2026,
+    "prefix": "UV2",
+    "type": "Variance / Special Exception",
+    "address": "6001 MICHIGAN ROAD",
+    "township": "Washington",
+    "council_district": 2,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV2-009 | 6001 Michigan Road Washington Township, Council District #2, zoned C-3 Speedway SuperAmerica LLC, by Laura Trendler Variance of use of the Consolidated Zoning and Subdivision Ordinance to provide for the replacement of underground fuel storage tank tops, product piping, and fuel dispensers related to an automobile fueling station use (not permitted). 2.",
+    "board": "BZA II",
+    "meeting_date": "2026-07-14",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-f37d9330a61340539bb4c6b59c520434.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.148241,
+     39.768205
+    ]
+   },
+   "properties": {
+    "case": "2026-UV2-010",
+    "year": 2026,
+    "prefix": "UV2",
+    "type": "Variance / Special Exception",
+    "address": "543 EAST MARKET STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV2-010 | 543 East Market Street Center Township, Council District #18, zoned CBD-2 (TOD) (RC) (FF) Temco Holdings LLC, by Wooton Hoy, LLC and JJ Capital, LLC Variance of Use of the Consolidated Zoning and Subdivision Ordinance to permit a single-family residence within an existing structure (single-family dwellings not allowed in the CBD-2 district). PETITIONS FOR PUBLIC HEARING (Transferred Petitions): PETITIONS FOR PUBLIC HEARING (Continued Petitions): PETITIONS FOR PUBLIC HEARING (New Petitions): 3.",
+    "board": "BZA II",
+    "meeting_date": "2026-07-14",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-f37d9330a61340539bb4c6b59c520434.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.143266,
+     39.875895
+    ]
+   },
+   "properties": {
+    "case": "2026-DV2-017",
+    "year": 2026,
+    "prefix": "DV2",
+    "type": "Variance / Special Exception",
+    "address": "921 EAST 66TH STREET",
+    "township": "Washington",
+    "council_district": 7,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV2-017 | 921 East 66th Street Washington Township, Council District #7, zoned MU-2 (FF) (TOD) KMK Cornell LLC, by Joe Calderon Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the expansion of an existing daycare/preschool with 31% building transparency on the west fa\u00e7ade (40% transparency required), a zero to six-foot west transitional yard (15 foot west transitional yard required), with no interior parking lot landscaping (interior parking lot landscaping required for parking lots with 15 or more spaces), a 22-foot wide drive aisle (",
+    "board": "BZA II",
+    "meeting_date": "2026-07-14",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-f37d9330a61340539bb4c6b59c520434.pdf",
+    "ingested": "2026-07-13"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.14832,
+     39.825119
+    ]
+   },
+   "properties": {
+    "case": "2026-DV2-021",
+    "year": 2026,
+    "prefix": "DV2",
+    "type": "Variance / Special Exception",
+    "address": "534 AND 546 EAST 38TH STREET",
+    "township": "Washington",
+    "council_district": 7,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV2-021 | 534 and 546 East 38th Street Washington Township, Council District #7, zoned D-9 (TOD) Barry Pachciarz Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the installation of a 60\u201d tall fence in the front yard (maximum height of 48\u201d permitted). Additional Business: **The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. Copies of the proposals are available for examination prior to the hearing by emailing planneroncall@indy.gov. Written objections to a proposal are enco",
+    "board": "BZA II",
+    "meeting_date": "2026-07-14",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-f37d9330a61340539bb4c6b59c520434.pdf",
+    "ingested": "2026-07-13"
+   }
   }
  ],
- "updated": "2026-07-06T14:20:42+00:00"
+ "updated": "2026-07-13T12:52:22+00:00"
 }
