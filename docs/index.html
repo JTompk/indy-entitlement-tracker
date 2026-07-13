@@ -132,6 +132,33 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
 let features = [], layerGroup = L.layerGroup().addTo(map);
 const state = { agendaTypes:new Set(), cityTypes:new Set(), board:'', yearFrom:'', yearTo:'', q:'' };
 
+// Week mode: ?week=YYYY-MM-DD shows only that week's upcoming docket
+// (agenda petitions with meeting_date inside a 10-day window). Digest
+// posts link here so each Monday email gets a live map of its contents.
+const urlq = new URLSearchParams(location.search);
+const weekParam = urlq.get('week');
+// Embed mode: ?embed=1 hides the filter panel — used by digest post iframes.
+if(urlq.get('embed') === '1'){
+  const st = document.createElement('style');
+  st.textContent = '#panel{display:none!important}#map{left:0!important;width:100%!important}';
+  document.head.appendChild(st);
+  setTimeout(()=>map.invalidateSize(), 100);
+}
+if(weekParam && /^\d{4}-\d{2}-\d{2}$/.test(weekParam)){
+  const end = new Date(weekParam + 'T00:00:00Z');
+  end.setUTCDate(end.getUTCDate() + 10);
+  state.week = { from: weekParam, to: end.toISOString().slice(0,10) };
+  const b = document.createElement('div');
+  b.style.cssText = 'position:absolute;top:10px;left:50%;transform:translateX(-50%);'
+    +'z-index:1000;background:#111;color:#fff;padding:8px 14px;border-radius:6px;'
+    +'font-size:13.5px;box-shadow:0 2px 8px rgba(0,0,0,.35);white-space:nowrap';
+  const embed = urlq.get('embed') === '1';
+  b.innerHTML = 'Docket for the week of <b>' + esc(weekParam) + '</b>&ensp;'
+    + '<a href="' + location.pathname + '"' + (embed ? ' target="_blank" rel="noopener"' : '')
+    + ' style="color:#ffd400">' + (embed ? 'open full map' : 'show everything') + '</a>';
+  document.body.appendChild(b);
+}
+
 Promise.allSettled([
   fetch('data/filings.geojson').then(r=>r.json()),
   fetch('data/city_layers.geojson').then(r=>r.json())
@@ -202,6 +229,10 @@ function render(){
   layerGroup.clearLayers(); let shown=0;
   features.forEach(f=>{
     const p=f.properties;
+    if(state.week){
+      if(p.group!=='agenda') return;
+      if(!p.meeting_date || p.meeting_date < state.week.from || p.meeting_date > state.week.to) return;
+    }
     const active = p.group==='city' ? state.cityTypes.has(p.type) : state.agendaTypes.has(p.type);
     if(!active) return;
     if(state.board && p.board!==state.board) return;
