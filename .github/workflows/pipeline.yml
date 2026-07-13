@@ -1,0 +1,100 @@
+name: Filings pipeline
+
+on:
+  schedule:
+    - cron: "0 11 * * 1,3,5"   # Mon/Wed/Fri 11:00 UTC (~6-7 AM Eastern)
+  workflow_dispatch:
+    inputs:
+      force_digest:
+        description: "Publish digest even if today is not Monday"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tracker
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ---------------------------------------------- every run: scrape --
+      - name: Run scrapers
+        run: |
+          python scraper/scrape.py
+          python scraper/arcgis_pull.py
+
+      # ------------------------------------- Mondays only: build digest --
+      - name: Decide whether to publish a digest
+        id: gate
+        run: |
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ inputs.force_digest }}" = "true" ]; then
+            echo "digest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "digest=false" >> "$GITHUB_OUTPUT"
+            echo "Not Monday - scrape only."
+          fi
+
+      - name: Generate digest draft
+        if: steps.gate.outputs.digest == 'true'
+        run: python scraper/digest.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "filings-bot"
+          git config user.email "actions@github.com"
+          git add docs/data/ data/ digest_drafts/ || true
+          if git diff --cached --quiet; then
+            echo "No new filings this run."
+          else
+            git commit -m "Filings update: $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      # ------------------------------------ Mondays only: publish draft --
+      - name: Find fresh draft
+        if: steps.gate.outputs.digest == 'true'
+        id: draft
+        run: |
+          DRAFT="digest_drafts/$(date -u +%Y-%m-%d)-this-week.md"
+          if [ -f "$DRAFT" ]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            echo "path=$DRAFT" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "No draft at $DRAFT - skipping publish."
+          fi
+
+      - name: Check out IndyIMBY site
+        if: steps.draft.outputs.publish == 'true'
+        uses: actions/checkout@v5
+        with:
+          repository: JTompk/indyimby-site
+          token: ${{ secrets.SITE_PUSH_TOKEN }}
+          path: site
+
+      - name: Publish draft to site
+        if: steps.draft.outputs.publish == 'true'
+        run: |
+          DEST="site/content/posts/$(basename "${{ steps.draft.outputs.path }}")"
+          if [ -f "$DEST" ]; then
+            echo "Already published - skipping."
+            exit 0
+          fi
+          cp "${{ steps.draft.outputs.path }}" "$DEST"
+          cd site
+          git config user.name "digest-bot"
+          git config user.email "actions@github.com"
+          git add content/posts/
+          git commit -m "Monday digest: $(date -u +%Y-%m-%d)"
+          git push
