@@ -9,6 +9,10 @@ on:
         description: "Publish digest even if today is not Monday"
         type: boolean
         default: false
+      backfill:
+        description: "Deep sweep: read 6 listing pages instead of 2"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -31,7 +35,14 @@ jobs:
       # ---------------------------------------------- every run: scrape --
       - name: Run scrapers
         run: |
-          python scraper/scrape.py
+          # Deep sweep on the 1st of the month (or when manually requested):
+          # reads 6 listing pages instead of 2, so even a multi-week pipeline
+          # outage can't permanently miss an agenda.
+          if [ "$(date -u +%d)" = "01" ] || [ "${{ inputs.backfill }}" = "true" ]; then
+            python scraper/scrape.py --backfill
+          else
+            python scraper/scrape.py
+          fi
           python scraper/arcgis_pull.py
 
       # ------------------------------------- Mondays only: build digest --
