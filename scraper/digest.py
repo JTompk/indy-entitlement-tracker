@@ -96,12 +96,27 @@ def build(lookahead, lookback):
     records = load_all()
     scored = [(r, *score_item(r)) for r in records]
 
-    upcoming = [(r, s, t) for r, s, t in scored
-                if (r.get("meeting_date") or "") >= today
-                and (r.get("meeting_date") or "") <= horizon]
-    fresh = [(r, s, t) for r, s, t in scored
-             if (r.get("ingested") or "") >= cutoff
-             and (r, s, t) not in upcoming]
+    def dedupe(rows):
+        """One entry per case; keep the record with the newest meeting_date."""
+        best = {}
+        for r, s, t in rows:
+            k = r.get("case")
+            if k not in best or (r.get("meeting_date") or "") > \
+                    (best[k][0].get("meeting_date") or ""):
+                best[k] = (r, s, t)
+        return list(best.values())
+
+    upcoming = dedupe((r, s, t) for r, s, t in scored
+                      if today <= (r.get("meeting_date") or "") <= horizon)
+    up_cases = {r.get("case") for r, s, t in upcoming}
+    # "New" = recently ingested AND not already on this week's docket AND not
+    # a past hearing (a new filing whose hearing already happened is history,
+    # not news — this also keeps initial-backfill records out of the digest).
+    fresh = dedupe((r, s, t) for r, s, t in scored
+                   if (r.get("ingested") or "") >= cutoff
+                   and r.get("case") not in up_cases
+                   and (not r.get("meeting_date")
+                        or r["meeting_date"] > horizon))
 
     lines = []
 
