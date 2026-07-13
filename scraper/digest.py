@@ -1,155 +1,200 @@
 #!/usr/bin/env python3
 """
-IndyIMBY digest generator.
+IndyIMBY digest generator (v2).
 
-Reads docs/data/filings.geojson (built by scrape.py), pulls everything
-ingested in the last N days, and writes a publishable Monday digest post
-to digest_drafts/. The Monday noon workflow ships it to the site as-is;
-edit the draft before noon Eastern and your version ships instead.
+Builds the Monday digest around what a reader can still act on:
+
+  1. "On the docket this week" — hearings with meeting_date in the next
+     LOOKAHEAD_DAYS, grouped by meeting, items ranked by editorial priority
+     (tax incentives > multi-family > DMD contracts > rezonings > rest).
+  2. "New filings worth watching" — items first ingested in the last
+     LOOKBACK_DAYS whose hearings are further out.
+  3. Stats footer. Counts are the footnote now, not the lede.
+
+Reads BOTH data sources:
+  docs/data/filings.geojson   — geocoded petitions (the map's data)
+  data/agenda_items.json      — MDC resolutions etc. (no address needed)
 
 Usage:
-  python scraper/digest.py               # last 7 days
-  python scraper/digest.py --days 14
+  python scraper/digest.py
+  python scraper/digest.py --lookahead 10 --lookback 7
   python scraper/digest.py --out my.md
 """
 
 import argparse
 import json
-from collections import Counter
+import sys
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-GEOJSON_PATH = ROOT / "docs" / "data" / "filings.geojson"
-DRAFTS_DIR = ROOT / "digest_drafts"
+sys.path.insert(0, str(ROOT / "scraper"))
+from agenda_items import score_item  # noqa: E402
 
+GEOJSON_PATH = ROOT / "docs" / "data" / "filings.geojson"
+ITEMS_PATH = ROOT / "data" / "agenda_items.json"
+DRAFTS_DIR = ROOT / "digest_drafts"
 MAP_URL = "https://map.indyimby.com"
 
-
-def plural(n, word):
-    return f"{n} {word}{'' if n == 1 else 's'}"
+LOOKAHEAD_DAYS = 10   # hearings this far out count as "this week"
+LOOKBACK_DAYS = 7     # "new" = first ingested within this window
+MAX_PER_MEETING = 6   # items listed per meeting (rest summarized as a count)
+MAX_NEW = 6           # items in "New filings worth watching"
 
 
 def nice_date(d):
     return f"{d.strftime('%B')} {d.day}, {d.year}"
 
 
-def load_recent(days):
-    gj = json.loads(GEOJSON_PATH.read_text(encoding="utf-8"))
-    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).date().isoformat()
-    return [f["properties"] for f in gj.get("features", [])
-            if (f["properties"].get("ingested") or "") >= cutoff]
+def nice_meeting_date(iso):
+    try:
+        d = datetime.fromisoformat(iso).date()
+        return f"{d.strftime('%A, %B')} {d.day}"
+    except (ValueError, TypeError):
+        return iso or "date TBD"
 
 
-def upcoming_hearings(records):
-    today = datetime.now(timezone.utc).date().isoformat()
-    return sorted({(r.get("meeting_date"), r.get("board"))
-                   for r in records
-                   if r.get("meeting_date") and r["meeting_date"] >= today})
+def load_all():
+    records = []
+    if GEOJSON_PATH.exists():
+        gj = json.loads(GEOJSON_PATH.read_text(encoding="utf-8"))
+        records += [f["properties"] for f in gj.get("features", [])]
+    if ITEMS_PATH.exists():
+        records += json.loads(ITEMS_PATH.read_text(encoding="utf-8"))
+    return records
 
 
-def notable(records, limit=5):
-    """Rezonings first (they're the story), then anything with a rich summary."""
-    rez = [r for r in records if r.get("type") == "Rezoning"]
-    rest = [r for r in records if r.get("type") != "Rezoning"]
-    ranked = sorted(rez, key=lambda r: len(r.get("summary") or ""), reverse=True) \
-        + sorted(rest, key=lambda r: len(r.get("summary") or ""), reverse=True)
-    return ranked[:limit]
-
-
-def fmt_case(r):
-    bits = [f"**{r['case']}** — {r.get('address') or 'address TBD'}"]
+def fmt_item(r, tier):
+    tag = f"**[{tier}]** " if tier else ""
+    head = f"{tag}**{r['case']}**"
+    where = r.get("address")
+    if where:
+        head += f" — {where}"
     loc = ", ".join(x for x in [
         f"{r['township']} Township" if r.get("township") else None,
         f"Council #{r['council_district']}" if r.get("council_district") else None,
     ] if x)
     if loc:
-        bits.append(f"({loc})")
-    line = " ".join(bits)
+        head += f" ({loc})"
     if r.get("zoning_from") and r.get("zoning_to"):
-        line += f". `{r['zoning_from']} → {r['zoning_to']}`"
+        head += f". `{r['zoning_from']} → {r['zoning_to']}`"
     summary = (r.get("summary") or "").strip()
     if summary:
-        line += f". {summary[:180].rstrip()}…"
+        head += f". {summary[:200].rstrip()}…"
     if r.get("agenda_url"):
-        line += f" [Agenda]({r['agenda_url']})."
-    return f"- {line}"
+        head += f" [Agenda]({r['agenda_url']})."
+    return f"- {head}"
 
 
-def build(days):
-    records = load_recent(days)
+def build(lookahead, lookback):
     now = datetime.now(timezone.utc).date()
-    title_date = nice_date(now)
+    today = now.isoformat()
+    horizon = (now + timedelta(days=lookahead)).isoformat()
+    cutoff = (now - timedelta(days=lookback)).isoformat()
 
-    if not records:
-        body = (f"No new filings appeared on DMD agendas in the last {days} days.\n\n"
-                f"Quiet weeks happen — hearings cluster around board calendars. "
-                f"The [map]({MAP_URL}) stays live in the meantime.\n")
-        summary = "A quiet week on the DMD dockets."
+    records = load_all()
+    scored = [(r, *score_item(r)) for r in records]
+
+    upcoming = [(r, s, t) for r, s, t in scored
+                if (r.get("meeting_date") or "") >= today
+                and (r.get("meeting_date") or "") <= horizon]
+    fresh = [(r, s, t) for r, s, t in scored
+             if (r.get("ingested") or "") >= cutoff
+             and (r, s, t) not in upcoming]
+
+    lines = []
+
+    # ------------------------------------------------ on the docket --
+    if upcoming:
+        meetings = defaultdict(list)
+        for r, s, t in upcoming:
+            meetings[(r.get("meeting_date"), r.get("board") or "DMD Board")].append((r, s, t))
+
+        # Lede from the single highest-priority upcoming item.
+        top_r, top_s, top_t = max(upcoming, key=lambda x: x[1])
+        n_meetings = len(meetings)
+        lede = (f"{n_meetings} DMD hearing{'s' if n_meetings != 1 else ''} "
+                f"on the calendar through {nice_meeting_date(horizon)}.")
+        if top_t:
+            lede += (f" The headline: a {top_t.lower()} item at the "
+                     f"{top_r.get('board', 'MDC')} — details below.")
+        lines += [lede, "", "## On the docket this week", ""]
+
+        for (mdate, board), items in sorted(meetings.items()):
+            items.sort(key=lambda x: x[1], reverse=True)
+            lines.append(f"### {nice_meeting_date(mdate)} — {board}")
+            lines.append("")
+            for r, s, t in items[:MAX_PER_MEETING]:
+                lines.append(fmt_item(r, t))
+            if len(items) > MAX_PER_MEETING:
+                lines.append(f"- …plus {len(items) - MAX_PER_MEETING} more "
+                             f"item{'s' if len(items) - MAX_PER_MEETING != 1 else ''} "
+                             f"on this agenda.")
+            lines.append("")
+        lines += ["If one of these is near you, "
+                  "[here's how to testify](/how-to-testify/).", ""]
     else:
-        types = Counter(r.get("type", "Other") for r in records)
-        townships = Counter(r["township"] for r in records if r.get("township"))
-        boards = Counter(r["board"] for r in records if r.get("board"))
+        lines += ["No DMD hearings on the calendar in the next "
+                  f"{lookahead} days. Quiet stretches happen — the "
+                  f"[map]({MAP_URL}) stays live in the meantime.", ""]
 
-        type_line = ", ".join(f"{n} {t.lower()}{'' if n == 1 else 's'}"
-                              for t, n in types.most_common())
-        twp_line = ", ".join(f"{t} ({n})" for t, n in townships.most_common(5))
+    # ------------------------------------------------- new filings --
+    fresh.sort(key=lambda x: x[1], reverse=True)
+    if fresh:
+        lines += ["## New filings worth watching", ""]
+        for r, s, t in fresh[:MAX_NEW]:
+            lines.append(fmt_item(r, t))
+        if len(fresh) > MAX_NEW:
+            lines.append(f"- …and {len(fresh) - MAX_NEW} more new "
+                         f"filing{'s' if len(fresh) - MAX_NEW != 1 else ''} — "
+                         f"all mapped on the [tracker]({MAP_URL}).")
+        lines.append("")
 
-        top_t, top_n = types.most_common(1)[0]
-        busiest_twp = townships.most_common(1)[0][0] if townships else None
-        lede_bits = [f"{plural(len(records), 'new filing')} hit the DMD dockets this week"]
-        if busiest_twp:
-            lede_bits.append(f"with activity heaviest in {busiest_twp} Township")
-        lede = ", ".join(lede_bits) + "."
-        if top_t == "Rezoning" and top_n > 1:
-            lede += f" {top_n} rezonings lead the docket — land looking to become something else."
-        lines = [
-            lede,
-            "",
-            f"The full breakdown: {type_line}.",
-        ]
-        if twp_line:
-            lines.append(f"Activity concentrated in {twp_line} — "
-                         f"[see the map]({MAP_URL}).")
-        lines += ["", "## Worth your attention", ""]
-        lines += [fmt_case(r) for r in notable(records)]
+    # ------------------------------------------------------ footer --
+    n_up = len(upcoming)
+    n_new = len(fresh)
+    types = Counter((t or r.get("type") or "Other")
+                    for r, s, t in upcoming + fresh)
+    type_line = ", ".join(f"{t.lower()} ({n})"
+                          for t, n in types.most_common(5))
+    lines += ["---", "",
+              f"*This week by the numbers: {n_up} item{'s' if n_up != 1 else ''} "
+              f"on upcoming agendas, {n_new} new filing{'s' if n_new != 1 else ''} "
+              f"since last Monday"
+              + (f" ({type_line})" if type_line else "") + ". "
+              f"Every mappable filing is on the "
+              f"[Entitlement Tracker]({MAP_URL}), compiled from public DMD "
+              f"agendas. See something we got wrong? Reply and tell us.*"]
 
-        hearings = upcoming_hearings(records)
-        if hearings:
-            lines += ["", "## On the calendar", ""]
-            for date, board in hearings:
-                lines.append(f"- **{date}** — {board}")
-            lines += ["", "If one of these is near you, "
-                          "[here's how to testify](/how-to-testify/)."]
-
-        lines += ["", "---", "",
-                  f"*Every filing above is mapped on the "
-                  f"[Entitlement Tracker]({MAP_URL}), compiled from public "
-                  f"DMD agendas. See something we got wrong? Reply and "
-                  f"tell us.*"]
-        body = "\n".join(lines)
-        summary = (f"{len(records)} new filings this week, led by "
-                   f"{top_n} {top_t.lower()}{'' if top_n == 1 else 's'}"
-                   + (f"; busiest township: {townships.most_common(1)[0][0]}."
-                      if townships else "."))
+    # -------------------------------------------------- frontmatter --
+    if upcoming and top_t:
+        summary = (f"{top_t} at the {top_r.get('board', 'MDC')}, "
+                   f"{n_up} item{'s' if n_up != 1 else ''} on this week's agendas, "
+                   f"{n_new} new filing{'s' if n_new != 1 else ''}.")
+    elif upcoming:
+        summary = f"{n_up} items on this week's DMD agendas; {n_new} new filings."
+    else:
+        summary = "A quiet week on the DMD dockets."
 
     front = "\n".join([
         "---",
-        f"title: This week in Indy entitlement — {title_date}",
-        f"date: {now.isoformat()}",
+        f"title: This week in Indy entitlement — {nice_date(now)}",
+        f"date: {today}",
         f"summary: {summary}",
         "---",
     ])
-    return front + "\n\n" + body + "\n"
+    return front + "\n\n" + "\n".join(lines) + "\n"
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--days", type=int, default=7)
+    ap.add_argument("--lookahead", type=int, default=LOOKAHEAD_DAYS)
+    ap.add_argument("--lookback", type=int, default=LOOKBACK_DAYS)
     ap.add_argument("--out", type=str, default=None)
     args = ap.parse_args()
 
-    md = build(args.days)
+    md = build(args.lookahead, args.lookback)
     out = Path(args.out) if args.out else \
         DRAFTS_DIR / f"{datetime.now(timezone.utc).date().isoformat()}-this-week.md"
     out.parent.mkdir(parents=True, exist_ok=True)
