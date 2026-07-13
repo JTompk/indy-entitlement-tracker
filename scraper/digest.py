@@ -31,7 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scraper"))
-from agenda_items import score_item  # noqa: E402
+from agenda_items import score_item, max_dollar  # noqa: E402
 
 GEOJSON_PATH = ROOT / "docs" / "data" / "filings.geojson"
 ITEMS_PATH = ROOT / "data" / "agenda_items.json"
@@ -194,6 +194,29 @@ def fmt_item(r, tier):
     return f"- {head}"
 
 
+def fmt_dollars(n):
+    if n >= 1_000_000:
+        v = n / 1_000_000
+        return f"${v:.1f}".rstrip("0").rstrip(".") + "M"
+    if n >= 1_000:
+        return f"${n/1_000:.0f}K"
+    return f"${n:,}"
+
+
+def incentive_total(rows):
+    """(count, summed dollars) across tax-incentive items; dollars best-effort."""
+    tot, cnt = 0, 0
+    for r, s, t in rows:
+        if t != "Tax incentive":
+            continue
+        cnt += 1
+        d = r.get("dollars") or max_dollar(
+            " ".join(str(r.get(k) or "") for k in ("title", "summary")))
+        if d:
+            tot += d
+    return cnt, tot
+
+
 def build(lookahead, lookback):
     now = datetime.now(timezone.utc).date()
     today = now.isoformat()
@@ -241,6 +264,14 @@ def build(lookahead, lookback):
         if top_t:
             lede += (f" The headline: a {top_t.lower()} item at the "
                      f"{top_r.get('board', 'MDC')} — details below.")
+        inc_n, inc_total = incentive_total(upcoming)
+        if inc_n and inc_total:
+            lede += (f" This week's agendas carry {inc_n} tax-incentive "
+                     f"item{'s' if inc_n != 1 else ''} tied to roughly "
+                     f"{fmt_dollars(inc_total)} in project investment.")
+        elif inc_n:
+            lede += (f" This week's agendas carry {inc_n} tax-incentive "
+                     f"item{'s' if inc_n != 1 else ''}.")
         lines += [lede, "", "## On the docket this week", ""]
 
         for (mdate, board), items in sorted(meetings.items()):
@@ -298,7 +329,12 @@ def build(lookahead, lookback):
               f"agendas. See something we got wrong? Reply and tell us.*"]
 
     # -------------------------------------------------- frontmatter --
-    if upcoming and top_t:
+    if upcoming and top_t == "Tax incentive" and inc_total:
+        summary = (f"{inc_n} tax-incentive item{'s' if inc_n != 1 else ''} "
+                   f"(~{fmt_dollars(inc_total)}) at the {top_r.get('board', 'MDC')}, "
+                   f"{n_up} item{'s' if n_up != 1 else ''} on this week's agendas, "
+                   f"{n_new} new filing{'s' if n_new != 1 else ''}.")
+    elif upcoming and top_t:
         summary = (f"{top_t} at the {top_r.get('board', 'MDC')}, "
                    f"{n_up} item{'s' if n_up != 1 else ''} on this week's agendas, "
                    f"{n_new} new filing{'s' if n_new != 1 else ''}.")
