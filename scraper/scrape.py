@@ -40,6 +40,8 @@ import pdfplumber
 import requests
 from bs4 import BeautifulSoup
 
+from agenda_items import parse_mdc_items, merge_and_save
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 GEOJSON_PATH = ROOT / "docs" / "data" / "filings.geojson"
@@ -319,6 +321,7 @@ def main():
     print(f"[info] {len(new_agendas)} agenda(s) not yet processed")
 
     added = 0
+    mdc_items = []
     for agenda in new_agendas:
         print(f"[info] processing: {agenda['title'][:80]}")
         try:
@@ -327,6 +330,9 @@ def main():
             print(f"[warn] could not read PDF {agenda['url']}: {e}")
             continue
         board = guess_board(agenda["title"])
+        if board == "Metropolitan Development Commission":
+            mdc_items.extend(
+                parse_mdc_items(text, board, agenda["date"], agenda["url"]))
         for pet in parse_petitions(text):
             key = (pet["case"], agenda["url"])
             if key in existing_keys:
@@ -361,6 +367,9 @@ def main():
     geojson["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     save_json(GEOJSON_PATH, geojson)
     save_json(PROCESSED_PATH, sorted(processed))
+    n_res = merge_and_save(
+        mdc_items, datetime.now(timezone.utc).date().isoformat())
+    print(f"[info] {n_res} MDC resolution item(s) added")
     save_json(CACHE_PATH, cache)
     save_json(UNMATCHED_PATH, unmatched)
 
