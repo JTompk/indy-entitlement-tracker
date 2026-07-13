@@ -50,7 +50,10 @@ CACHE_PATH = DATA_DIR / "geocode_cache.json"
 UNMATCHED_PATH = DATA_DIR / "unmatched.json"
 
 PORTAL = "https://indianapolis-in.municodemeetings.com"
-LISTING_URL = PORTAL + "/DMDmeetings"
+LISTING_URLS = [
+    PORTAL + "/DMDmeetings",    # MDC, Hearing Examiner, BZA I-III, Plat
+    PORTAL + "/IHPCmeetings",   # Historic Preservation Commission
+]
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
@@ -89,6 +92,9 @@ TYPE_MAP = [
     (re.compile(r"^PLT|^PLAT|^SUB"), "Plat / Subdivision"),
     (re.compile(r"^CVR|^CV|^CA"), "Commitment / Covenant"),
     (re.compile(r"^HOV"), "Hospital / Overlay"),
+    # IHPC applications. CALIBRATE against a real IHPC agenda — prefix
+    # guesses: COA (Certificate of Appropriateness), CA already maps above.
+    (re.compile(r"^COA|^IHPC|^HP"), "Historic (IHPC)"),
 ]
 
 
@@ -110,6 +116,8 @@ def guess_board(title: str) -> str:
             if n in t or f"DIVISION {roman}" in t or f"BOARD {roman}" in t:
                 return f"BZA {roman}"
         return "BZA"
+    if "IHPC" in t or "HISTORIC PRESERVATION" in t:
+        return "IHPC"
     # Post-migration Municode titles say just "Division II" without
     # "Zoning Appeals" — those are still the BZAs. (Check III before II
     # before I: "DIVISION II" is a substring of "DIVISION III".)
@@ -140,8 +148,9 @@ def discover_agendas(session, backfill=False):
     """Return list of dicts: {url, title, date} for every agenda PDF found."""
     pages = range(0, 6) if backfill else range(0, 2)
     found, seen = [], set()
-    for p in pages:
-        url = LISTING_URL if p == 0 else f"{LISTING_URL}?page={p}"
+    listings = [(base, p) for base in LISTING_URLS for p in pages]
+    for base, p in listings:
+        url = base if p == 0 else f"{base}?page={p}"
         try:
             html = session.get(url, headers=HEADERS, timeout=30).text
         except requests.RequestException as e:
