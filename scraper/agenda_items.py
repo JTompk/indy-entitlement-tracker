@@ -41,7 +41,8 @@ INCENTIVE_TERMS = [
     "real property abatement",
     "personal property abatement",
     "cf-1",                                  # abatement compliance filings
-    "sb-1",                                  # statement of benefits
+    "sb-1",                                  # statement of benefits (form code)
+    "statement of benefits",                 # spelled-out form, incl. compliance items
     "allocation area",                       # TIF allocation-area actions
 ]
 
@@ -86,6 +87,12 @@ RESOLUTION_RE = re.compile(
 # Petition case numbers — used to AVOID double-counting blocks that the
 # petition parser already handles. Mirrors CASE_RE in scrape.py.
 CASE_RE = re.compile(r"\b(20\d{2})-([A-Z]{2,4}\d?)-(\d{1,4}[A-Z]?)\b")
+
+# MDC incentive/abatement items use single-letter prefixes that CASE_RE
+# (2-4 letters) does not match, e.g. "2026-A-033 (For Public Hearing)
+# Final Economic Revitalization Area Resolution ...". CALIBRATE the
+# prefix set if other single-letter series appear on real agendas.
+MDC_ITEM_RE = re.compile(r"\b(20\d{2})-(A)-(\d{1,4}[A-Z]?)\b")
 
 # ------------------------------------------------------------------ scoring --
 
@@ -135,9 +142,11 @@ def parse_mdc_items(text, board, meeting_date, agenda_url):
     Returns list of dicts with kind='resolution'.
     """
     res_matches = list(RESOLUTION_RE.finditer(text))
-    # Block boundaries: the next resolution OR next petition case number,
-    # so one item's keywords can't bleed into another item's block.
+    item_matches = list(MDC_ITEM_RE.finditer(text))
+    # Block boundaries: next resolution, A-number item, or petition case
+    # number — so one item's keywords can't bleed into another's block.
     boundaries = sorted({m.start() for m in res_matches}
+                        | {m.start() for m in item_matches}
                         | {m.start() for m in CASE_RE.finditer(text)})
 
     # Words that signal a cross-reference to another resolution, not a new item.
@@ -161,11 +170,24 @@ def parse_mdc_items(text, board, meeting_date, agenda_url):
         if res_no not in items or len(block) > len(items[res_no]):
             items[res_no] = block
 
+    # A-number items (abatements etc.) — same block logic, keyed on case no.
+    for m in item_matches:
+        case_no = m.group(0)
+        start = m.start()
+        nxt = [b for b in boundaries if b > start]
+        end = min(len(text), start + 900, nxt[0] if nxt else len(text))
+        block = " ".join(text[start:end].split())
+        if len(block) < 60:
+            continue
+        if case_no not in items or len(block) > len(items[case_no]):
+            items[case_no] = block
+
     out = []
     for res_no, block in items.items():
+        label = res_no if MDC_ITEM_RE.fullmatch(res_no) else f"Res. {res_no}"
         out.append({
             "kind": "resolution",
-            "case": f"Res. {res_no}",
+            "case": label,
             "title": block[:160],
             "summary": block[:600],
             "board": board,
