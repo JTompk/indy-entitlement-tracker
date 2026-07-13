@@ -25,6 +25,13 @@
   .titleblock .sub{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-dim);margin-top:6px;letter-spacing:.03em}
   .stamp{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-dim);display:flex;justify-content:space-between;margin-top:14px;padding-top:8px;border-top:1px solid var(--rule)}
   .stamp b{color:var(--paper);font-weight:500}
+  .coverage-note{margin-top:10px;font-size:11.5px;color:var(--paper-dim);line-height:1.5}
+  .coverage-note summary{font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    letter-spacing:.04em;text-transform:uppercase;cursor:pointer;color:var(--paper-dim)}
+  .coverage-note summary:hover{color:var(--paper)}
+  .coverage-note p{margin:8px 0 0}
+  .coverage-note b{color:var(--paper);font-weight:500}
+  .coverage-note a{color:#ffd400}
 
   h2{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-dim);margin:22px 0 8px}
   .filters label.row{display:flex;align-items:center;gap:8px;padding:5px 2px;font-size:13.5px;cursor:pointer;border-radius:3px}
@@ -88,6 +95,20 @@
   <input type="search" id="q" placeholder="Case no., address, petitioner…">
 
   <div class="stamp" style="border:none;margin-top:18px"><span>RECORDS SHOWN</span><span><b id="shown">0</b> / <span id="total">0</span></span></div>
+  <details class="coverage-note">
+    <summary>About data coverage</summary>
+    <p><b>Weekly agenda records</b> (rezonings, variances, plats, tax
+    incentives) begin <b>mid-2025</b>, when this tracker started reading
+    DMD and IHPC agendas. Years before that are <i>not</i> a complete
+    record of filings — a quiet map in 2023 means we weren't watching
+    yet, not that nothing happened.</p>
+    <p><b>City case layers</b> (approvals, variances, non-conforming
+    uses) come from MapIndy's GIS and reach back decades, but reflect
+    the city's own record-keeping, including its gaps and occasional
+    data-entry errors.</p>
+    <p>Coverage grows every week from here. Spot something wrong?
+    <a href="https://indyimby.com/about/">Tell us.</a></p>
+  </details>
 
   <p class="note">Solid dots are petitions compiled weekly from public DMD board
   agendas. Ring markers are case layers served by the city's own MapIndy GIS.
