@@ -412,6 +412,16 @@ def main():
     save_json(CACHE_PATH, cache)
     save_json(UNMATCHED_PATH, unmatched)
 
+    # Compact feed of the most recent filings for the site homepage.
+    recent = sorted(geojson["features"],
+                    key=lambda f: (f["properties"].get("ingested") or "",
+                                   f["properties"].get("meeting_date") or ""),
+                    reverse=True)[:10]
+    save_json(ROOT / "docs" / "data" / "latest.json",
+              [{k: f["properties"].get(k) for k in
+                ("case", "type", "address", "meeting_date", "board")}
+               for f in recent])
+
 
 if __name__ == "__main__":
     sys.exit(main())
