@@ -272,7 +272,16 @@ def build(lookahead, lookback):
         elif inc_n:
             lede += (f" This week's agendas carry {inc_n} tax-incentive "
                      f"item{'s' if inc_n != 1 else ''}.")
-        lines += [lede, "", "## On the docket this week", ""]
+        # Live embedded map leads the post (iframe passes through markdown
+        # untouched; email clients strip it, so keep the link too).
+        lines += [lede, "",
+                  f'<iframe src="{MAP_URL}/?week={today}&embed=1" '
+                  f'width="100%" height="420" '
+                  f'style="border:1px solid #ddd;border-radius:6px" '
+                  f'loading="lazy" title="This week\'s docket map"></iframe>', "",
+                  f"[**Open this week's docket map in full →**]"
+                  f"({MAP_URL}/?week={today})", "",
+                  "## On the docket this week", ""]
 
         for (mdate, board), items in sorted(meetings.items()):
             items.sort(key=lambda x: x[1], reverse=True)
@@ -285,15 +294,7 @@ def build(lookahead, lookback):
                              f"item{'s' if len(items) - MAX_PER_MEETING != 1 else ''} "
                              f"on this agenda.")
             lines.append("")
-        # Live embedded map of this week's docket (iframe passes through
-        # markdown untouched; email clients strip it, so keep the link too).
-        lines += [f'<iframe src="{MAP_URL}/?week={today}&embed=1" '
-                  f'width="100%" height="420" '
-                  f'style="border:1px solid #ddd;border-radius:6px" '
-                  f'loading="lazy" title="This week\'s docket map"></iframe>', "",
-                  f"[**Open this week's docket map in full →**]"
-                  f"({MAP_URL}/?week={today})", "",
-                  "If one of these is near you, "
+        lines += ["If one of these is near you, "
                   "[here's how to testify](/how-to-testify/).", ""]
     else:
         lines += ["No DMD hearings on the calendar in the next "
