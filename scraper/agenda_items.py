@@ -222,15 +222,19 @@ def merge_and_save(new_items, ingested_date):
     existing = []
     if ITEMS_PATH.exists():
         existing = json.loads(ITEMS_PATH.read_text(encoding="utf-8"))
-    seen = {(i["case"], i.get("agenda_url")) for i in existing}
+    by_key = {(i["case"], i.get("agenda_url")): i for i in existing}
     added = 0
     for item in new_items:
         key = (item["case"], item.get("agenda_url"))
-        if key in seen:
+        if key in by_key:
+            # Re-ingest: refresh fields in place (keeps original ingested date)
+            # so parser improvements propagate to already-captured items.
+            item["ingested"] = by_key[key].get("ingested", ingested_date)
+            by_key[key].update(item)
             continue
         item["ingested"] = ingested_date
         existing.append(item)
-        seen.add(key)
+        by_key[key] = item
         added += 1
     ITEMS_PATH.parent.mkdir(parents=True, exist_ok=True)
     ITEMS_PATH.write_text(json.dumps(existing, indent=1), encoding="utf-8")
