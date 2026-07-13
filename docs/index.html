@@ -109,6 +109,7 @@ const AGENDA_COLORS = {
   "Tax incentive": '#c2186b',
   "DMD contract": '#7a7a7a',
   "MDC Resolution": '#9a8ab5',
+  "Historic (IHPC)": '#7a5c3e',
   "Rezoning": getCss('--c-rezoning'),
   "Variance / Special Exception": getCss('--c-variance'),
   "Plat / Subdivision": getCss('--c-plat'),
@@ -181,9 +182,9 @@ Promise.allSettled([
   buildFilters(); render();
 });
 
-function checkboxRow(container, label, count, color, ring, onToggle){
+function checkboxRow(container, label, count, color, ring, onToggle, checked=true){
   const l=document.createElement('label'); l.className='row';
-  l.innerHTML=`<input type="checkbox" checked>
+  l.innerHTML=`<input type="checkbox" ${checked?'checked':''}>
     <span class="swatch${ring?' ring':''}" style="${ring?'border-color:'+color:'background:'+color}"></span>
     <span>${esc(label)}</span><span class="count">${count}</span>`;
   l.querySelector('input').addEventListener('change',e=>onToggle(e.target.checked));
@@ -211,9 +212,10 @@ function buildFilters(){
   const cKeys=Object.keys(cCounts).sort();
   if(!cKeys.length) cf.innerHTML='<span class="count">— none yet —</span>';
   cKeys.forEach(t=>{
-    state.cityTypes.add(t);
+    // City GIS layers (19k+ historical records) start OFF to keep the
+    // first view readable; the counts invite turning them on.
     checkboxRow(cf,t,cCounts[t],colorFor({group:'city',type:t}),true,
-      on=>{on?state.cityTypes.add(t):state.cityTypes.delete(t);render()});
+      on=>{on?state.cityTypes.add(t):state.cityTypes.delete(t);render()},false);
   });
   const bf=document.getElementById('boardFilter');
   [...boards].sort().forEach(b=>bf.add(new Option(b,b)));
@@ -221,6 +223,12 @@ function buildFilters(){
   const sorted=[...years].sort((a,b)=>b-a);
   const yFrom=document.getElementById('yearFrom'), yTo=document.getElementById('yearTo');
   sorted.forEach(y=>{yFrom.add(new Option(y,y));yTo.add(new Option(y,y))});
+  // Open showing the current year's filings; "From" is user-clearable.
+  const nowYear = new Date().getFullYear();
+  if(!state.week && sorted.includes(nowYear)){
+    yFrom.value = String(nowYear);
+    state.yearFrom = String(nowYear);
+  }
   yFrom.addEventListener('change',()=>{state.yearFrom=yFrom.value;render()});
   yTo.addEventListener('change',()=>{state.yearTo=yTo.value;render()});
   document.getElementById('q').addEventListener('input',e=>{
