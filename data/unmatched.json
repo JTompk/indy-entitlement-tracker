@@ -8766,5 +8766,53 @@
   "meeting_date": "2026-07-15",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
   "ingested": "2026-07-13"
+ },
+ {
+  "case": "2005-ZON-123",
+  "year": 2005,
+  "prefix": "ZON",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2005-ZON-123, to provide for modifying Commitment 4 of Attachment \u2018C\u2019, to permit construction of a community center expansion, with the site plan filed with this petition (development of the site required to be generally compliant with the site plan, file-dated August 9, 2005), and to provide for terminating Commitment 10 of Attachment \u2018C\u2019 requiring existing freestanding sign and sign pole removal within 60 days of the issuance of an Improvement Location Permit. Petitions for Public Hearing PETITIONS FOR PUBLIC HEARING: 16. COMPANION PETITIONS RECOMMENDED FOR APPROVAL BY HEARING EXAMINER, APPE",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-07-15",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+  "ingested": "2026-07-13"
+ },
+ {
+  "case": "2026-CVR-815",
+  "year": 2026,
+  "prefix": "CVR",
+  "type": "Commitment / Covenant",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CVR-815 (Amended) /",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-07-15",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+  "ingested": "2026-07-13"
+ },
+ {
+  "case": "2026-CPL-815",
+  "year": 2026,
+  "prefix": "CPL",
+  "type": "Other",
+  "address": "305 FINTAIL DRIVE",
+  "township": "Warren",
+  "council_district": 20,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CPL-815 | 305 Fintail Drive Warren Township, Council District #20 I-3 DCB Indianapolis, LLC, by Mindy Westrick Brown Variance of Use and Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for construction of a data center (not permitted), consisting of up to two buildings, up to a total of 330,000 square feet, with no less than 100 parking spaces (minimum 330 parking spaces required). Approval of a Subdivision Plat to be known as Replat of Block A of Thunderbird Commerce Center, subdividing 32.406 acres into two lots. 17. REZONING PETITION TRANSFERRED BY",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-07-15",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
+  "ingested": "2026-07-13"
  }
 ]
