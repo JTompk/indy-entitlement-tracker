@@ -9838,5 +9838,37 @@
   "meeting_date": "2025-08-06",
   "agenda_url": "https://indianapolis-in.municodemeetings.com/sites/indianapolis-in.municodemeetings.com/files/fileattachments/ihpc_commission_hearings/meeting/packets/5130/august_2025_agenda_reports_8.5x11_-_blackwhite.pdf",
   "ingested": "2026-07-13"
+ },
+ {
+  "case": "2026-DV3-009",
+  "year": 2026,
+  "prefix": "DV3",
+  "type": "Variance / Special Exception",
+  "address": "6111 AND 6215 LAKEHAVEN LANE",
+  "township": "Perry",
+  "council_district": 22,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-DV3-009 (Amended) | 6111 and 6215 Lakehaven Lane Perry Township, Council District #22, zoned C-7 (FF) / I-2 (FF) Lakehaven Realty LLC & RH Malin, Inc., by David Gilman Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for outdoor storage and rental of heavy construction equipment within 30 feet of a protected district (500-foot separation from protected districts required), utilizing gravel for parking and vehicle maneuvering area (hard surfacing required), and with a height exceeding 10 feet (not permitted), deficient transitional yard land",
+  "board": "BZA III",
+  "meeting_date": "2026-07-21",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+  "ingested": "2026-07-17"
+ },
+ {
+  "case": "2026-DV3-025",
+  "year": 2026,
+  "prefix": "DV3",
+  "type": "Variance / Special Exception",
+  "address": null,
+  "township": "Perry",
+  "council_district": 22,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-DV3-025 (Amended) | 8674 US 31 Perry Township, Council District #22, zoned C-4 Fountain Creek LLC, by Crystal Whitehead Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the placement of a canopy sign with sign area exceeding 45% of the canopy plane (maximum 45% permitted) and for three secondary incidental signs (maximum 2 per acre permitted). 8.",
+  "board": "BZA III",
+  "meeting_date": "2026-07-21",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+  "ingested": "2026-07-17"
  }
 ]

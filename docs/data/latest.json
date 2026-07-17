@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-APP-011",
-  "type": "Approval / Appeal",
-  "address": "5001 EAST RAYMOND STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 5001 East Raymond Street proposes six-foot-tall fence within the front yard of Emerson Avenue."
+  "case": "2026-DV3-011",
+  "type": "Variance / Special Exception",
+  "address": "3603 SOUTH MERIDIAN STREET",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 3603 South Meridian Street is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  },
  {
-  "case": "2026-ZON-016",
-  "type": "Rezoning",
-  "address": "3030 SOUTHEASTERN AVENUE",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "2026-ZON-016 | 3030 Southeastern Avenue Center Township, Council District #18 JO & CE Real Estate LLC, by Dylan Seesman Rezoning of 0.34-acr"
+  "case": "2026-DV3-014",
+  "type": "Variance / Special Exception",
+  "address": "4202 CARSON AVENUE",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 4202 Carson Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  },
  {
-  "case": "2026-ZON-027",
-  "type": "Rezoning",
-  "address": "1611 EAST 18TH STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.12-acre site at 1611 East 18th Street from general commercial (C-3) to low-rise apartment (D-8) zoning to build residential developmen 10."
+  "case": "2026-DV3-016A",
+  "type": "Variance / Special Exception",
+  "address": "10220 EAST WASHINGTON STREET",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 10220 East Washington Street is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  },
  {
-  "case": "2026-ZON-029",
-  "type": "Rezoning",
-  "address": "1003 WEST 30TH STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.09-acre site at 1003 West 30th Street from general commercial (C-3) to compact single-family/two-family (D-5) zoning to build residential use."
+  "case": "2026-UV3-007",
+  "type": "Variance / Special Exception",
+  "address": "1531 HUNTER ROAD",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 1531 Hunter Road is asking permission for a use the current zoning doesn't allow: side setback of 21 feet and 9 inches (minimum 30 feet required)."
  },
  {
-  "case": "2026-ZON-030",
-  "type": "Rezoning",
-  "address": "3505 SOUTH HARDING STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 3505 South Harding Street proposes multi-tenant building."
+  "case": "2026-UV3-011",
+  "type": "Variance / Special Exception",
+  "address": "2001 WEST WASHINGTON STREET",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 2001 West Washington Street is asking permission for a use the current zoning doesn't allow: operation of an automobile parts and supply store on a lot greater than 0."
  },
  {
-  "case": "2026-ZON-038",
-  "type": "Rezoning",
-  "address": "1830 SHELBY STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 1830 Shelby Street proposes construction of a duplex."
+  "case": "2026-DV3-026",
+  "type": "Variance / Special Exception",
+  "address": "6400 S BELMONT AVE",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 6400 S Belmont Ave is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  },
  {
-  "case": "2026-ZON-046",
-  "type": "Rezoning",
-  "address": "3216 EAST 25TH STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the .379-acre site at 3216 East 25th Street from general commercial (C-3) to compact single-family/two-family (D-5) zoning to build for residential uses."
+  "case": "2026-UV3-012",
+  "type": "Variance / Special Exception",
+  "address": "7801 EAST 88TH STREET",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 7801 East 88th Street is asking permission for a use the current zoning doesn't allow: Body Care Salon and Service use."
  },
  {
-  "case": "2026-CZN-813",
-  "type": "Rezoning",
-  "address": "1127 SOUTH EAST STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.12-acre site at 1127 South East Street from heavy commercial (C-5) to low-rise apartment (D-8) zoning to build multi-unit dwelling."
+  "case": "2026-SE3-002",
+  "type": "Variance / Special Exception",
+  "address": "6309 SOUTH HARDING STREET",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 6309 South Harding Street is asking permission for a use the current zoning doesn't allow: commercial contractor use partially within the D-A zoning district (not permitted)."
  },
  {
-  "case": "2026-CAP-824",
-  "type": "Commitment / Covenant",
-  "address": "4107 EAST WASHINGTON STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "2026-CAP-824 | 4107 East Washington Street Center Township, Council District #13 SU-7 (TOD) Shepherd Community, Inc., by Mindy Westrick Brow"
+  "case": "2026-DV3-015",
+  "type": "Variance / Special Exception",
+  "address": "4305 DUDLEY N. DRIVE",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 4305 Dudley N. Drive is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  },
  {
-  "case": "2026-ZON-057",
-  "type": "Rezoning",
-  "address": "3709 EAST WASHINGTON STREET",
-  "meeting_date": "2026-07-15",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 3709 East Washington Street proposes residential development."
+  "case": "2026-DV3-019",
+  "type": "Variance / Special Exception",
+  "address": "6838 SOUTH EAST STREET",
+  "meeting_date": "2026-07-21",
+  "board": "BZA III",
+  "summary": "The owner of 6838 South East Street is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  }
 ]

@@ -54176,7 +54176,293 @@
     "agenda_url": "https://indianapolis-in.municodemeetings.com/sites/indianapolis-in.municodemeetings.com/files/fileattachments/ihpc_administrative_hearings/meeting/5135/7-22-25_agenda.pdf",
     "ingested": "2026-07-13"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.158488,
+     39.713813
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-011",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "3603 SOUTH MERIDIAN STREET",
+    "township": "Perry",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-011 | 3603 South Meridian Street Perry Township, Council District #18, zoned SU-1 (FF) Roman Catholic Archdiocese of Indianapolis, Properties Inc as Trustee for St Roch, Catholic Church Indianapolis Inc., by Wooton Hoy (John Cross) Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to permit an 8-foot fence in the front yard (fences taller than 4 feet not permitted in front yards) and located within the clear sight triangle (not permitted). 2.",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.117632,
+     39.70612
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-014",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "4202 CARSON AVENUE",
+    "township": "Perry",
+    "council_district": 19,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-014 | 4202 Carson Avenue Perry Township, Council District #19, zoned D-A (FW) (FF) / D-6II Kevin and Heather Davis Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a six- foot tall fence within the front yard of Carson Avenue (maximum 3.5-foot tall fence permitted) and encroaching within the required clear-sight triangle (not permitted). ** Request to continue by staff on petitioner's behalf to the August 18, 2026, hearing. 3.",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.985228,
+     39.775188
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-016A",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "10220 EAST WASHINGTON STREET",
+    "township": "Warren",
+    "council_district": 20,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-016A (Amended) | 10220 East Washington Street Warren Township, Council District #20, zoned C-4 (TOD) Indy WS40 LLC, by Barnes & Thornburg LLP (Joseph Calderon) Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a drive through with access provided by Ring Road instead of an alley (drive throughs prohibited within 600 feet of a transit station except where located behind the building and all access is provided by alleys) and for a drive through without an exclusive bypass aisle (bypass aisle required). ** Automatic continuance to the A",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.049613,
+     39.748301
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-007",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "1531 HUNTER ROAD",
+    "township": "Warren",
+    "council_district": 20,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-007 | 1531 Hunter Road Warren Township, Council District #20, zoned D-A Joel Gomez & Asuncion Caballero, by Arnoldo Gonzalez Variance of Use to allow for a 240 foot by 140 foot soccer field with accessory parking and structures (outdoor recreation not permitted within D-A) and a variance of development standards to provide for a side setback of 21 feet and 9 inches (minimum 30 feet required), a rear setback of 21 feet and 6 inches (minimum 75 feet required), to provide for a fence taller than 6 feet (not permitted in D-A), and deficient bike parking (greater of 3 spaces or 10% of requ",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.195447,
+     39.766328
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-011",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "2001 WEST WASHINGTON STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-011 | 2001 West Washington Street Center Township, Council District #18, zoned C-4 (TOD) Don\u2019s Legacy LLC, by Jennifer Wright Variance of Use of the Consolidated Zoning and Subdivision Ordinance to provide for the operation of an automobile parts and supply store on a lot greater than 0.5-acre (automobile service and repair prohibited on lots larger than 0.5-acre in the TOD district). ** Request to continue by the petitioner to the August 18, 2026, hearing. Petitions for Public Hearing PETITIONS TO BE EXPEDITED: 6.",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.196619,
+     39.6724
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-026",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "6400 S BELMONT AVE",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-026 | 6400 S Belmont Ave Perry Township, Council District #22, zoned I-2 Midwest Food Bank Corp, by Jacob Brattain A variance of development standards of the Consolidated Zoning and Subdivision Ordinance to permit a fifteen\u2011 foot (15') encroachment into the required thirty\u2011 foot (30') side yards on the north and south sides of the property within the I\u2011 2 zoning district, to allow the construction of access drives. 9.",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.031502,
+     39.916061
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-012",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "7801 EAST 88TH STREET",
+    "township": "Lawrence",
+    "council_district": 4,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-012 | 7801 East 88th Street Lawrence Township, Council District #4, zoned I-2 GF Ventures of Indiana LLC, by Karina Plasencia Variance of Use of the Consolidated Zoning and Subdivision Ordinance to provide for a Body Care Salon and Service use. PETITIONS FOR PUBLIC HEARING (Transferred Petitions): None. PETITIONS FOR PUBLIC HEARING (Continued Petitions): 10.",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.186949,
+     39.673917
+    ]
+   },
+   "properties": {
+    "case": "2026-SE3-002",
+    "year": 2026,
+    "prefix": "SE3",
+    "type": "Variance / Special Exception",
+    "address": "6309 SOUTH HARDING STREET",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-SE3-002 (Amended) | 6309 South Harding Street Perry Township, Council District #22, zoned C-7 (FF) / D-A (FF) Amanpreet Singh, by Adam G. Hoffer Variance of Use of the Consolidated Zoning and Subdivision Ordinance to provide for a commercial contractor use partially within the D-A zoning district (not permitted). Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for 0-foot transitional yard setbacks (20-foot transitional yard required), deficient interior and transitional yard landscaping (required), vehicle parking and outdoor storage on a ",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.095309,
+     39.686641
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-015",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "4305 DUDLEY N. DRIVE",
+    "township": "Perry",
+    "council_district": 24,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-015 | 4305 Dudley N. Drive Perry Township, Council District #24, zoned D-3 Mark & Amanda Daniel, by John Cross Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a six- foot-tall fence within front yard areas (maximum 3.5-foot height permitted). 12.",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.148798,
+     39.667305
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-019",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "6838 SOUTH EAST STREET",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-019 (Amended) | 6838 South East Street Perry Township, Council District #22, zoned C-1 CKJ Property LLC, by David Gilman Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a building addition and new parking area with a 6-foot front transitional yard setback (20 feet required), a 5-foot rear transitional yard setback (15 feet required), a total of 29 parking spaces (maximum of 24 spaces permitted), and no frontage sidewalks (130 linear feet of sidewalk responsibility). 13.",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.143083,
+     39.709161
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-021",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "3919 MADISON AVENUE",
+    "township": "Perry",
+    "council_district": 23,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-021 | 3919 Madison Avenue Perry Township, Council District #23, zoned C-7 (TOD) HRSV LLC, by Jason Burk Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the construction of a convenience store building and fueling canopy with a front building line width of 43 percent (60 percent required). PETITIONS FOR PUBLIC HEARING (New Petitions): Additional Business: **The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. Copies of the proposals are available for examination prior to ",
+    "board": "BZA III",
+    "meeting_date": "2026-07-21",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
+    "ingested": "2026-07-17"
+   }
   }
  ],
- "updated": "2026-07-15T16:09:43+00:00"
+ "updated": "2026-07-17T16:01:58+00:00"
 }
