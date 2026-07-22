@@ -1,5 +1,13 @@
 [
  {
+  "case": "2026-REG-006",
+  "type": "Other",
+  "address": "219 KOEHNE STREET",
+  "meeting_date": "2026-07-23",
+  "board": "Hearing Examiner",
+  "summary": "2026-REG-006 | 219 Koehne Street, 1437 - 1533 (odd) Saulcy Street, and 1422 - 1528 (even) Astor Street Center Township, zoned D-8 (RC) CD# 1"
+ },
+ {
   "case": "2026-DV3-011",
   "type": "Variance / Special Exception",
   "address": "3603 SOUTH MERIDIAN STREET",
@@ -70,13 +78,5 @@
   "meeting_date": "2026-07-21",
   "board": "BZA III",
   "summary": "The owner of 4305 Dudley N. Drive is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
- },
- {
-  "case": "2026-DV3-019",
-  "type": "Variance / Special Exception",
-  "address": "6838 SOUTH EAST STREET",
-  "meeting_date": "2026-07-21",
-  "board": "BZA III",
-  "summary": "The owner of 6838 South East Street is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  }
 ]

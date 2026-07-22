@@ -54462,7 +54462,33 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
     "ingested": "2026-07-17"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.188641,
+     39.769758
+    ]
+   },
+   "properties": {
+    "case": "2026-REG-006",
+    "year": 2026,
+    "prefix": "REG",
+    "type": "Other",
+    "address": "219 KOEHNE STREET",
+    "township": "Center",
+    "council_district": null,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-REG-006 | 219 Koehne Street, 1437 - 1533 (odd) Saulcy Street, and 1422 - 1528 (even) Astor Street Center Township, zoned D-8 (RC) CD# 18 Union Holdings III, LLC, by Misha Rabinowitch Regional Center Approval to provide for demolition of existing dwellings and accessory structures and for construction of a multi-family residential development, consisting of approximately 241 units, an integrated parking garage with 258 spaces, and resident amenities, including a community room, fitness area, computer center, a leasing office, a playground, dog park, and a grilling area. Additional Business",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-07-23",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-01f5e7ecddf64eeab049b5bb0822a8bf.pdf",
+    "ingested": "2026-07-22"
+   }
   }
  ],
- "updated": "2026-07-20T16:17:23+00:00"
+ "updated": "2026-07-22T16:08:14+00:00"
 }
