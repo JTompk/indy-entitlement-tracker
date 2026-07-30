@@ -112,9 +112,8 @@
     <p id="leadBody">Proformus shepherds rezonings and variances through the
     Indianapolis process — petition to hearing. Tell us about your project and
     we'll tell you, honestly, whether it's winnable.</p>
-    <!-- Create a free form at formspree.io and replace YOUR_FORM_ID below.
-         The hidden fields carry the map context into every submission. -->
-    <form id="leadForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <!-- Formspree — hidden fields carry the map context into every submission. -->
+    <form id="leadForm" action="https://formspree.io/f/mzdnqrlv" method="POST">
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="email" placeholder="you@example.com" required>
       <textarea name="message" placeholder="Anything else about the project?"></textarea>
@@ -146,15 +145,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 /* ================= CONFIG =================
-   Point this at MapIndy's base-zoning polygon layer. To find/verify it,
-   browse https://gis.indy.gov/server/rest/services in a browser, open the
-   MapIndy folder, and locate the zoning service; the layer URL ends in a
-   number. FIELD_CANDIDATES lets the page auto-detect the district column —
-   the first fetch logs the available fields to the console, so open
-   DevTools once and lock CFG.field to the real name.               */
+   MapIndy Zoning theme service — layer 6 is the base zoning polygons
+   (fields: LABEL = district, CODE1/CODE2). Same service that powers the
+   city's own Zoning Browser (maps.indy.gov/Zoning). If the city ever
+   renumbers layers, FIELD_CANDIDATES + the console log of fields on the
+   first fetch make re-pointing a two-line fix.                     */
 const CFG = {
-  layerUrl: 'https://gis.indy.gov/server/rest/services/MapIndy/MapIndyZoning/MapServer/0',
-  field: null,                 // set to e.g. 'ZONING' once confirmed; null = auto-detect
+  layerUrl: 'https://gis.indy.gov/server/rest/services/MapIndy/Zoning/MapServer/6',
+  field: 'LABEL',              // confirmed district field on layer 6
   minZoom: 13,                 // don't query county-wide
   maxFeaturesPerView: 3000,    // pagination cap per viewport
   leadEmail: 'hello@proformus.com',   // mailto fallback for the lead card
