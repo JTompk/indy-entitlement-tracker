@@ -6,58 +6,68 @@
 <title>Indy Entitlement Tracker</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1b2a33; --ink-soft:#2b3d48; --paper:#f5f3ec; --paper-dim:#c9c4b4;
-    --rule:#8fa0aa;
-    --c-rezoning:#d64b2a; --c-variance:#2e6fb0; --c-plat:#3e8e5a;
-    --c-devplan:#7a4fa3; --c-mod:#c9932b; --c-commit:#7a8b99; --c-other:#5c6670;
+    /* Proformus palette */
+    --red:#E9695F; --gold:#E5A000; --blue:#2378C3;
+    --sheet:#F5F5F0; --ink:#3A3A38;
+    --ink-soft:#6B6B67; --rule:#D8D6CE; --card:#FFFFFF;
+    /* filing-type colors, rebased on the palette */
+    --c-rezoning:#E9695F; --c-variance:#2378C3; --c-plat:#4F8A5B;
+    --c-devplan:#8A6FB0; --c-mod:#8A5A44; --c-commit:#8C9196; --c-other:#6B7280;
   }
   *{box-sizing:border-box;margin:0}
   html,body{height:100%}
-  body{font-family:'Public Sans',system-ui,sans-serif;color:var(--paper);background:var(--ink);display:flex}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--sheet);display:flex}
 
-  #panel{width:320px;min-width:320px;height:100%;overflow-y:auto;padding:18px 18px 28px;background:var(--ink);border-right:1px solid var(--rule)}
-  .titleblock{border:1px solid var(--paper);padding:12px 12px 10px;position:relative}
-  .titleblock::after{content:"";position:absolute;inset:3px;border:1px solid var(--rule);pointer-events:none}
-  .titleblock h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:27px;letter-spacing:.04em;line-height:1.05;text-transform:uppercase}
-  .titleblock .sub{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-dim);margin-top:6px;letter-spacing:.03em}
-  .stamp{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-dim);display:flex;justify-content:space-between;margin-top:14px;padding-top:8px;border-top:1px solid var(--rule)}
-  .stamp b{color:var(--paper);font-weight:500}
-  .coverage-note{margin-top:10px;font-size:11.5px;color:var(--paper-dim);line-height:1.5}
-  .coverage-note summary{font-family:'IBM Plex Mono',monospace;font-size:10.5px;
-    letter-spacing:.04em;text-transform:uppercase;cursor:pointer;color:var(--paper-dim)}
-  .coverage-note summary:hover{color:var(--paper)}
+  #panel{width:320px;min-width:320px;height:100%;overflow-y:auto;padding:16px 16px 28px;background:var(--sheet);border-right:1px solid var(--rule)}
+  .titleblock{background:var(--card);padding:16px 16px 13px;border-top:4px solid var(--red);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  .eyebrow{font-size:9.5px;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;opacity:.65}
+  .titleblock h1{font-size:20px;font-weight:700;line-height:1.2;margin-top:6px}
+  .titleblock .sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);margin-top:6px;letter-spacing:.03em}
+  .stamp{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);display:flex;justify-content:space-between;margin-top:12px;padding-top:8px;border-top:1px solid var(--rule)}
+  .stamp b{color:var(--ink);font-weight:500}
+
+  .stats{display:flex;gap:18px;margin-top:14px;background:var(--card);padding:10px 14px 9px;border-top:2px solid var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+  .stat .num{font-size:24px;font-weight:700;color:var(--blue);line-height:1}
+  .stat .lbl{font-size:9.5px;letter-spacing:.8px;font-weight:600;opacity:.7;text-transform:uppercase;margin-top:2px}
+
+  .coverage-note{margin-top:12px;font-size:11.5px;color:var(--ink-soft);line-height:1.5}
+  .coverage-note summary{font-family:'IBM Plex Mono',monospace;font-size:10px;
+    letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:var(--ink-soft)}
+  .coverage-note summary:hover{color:var(--ink)}
   .coverage-note p{margin:8px 0 0}
-  .coverage-note b{color:var(--paper);font-weight:500}
-  .coverage-note a{color:#ffd400}
+  .coverage-note b{color:var(--ink);font-weight:600}
+  .coverage-note a{color:var(--blue)}
 
-  h2{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-dim);margin:22px 0 8px}
-  .filters label.row{display:flex;align-items:center;gap:8px;padding:5px 2px;font-size:13.5px;cursor:pointer;border-radius:3px}
-  .filters label.row:hover{background:var(--ink-soft)}
-  .swatch{width:12px;height:12px;border-radius:50%;flex:none}
-  .swatch.ring{background:transparent!important;border:2.5px solid;border-radius:50%}
-  .count{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper-dim)}
-  select,input[type=search]{width:100%;padding:8px;background:var(--ink-soft);color:var(--paper);border:1px solid var(--rule);border-radius:3px;font:inherit;font-size:13.5px}
-  input[type=checkbox]{accent-color:var(--paper)}
-  .note{font-size:12px;color:var(--paper-dim);line-height:1.5;margin-top:24px;padding-top:12px;border-top:1px solid var(--ink-soft)}
-  .note a{color:var(--paper)}
+  h2{font-size:10.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink);opacity:.75;margin:22px 0 8px;border-bottom:1px solid var(--rule);padding-bottom:5px}
+  .filters label.row{display:flex;align-items:center;gap:8px;padding:4px 2px;font-size:12.5px;cursor:pointer;border-radius:2px}
+  .filters label.row:hover{background:rgba(0,0,0,.04)}
+  .swatch{width:11px;height:11px;flex:none}
+  .swatch.ring{background:transparent!important;border:2px solid}
+  .count{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft)}
+  select,input[type=search]{width:100%;padding:8px;background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:2px;font:inherit;font-size:13px}
+  select:focus,input[type=search]:focus{outline:2px solid var(--blue);outline-offset:-1px}
+  input[type=checkbox]{accent-color:var(--red);width:13px;height:13px}
+  .note{font-size:11.5px;color:var(--ink-soft);line-height:1.5;margin-top:24px;padding-top:12px;border-top:1px solid var(--rule)}
+  .note a{color:var(--blue)}
 
-  #map{flex:1;height:100%;background:#e8e6df}
-  .leaflet-popup-content-wrapper{border-radius:4px;font-family:'Public Sans',sans-serif}
-  .pop .case{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px}
-  .pop .badge{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#fff;border-radius:2px;padding:2px 6px;margin-left:6px;vertical-align:1px}
-  .pop .addr{font-weight:600;font-size:14px;margin:6px 0 2px}
-  .pop .meta{font-size:12px;color:#48555e;margin-bottom:6px}
-  .pop .zoning{font-family:'IBM Plex Mono',monospace;font-size:12px;background:#eef1f3;border-radius:2px;padding:2px 5px;display:inline-block;margin-bottom:6px}
-  .pop .summary{font-size:12px;line-height:1.45;max-height:110px;overflow:auto;color:#33404a}
-  .pop a{font-size:12px}
+  #map{flex:1;height:100%;background:#EBEAE4}
+  .leaflet-popup-content-wrapper{border-radius:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--sheet);color:var(--ink);border-top:4px solid var(--red)}
+  .leaflet-popup-tip{background:var(--sheet)}
+  .pop .case{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px;color:var(--blue)}
+  .pop .badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#fff;border-radius:2px;padding:2px 6px;margin-left:6px;vertical-align:1px}
+  .pop .addr{font-weight:700;font-size:14px;margin:6px 0 2px}
+  .pop .meta{font-size:12px;color:var(--ink-soft);margin-bottom:6px}
+  .pop .zoning{font-family:'IBM Plex Mono',monospace;font-size:12px;background:rgba(35,120,195,.10);color:var(--blue);border-radius:2px;padding:2px 5px;display:inline-block;margin-bottom:6px}
+  .pop .summary{font-size:12px;line-height:1.45;max-height:110px;overflow:auto;color:var(--ink)}
+  .pop a{font-size:12px;color:var(--blue)}
 
   #empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:900;pointer-events:none}
   #empty[hidden]{display:none}
-  #empty .card{pointer-events:auto;background:var(--ink);color:var(--paper);border:1px solid var(--rule);max-width:420px;padding:22px;font-size:14px;line-height:1.55}
-  #empty code{font-family:'IBM Plex Mono',monospace;background:var(--ink-soft);padding:1px 5px;border-radius:2px;font-size:12.5px}
+  #empty .card{pointer-events:auto;background:var(--sheet);color:var(--ink);border-top:4px solid var(--gold);box-shadow:0 2px 10px rgba(0,0,0,.18);max-width:420px;padding:22px;font-size:14px;line-height:1.55}
+  #empty code{font-family:'IBM Plex Mono',monospace;background:rgba(0,0,0,.06);padding:1px 5px;border-radius:2px;font-size:12.5px}
 
   @media (max-width:760px){
     body{flex-direction:column}
@@ -71,9 +81,15 @@
 
 <aside id="panel">
   <div class="titleblock">
-    <h1>Indy Entitlement<br>Tracker</h1>
+    <div class="eyebrow">IndyIMBY</div>
+    <h1>Indy Entitlement Tracker</h1>
     <div class="sub">MDC · HEARING EXAMINER · BZA I–III · PLAT · CITY GIS</div>
     <div class="stamp"><span>SOURCE: DMD + MAPINDY</span><span>UPDATED <b id="updated">—</b></span></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num" id="shown">0</div><div class="lbl">records shown</div></div>
+    <div class="stat"><div class="num" id="total">0</div><div class="lbl">total tracked</div></div>
   </div>
 
   <h2>Filing type — weekly agendas</h2>
@@ -94,7 +110,6 @@
   <h2>Search</h2>
   <input type="search" id="q" placeholder="Case no., address, petitioner…">
 
-  <div class="stamp" style="border:none;margin-top:18px"><span>RECORDS SHOWN</span><span><b id="shown">0</b> / <span id="total">0</span></span></div>
   <details class="coverage-note">
     <summary>About data coverage</summary>
     <p><b>Weekly agenda records</b> (rezonings, variances, plats, tax
@@ -127,10 +142,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const AGENDA_COLORS = {
-  "Tax incentive": '#c2186b',
+  "Tax incentive": getCss('--gold'),
   "DMD contract": '#7a7a7a',
-  "MDC Resolution": '#9a8ab5',
-  "Historic (IHPC)": '#7a5c3e',
+  "MDC Resolution": '#9A8AB5',
+  "Historic (IHPC)": '#7A5C3E',
   "Rezoning": getCss('--c-rezoning'),
   "Variance / Special Exception": getCss('--c-variance'),
   "Plat / Subdivision": getCss('--c-plat'),
@@ -140,7 +155,7 @@ const AGENDA_COLORS = {
   "Approval / Appeal": getCss('--c-commit'),
   "Other": getCss('--c-other'),
 };
-const CITY_PALETTE = ['#b0413e','#3a7ca5','#5e8c61','#8d6cab','#b08a2e','#5f7480','#8a5a44','#476a6f'];
+const CITY_PALETTE = ['#E9695F','#2378C3','#4F8A5B','#8A6FB0','#E5A000','#5F7480','#8A5A44','#476A6F'];
 const cityColors = {};
 function getCss(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
 function colorFor(p){
@@ -175,12 +190,14 @@ if(weekParam && /^\d{4}-\d{2}-\d{2}$/.test(weekParam)){
   state.week = { from: weekParam, to: end.toISOString().slice(0,10) };
   const b = document.createElement('div');
   b.style.cssText = 'position:absolute;top:10px;left:50%;transform:translateX(-50%);'
-    +'z-index:1000;background:#111;color:#fff;padding:8px 14px;border-radius:6px;'
-    +'font-size:13.5px;box-shadow:0 2px 8px rgba(0,0,0,.35);white-space:nowrap';
+    +'z-index:1000;background:#F5F5F0;color:#3A3A38;padding:8px 14px;'
+    +'border-top:4px solid #E9695F;font-size:13px;'
+    +'font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;'
+    +'box-shadow:0 2px 10px rgba(0,0,0,.18);white-space:nowrap';
   const embed = urlq.get('embed') === '1';
   b.innerHTML = 'Docket for the week of <b>' + esc(weekParam) + '</b>&ensp;'
     + '<a href="' + location.pathname + '"' + (embed ? ' target="_blank" rel="noopener"' : '')
-    + ' style="color:#ffd400">' + (embed ? 'open full map' : 'show everything') + '</a>';
+    + ' style="color:#2378C3">' + (embed ? 'open full map' : 'show everything') + '</a>';
   document.body.appendChild(b);
 }
 
@@ -284,10 +301,12 @@ function render(){
       if(n > 0){ lon += 0.0006 * n; lat += 0.0003 * n; }
     }
     const c=colorFor(p);
+    // Tax incentives get the walkshed "station" treatment: gold fill,
+    // ink outline, larger radius — the priority category reads first.
     const style = p.group==='city'
       ? {radius:6, weight:2.5, color:c, fillColor:c, fillOpacity:.15}
       : p.type==='Tax incentive'
-        ? {radius:10, weight:2, color:'#ffffff', fillColor:c, fillOpacity:.95}
+        ? {radius:10, weight:1.5, color:'#3A3A38', fillColor:c, fillOpacity:.95}
         : {radius:7, weight:1.5, color:'#ffffff', fillColor:c, fillOpacity:.9};
     const mk=L.circleMarker([lat,lon],style).bindPopup(popup(p),{maxWidth:320});
     mk.feature=p; mk.addTo(layerGroup);
