@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What can you build here? — Indy Entitlement Tracker</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#E9695F; --gold:#E5A000; --blue:#2378C3;
+    --sheet:#F5F5F0; --ink:#3A3A38;
+    --ink-soft:#6B6B67; --rule:#D8D6CE; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--sheet);display:flex}
+
+  #panel{width:340px;min-width:340px;height:100%;overflow-y:auto;padding:16px 16px 28px;background:var(--sheet);border-right:1px solid var(--rule)}
+  .titleblock{background:var(--card);padding:16px 16px 13px;border-top:4px solid var(--red);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  .eyebrow{font-size:9.5px;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;opacity:.65}
+  .titleblock h1{font-size:20px;font-weight:700;line-height:1.2;margin-top:6px}
+  .titleblock .caption{font-size:12px;line-height:1.45;color:var(--ink-soft);margin-top:6px}
+
+  h2{font-size:10.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink);opacity:.75;margin:20px 0 8px;border-bottom:1px solid var(--rule);padding-bottom:5px}
+  select,input[type=search]{width:100%;padding:9px;background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:2px;font:inherit;font-size:13.5px}
+  select:focus,input:focus{outline:2px solid var(--blue);outline-offset:-1px}
+
+  .legend{margin-top:10px;font-size:12px}
+  .legend .row{display:flex;align-items:center;gap:8px;padding:3px 0}
+  .legend .sw{width:12px;height:12px;flex:none;border:1px solid rgba(0,0,0,.25)}
+
+  .verdict{margin-top:16px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,.12);padding:14px 16px 13px;display:none}
+  .verdict.show{display:block}
+  .verdict .v-eyebrow{font-size:9.5px;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;opacity:.65}
+  .verdict .v-addr{font-weight:700;font-size:14px;margin:5px 0 2px}
+  .verdict .v-zone{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft)}
+  .verdict .v-word{font-size:22px;font-weight:700;margin:8px 0 4px;line-height:1.1}
+  .verdict .v-body{font-size:12.5px;line-height:1.5;color:var(--ink)}
+  .verdict.v-p{border-top:4px solid var(--blue)}   .verdict.v-p .v-word{color:var(--blue)}
+  .verdict.v-s{border-top:4px solid var(--gold)}   .verdict.v-s .v-word{color:#B07C00}
+  .verdict.v-n{border-top:4px solid var(--red)}    .verdict.v-n .v-word{color:var(--red)}
+  .verdict.v-u{border-top:4px solid var(--rule)}
+
+  .lead{margin-top:12px;background:var(--card);border-top:4px solid var(--gold);box-shadow:0 2px 10px rgba(0,0,0,.12);padding:14px 16px;display:none}
+  .lead.show{display:block}
+  .lead h3{font-size:14px;margin-bottom:6px}
+  .lead p{font-size:12.5px;line-height:1.5;color:var(--ink-soft);margin-bottom:10px}
+  .lead input,.lead textarea{width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--rule);background:var(--sheet);font:inherit;font-size:13px}
+  .lead textarea{resize:vertical;min-height:56px}
+  .lead button{width:100%;padding:10px;border:1.5px solid var(--ink);background:var(--ink);color:var(--sheet);font:inherit;font-weight:600;cursor:pointer}
+  .lead button:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+  .lead .alt{font-size:11px;margin-top:8px;text-align:center;color:var(--ink-soft)}
+  .lead .alt a{color:var(--blue)}
+
+  .zoomnote{margin-top:12px;font-size:11.5px;color:var(--ink-soft);background:var(--card);padding:10px 12px;border-top:4px solid var(--rule)}
+  .credit{font-size:10px;opacity:.6;margin-top:20px;line-height:1.5;padding-top:10px;border-top:1px solid var(--rule)}
+  .credit a{color:var(--blue)}
+  .draftflag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;
+    background:var(--gold);color:var(--ink);padding:2px 6px;margin-top:8px}
+
+  #map{flex:1;height:100%;background:#EBEAE4}
+  .leaflet-popup-content-wrapper{border-radius:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--sheet)}
+  .leaflet-popup-tip{background:var(--sheet)}
+
+  #configwarn{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:1000;display:none;
+    background:var(--sheet);border-top:4px solid var(--red);box-shadow:0 2px 10px rgba(0,0,0,.2);
+    padding:10px 16px;font-size:12.5px;max-width:520px;line-height:1.5}
+
+  @media (max-width:760px){
+    body{flex-direction:column}
+    #panel{width:100%;min-width:0;height:auto;max-height:52vh;order:2;border-right:none;border-top:1px solid var(--rule)}
+    #map{order:1;min-height:48vh}
+  }
+</style>
+</head>
+<body>
+
+<aside id="panel">
+  <div class="titleblock">
+    <div class="eyebrow">Proformus · IndyIMBY</div>
+    <h1>What can you build here?</h1>
+    <div class="caption">Pick something you want to build. The map paints where
+    Indianapolis zoning says yes, maybe, and no — live from the city's own GIS.</div>
+    <span class="draftflag">DRAFT USE TABLE — VERIFY BEFORE RELYING</span>
+  </div>
+
+  <h2>I want to build a…</h2>
+  <select id="useSelect"><option value="">Choose a use…</option></select>
+
+  <div class="legend" id="legend" style="display:none">
+    <div class="row"><span class="sw" style="background:rgba(35,120,195,.45)"></span> Allowed by right</div>
+    <div class="row"><span class="sw" style="background:rgba(229,160,0,.5)"></span> Special exception (BZA hearing)</div>
+    <div class="row"><span class="sw" style="background:rgba(58,58,56,.10)"></span> Not allowed — rezoning territory</div>
+  </div>
+
+  <h2>Check an address</h2>
+  <input type="search" id="addr" placeholder="e.g. 1505 N Delaware St" >
+  <div style="font-size:11px;color:var(--ink-soft);margin-top:6px">…or just click anywhere on the map.</div>
+
+  <div class="verdict" id="verdict">
+    <div class="v-eyebrow" id="vEyebrow">Verdict</div>
+    <div class="v-addr" id="vAddr"></div>
+    <div class="v-zone" id="vZone"></div>
+    <div class="v-word" id="vWord"></div>
+    <div class="v-body" id="vBody"></div>
+  </div>
+
+  <div class="lead" id="lead">
+    <h3 id="leadHead">Need a rezoning? That's what we do.</h3>
+    <p id="leadBody">Proformus shepherds rezonings and variances through the
+    Indianapolis process — petition to hearing. Tell us about your project and
+    we'll tell you, honestly, whether it's winnable.</p>
+    <!-- Create a free form at formspree.io and replace YOUR_FORM_ID below.
+         The hidden fields carry the map context into every submission. -->
+    <form id="leadForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <textarea name="message" placeholder="Anything else about the project?"></textarea>
+      <input type="hidden" name="site_address" id="fAddr">
+      <input type="hidden" name="proposed_use" id="fUse">
+      <input type="hidden" name="zoning_district" id="fZone">
+      <input type="hidden" name="verdict" id="fVerdict">
+      <button type="submit">Ask Proformus about this site</button>
+    </form>
+    <div class="alt">Prefer email? <a id="mailtoLink" href="#">Write to us directly</a></div>
+  </div>
+
+  <div class="zoomnote" id="zoomnote">Zoom in to street level to paint zoning —
+  the map queries the city's GIS for what's on screen, so it needs a
+  neighborhood-sized view.</div>
+
+  <p class="credit">Zoning polygons served live by MapIndy (City of Indianapolis GIS).
+  Use permissions from a draft reading of the Consolidated Zoning &amp; Subdivision
+  Ordinance — overlays, commitments, variances, and the Regional Center can change
+  the answer for a specific site. This is a screening tool, not legal advice.
+  Part of <a href="https://indyimby.com">IndyIMBY</a> ·
+  <a href="index.html">back to the tracker</a></p>
+</aside>
+
+<div id="map">
+  <div id="configwarn"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* ================= CONFIG =================
+   Point this at MapIndy's base-zoning polygon layer. To find/verify it,
+   browse https://gis.indy.gov/server/rest/services in a browser, open the
+   MapIndy folder, and locate the zoning service; the layer URL ends in a
+   number. FIELD_CANDIDATES lets the page auto-detect the district column —
+   the first fetch logs the available fields to the console, so open
+   DevTools once and lock CFG.field to the real name.               */
+const CFG = {
+  layerUrl: 'https://gis.indy.gov/server/rest/services/MapIndy/MapIndyZoning/MapServer/0',
+  field: null,                 // set to e.g. 'ZONING' once confirmed; null = auto-detect
+  minZoom: 13,                 // don't query county-wide
+  maxFeaturesPerView: 3000,    // pagination cap per viewport
+  leadEmail: 'hello@proformus.com',   // mailto fallback for the lead card
+};
+const FIELD_CANDIDATES = ['ZONING','ZONE_CLASS','ZONING_1','ZONE','DISTRICT','ZONEDESC','ZONING_DISTRICT','CLASS'];
+
+const STYLE = {
+  P:{color:'#2378C3', weight:.7, fillColor:'#2378C3', fillOpacity:.35},
+  S:{color:'#E5A000', weight:.7, fillColor:'#E5A000', fillOpacity:.40},
+  N:{color:'#3A3A38', weight:.3, fillColor:'#3A3A38', fillOpacity:.07},
+};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=v=>String(v||'').toUpperCase().replace(/\s+/g,'');
+
+const map=L.map('map').setView([39.7838,-86.1520],11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  {attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19}).addTo(map);
+
+let MATRIX=null, currentUse=null, zoningLayer=L.layerGroup().addTo(map), pin=null;
+let fieldName=CFG.field, fieldLogged=false, fetchSeq=0;
+
+/* ---------- load the use matrix ---------- */
+fetch('data/use_matrix.json').then(r=>r.json()).then(m=>{
+  MATRIX=m;
+  const sel=document.getElementById('useSelect');
+  m.uses.forEach(u=>sel.add(new Option(u.label,u.id)));
+  sel.addEventListener('change',()=>{
+    currentUse=m.uses.find(u=>u.id===sel.value)||null;
+    document.getElementById('legend').style.display=currentUse?'block':'none';
+    paint();
+    // re-run the verdict if a pin is already down
+    if(pin && currentUse) verdictAt(pin.getLatLng());
+  });
+}).catch(()=>warn('Could not load <b>data/use_matrix.json</b> — commit the matrix file next to this page.'));
+
+/* Classify a raw district value against the current use.
+   Matching is forgiving: exact, then hyphen-insensitive, then prefix
+   (so "D-5 (FF)" or "C-3 w/ commitments" still land on the base district). */
+function classify(raw){
+  if(!currentUse) return null;
+  const v=norm(raw);
+  const hit=(list)=>list.some(d=>{
+    const n=norm(d);
+    return v===n || v.replace(/-/g,'')===n.replace(/-/g,'') || v.startsWith(n);
+  });
+  if(hit(currentUse.P)) return 'P';
+  if(hit(currentUse.S)) return 'S';
+  return 'N';
+}
+
+/* ---------- viewport painting ---------- */
+function paint(){
+  zoningLayer.clearLayers();
+  const note=document.getElementById('zoomnote');
+  if(!currentUse){note.style.display='block';note.textContent='Pick a use above to paint the map.';return;}
+  if(map.getZoom()<CFG.minZoom){
+    note.style.display='block';
+    note.textContent='Zoom in to street level to paint zoning — the map queries the city\u2019s GIS for what\u2019s on screen.';
+    return;
+  }
+  note.style.display='none';
+  const seq=++fetchSeq;
+  fetchZoning(map.getBounds(),seq).then(feats=>{
+    if(seq!==fetchSeq||!currentUse) return;       // stale response or use cleared
+    zoningLayer.clearLayers();
+    feats.forEach(f=>{
+      const d=f.properties[fieldName];
+      const cls=classify(d);
+      L.geoJSON(f,{style:STYLE[cls]})
+        .bindPopup(`<b>${esc(d)}</b> — ${cls==='P'?'allowed by right':cls==='S'?'special exception':'not allowed'} for ${esc(currentUse.label.toLowerCase())}`)
+        .addTo(zoningLayer);
+    });
+  }).catch(e=>warn('Zoning layer request failed — check <code>CFG.layerUrl</code> against the MapIndy REST directory. ('+esc(e.message)+')'));
+}
+map.on('moveend',()=>{clearTimeout(paint._t);paint._t=setTimeout(paint,250)});
+
+async function fetchZoning(bounds,seq){
+  const bbox=[bounds.getWest(),bounds.getSouth(),bounds.getEast(),bounds.getNorth()].join(',');
+  const feats=[]; let offset=0;
+  while(feats.length<CFG.maxFeaturesPerView){
+    const u=CFG.layerUrl+'/query?where=1%3D1'
+      +'&geometry='+bbox+'&geometryType=esriGeometryEnvelope&inSR=4326'
+      +'&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=4326'
+      +'&geometryPrecision=5&f=geojson&resultOffset='+offset+'&resultRecordCount=1000';
+    const j=await (await fetch(u)).json();
+    if(j.error) throw new Error(j.error.message||'ArcGIS error');
+    const page=j.features||[];
+    if(page.length && !fieldLogged){
+      fieldLogged=true;
+      console.log('[build.html] zoning layer fields:',Object.keys(page[0].properties));
+      if(!fieldName){
+        fieldName=FIELD_CANDIDATES.find(f=>f in page[0].properties)
+          || Object.keys(page[0].properties).find(k=>/zon/i.test(k));
+        console.log('[build.html] auto-detected district field:',fieldName);
+        if(!fieldName) warn('Could not auto-detect the zoning district field — set <code>CFG.field</code> from the field list in the console.');
+      }
+    }
+    feats.push(...page);
+    if(page.length<1000 || (j.exceededTransferLimit===false)) break;
+    if(seq!==fetchSeq) break;
+    offset+=1000;
+  }
+  return feats;
+}
+
+/* ---------- verdict at a point ---------- */
+map.on('click',e=>{ if(currentUse) verdictAt(e.latlng); });
+
+async function verdictAt(latlng,label){
+  if(pin) pin.remove();
+  pin=L.circleMarker(latlng,{radius:8,weight:2,color:'#3A3A38',fillColor:'#E5A000',fillOpacity:.95}).addTo(map);
+  const u=CFG.layerUrl+'/query?geometry='+latlng.lng+','+latlng.lat
+    +'&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects'
+    +'&outFields=*&returnGeometry=false&f=json';
+  let district=null;
+  try{
+    const j=await (await fetch(u)).json();
+    const a=(j.features&&j.features[0]&&j.features[0].attributes)||{};
+    if(!fieldName){
+      fieldName=FIELD_CANDIDATES.find(f=>f in a)||Object.keys(a).find(k=>/zon/i.test(k));
+    }
+    district=a[fieldName]||null;
+  }catch(err){/* fall through to unknown verdict */}
+  showVerdict(district,label||('Dropped pin — '+latlng.lat.toFixed(4)+', '+latlng.lng.toFixed(4)));
+}
+
+function showVerdict(district,label){
+  const v=document.getElementById('verdict'), lead=document.getElementById('lead');
+  const cls=district?classify(district):null;
+  v.className='verdict show '+(cls==='P'?'v-p':cls==='S'?'v-s':cls==='N'?'v-n':'v-u');
+  document.getElementById('vAddr').textContent=label;
+  document.getElementById('vZone').textContent=district?('Zoned '+district):'Zoning district not found at this point';
+  const W=document.getElementById('vWord'), B=document.getElementById('vBody');
+  if(!district||!cls){
+    W.textContent='Unknown';
+    B.textContent='Couldn\u2019t read a district here — the point may fall on right-of-way, or the GIS layer needs configuring.';
+    lead.classList.remove('show');
+  }else if(cls==='P'){
+    W.textContent='Allowed by right \u2713';
+    B.innerHTML='Current zoning permits <b>'+esc(currentUse.label.toLowerCase())+'</b> here. '
+      +'You still need permits, site standards, and possibly Regional Center or historic review — but no rezoning.';
+    setLead('Permitted — but permits still await.',
+      'Even by-right projects hit site-plan standards, variances of development standards, and review boards. Proformus can pressure-test the site before you commit.');
+    lead.classList.add('show');
+  }else if(cls==='S'){
+    W.textContent='Special exception \u26A0';
+    B.innerHTML='<b>'+esc(currentUse.label)+'</b> needs a <b>special exception</b> here — a public hearing before the Board of Zoning Appeals. Winnable, with the right case.';
+    setLead('A BZA hearing stands between you and this site.',
+      'Special exceptions turn on findings of fact and neighbor relations. Proformus builds the case, the exhibits, and the room.');
+    lead.classList.add('show');
+  }else{
+    W.textContent='Not allowed \u2717';
+    B.innerHTML='Current zoning ('+esc(district)+') doesn\u2019t allow <b>'+esc(currentUse.label.toLowerCase())+'</b>. '
+      +'The path is a <b>rezoning</b> or a variance of use — a petition, a hearing, and a vote.';
+    setLead('Need a rezoning? That\u2019s exactly what we do.',
+      'Proformus shepherds rezonings through the Indianapolis process — petition to MDC vote. Tell us about the project and we\u2019ll tell you, honestly, whether it\u2019s winnable.');
+    lead.classList.add('show');
+  }
+  // carry context into the lead form + mailto
+  const use=currentUse?currentUse.label:'';
+  document.getElementById('fAddr').value=label;
+  document.getElementById('fUse').value=use;
+  document.getElementById('fZone').value=district||'';
+  document.getElementById('fVerdict').value=cls||'unknown';
+  const body='Site: '+label+'%0AProposed use: '+encodeURIComponent(use)
+    +'%0AZoning: '+encodeURIComponent(district||'?')+'%0AVerdict: '+(cls||'?')+'%0A%0A';
+  document.getElementById('mailtoLink').href='mailto:'+CFG.leadEmail
+    +'?subject='+encodeURIComponent('Rezoning inquiry — '+label)+'&body='+body;
+}
+function setLead(h,p){document.getElementById('leadHead').textContent=h;document.getElementById('leadBody').textContent=p}
+
+/* ---------- address search: Census geocoder, Nominatim fallback ---------- */
+document.getElementById('addr').addEventListener('keydown',async e=>{
+  if(e.key!=='Enter') return;
+  const q=e.target.value.trim(); if(!q||!currentUse) {if(!currentUse) alert('Pick a use first.'); return;}
+  const full=/indian|,\s*in/i.test(q)?q:(q+', Indianapolis, IN');
+  let hit=null;
+  try{
+    const u='https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address='+encodeURIComponent(full);
+    const j=await (await fetch(u)).json();
+    const m=j.result&&j.result.addressMatches&&j.result.addressMatches[0];
+    if(m) hit={lat:+m.coordinates.y,lng:+m.coordinates.x,label:m.matchedAddress};
+  }catch(err){}
+  if(!hit){
+    try{
+      const u='https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(full);
+      const j=await (await fetch(u)).json();
+      if(j[0]) hit={lat:+j[0].lat,lng:+j[0].lon,label:j[0].display_name.split(',').slice(0,2).join(',')};
+    }catch(err){}
+  }
+  if(!hit){alert('Couldn\u2019t find that address — try adding a street suffix, or click the map instead.');return;}
+  map.setView([hit.lat,hit.lng],16);
+  verdictAt(L.latLng(hit.lat,hit.lng),hit.label);
+});
+
+function warn(html){const w=document.getElementById('configwarn');w.innerHTML=html;w.style.display='block'}
+</script>
+</body>
+</html>
