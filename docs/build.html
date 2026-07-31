@@ -91,7 +91,9 @@
     body{flex-direction:column}
     #panel{width:100%;min-width:0;height:auto;max-height:calc(52vh - 26px);order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
     select,input[type=search],.lead input,.lead textarea{font-size:16px}
-    #map{order:1;min-height:calc(48vh - 26px)}
+    #map{order:1;min-height:calc(48vh - 26px);transition:min-height .28s ease}
+    body.panel-focus #map{min-height:24vh}
+    body.panel-focus #panel{max-height:calc(76vh - 26px)}
   }
 
   /* ---------- site topbar ---------- */
@@ -540,6 +542,25 @@ document.getElementById('addr').addEventListener('keydown',async e=>{
 });
 
 function warn(html){const w=document.getElementById('configwarn');w.innerHTML=html;w.style.display='block'}
+
+/* ---------- mobile: shrink the map while the panel is in use ---------- */
+(function(){
+  const mq=window.matchMedia('(max-width:760px)');
+  const panel=document.getElementById('panel'), mapEl=document.getElementById('map');
+  if(!panel||!mapEl) return;
+  let t;
+  function settle(){clearTimeout(t);t=setTimeout(()=>{try{map.invalidateSize()}catch(e){}},320)}
+  panel.addEventListener('focusin',e=>{
+    if(mq.matches && e.target && e.target.matches('select,input,textarea')){
+      document.body.classList.add('panel-focus'); settle();
+    }
+  });
+  ['touchstart','mousedown'].forEach(ev=>mapEl.addEventListener(ev,()=>{
+    if(document.body.classList.contains('panel-focus')){
+      document.body.classList.remove('panel-focus'); settle();
+    }
+  },{passive:true}));
+})();
 </script>
 <script>
 (function(){
