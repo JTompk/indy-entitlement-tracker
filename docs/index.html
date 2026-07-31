@@ -31,7 +31,7 @@
   html,body{height:100%}
   body{font-family:'Fraunces',Georgia,serif;color:var(--ink);background:var(--paper);display:flex;-webkit-font-smoothing:antialiased}
 
-  #panel{width:320px;min-width:320px;height:100%;overflow-y:auto;padding:24px 20px 32px;background:var(--paper);border-right:1px solid var(--hairline)}
+  #panel{width:320px;min-width:320px;height:auto;overflow-y:auto;padding:24px 20px 32px;background:var(--paper);border-right:1px solid var(--hairline)}
   .titleblock{padding-bottom:16px;border-bottom:1px solid var(--ink)}
   .eyebrow{font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
   .titleblock h1{font-size:23px;font-weight:500;line-height:1.15;margin-top:8px;letter-spacing:-.01em}
@@ -63,7 +63,7 @@
   .note{font-family:'Jost',sans-serif;font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:28px;padding-top:14px;border-top:1px solid var(--hairline)}
   .note a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px}
 
-  #map{flex:1;height:100%;background:#EFEEE8}
+  #map{flex:1;height:auto;background:#EFEEE8}
   .leaflet-popup-content-wrapper{border-radius:0;font-family:'Jost',sans-serif;background:var(--paper);color:var(--ink);border:1px solid var(--hairline);box-shadow:0 2px 14px rgba(0,0,0,.10)}
   .leaflet-popup-tip{background:var(--paper)}
   .pop .case{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px;color:var(--blue)}
@@ -82,13 +82,62 @@
 
   @media (max-width:760px){
     body{flex-direction:column}
-    #panel{width:100%;min-width:0;height:auto;max-height:46vh;order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
-    #map{order:1;min-height:54vh}
+    #panel{width:100%;min-width:0;height:auto;max-height:calc(46vh - 26px);order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
+    #map{order:1;min-height:calc(54vh - 26px)}
   }
   @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+  /* ---------- site topbar ---------- */
+  .topbar{position:fixed;top:0;left:0;right:0;height:52px;z-index:1100;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:0 18px;background:var(--paper);border-bottom:1px solid var(--hairline)}
+  .tb-wordmark{font-family:'Jost',sans-serif;font-weight:600;font-size:15px;
+    letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);white-space:nowrap}
+  .tb-wordmark span{background:var(--accent);padding:1px 4px;margin-left:2px}
+  .topbar nav{display:flex;gap:2px;flex-wrap:nowrap;overflow:hidden}
+  .topbar nav a{font-family:'Jost',sans-serif;font-size:11.5px;font-weight:500;
+    letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+    padding:5px 8px;white-space:nowrap}
+  .topbar nav a:hover{background:var(--accent)}
+  .tb-menu{display:none;flex-direction:column;justify-content:center;gap:6px;
+    width:44px;height:44px;padding:10px;background:none;border:none;cursor:pointer}
+  .tb-menu span{display:block;height:1.5px;background:var(--ink);transition:transform .18s ease,opacity .18s ease}
+  .topbar.open .tb-menu span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .topbar.open .tb-menu span:nth-child(2){opacity:0}
+  .topbar.open .tb-menu span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  body{padding-top:52px}
+  html.embedded .topbar{display:none}
+  html.embedded body{padding-top:0}
+  @media (max-width:880px){
+    .tb-menu{display:flex}
+    .topbar nav{display:none}
+    .topbar.open nav{display:flex;position:fixed;top:52px;left:0;right:0;bottom:0;
+      z-index:1099;flex-direction:column;gap:0;background:var(--paper);
+      padding:16px 24px 40px;overflow-y:auto}
+    .topbar.open nav a{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:500;
+      letter-spacing:-.01em;text-transform:none;padding:14px 2px;
+      border-bottom:1px solid var(--hairline);white-space:normal}
+    .topbar.open nav a:hover{background:none;box-shadow:inset 0 -0.45em 0 var(--accent)}
+  }
 </style>
 </head>
 <body>
+
+<header class="topbar" id="topbar">
+  <a class="tb-wordmark" href="https://indyimby.com">INDY<span>IMBY</span></a>
+  <button class="tb-menu" id="tbBtn" aria-expanded="false" aria-controls="tbNav" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="tbNav">
+    <a href="https://indyimby.com/start-here/">Start here</a>
+    <a href="https://indyimby.com/about/">About</a>
+    <a href="/">Live map</a>
+    <a href="/build">What can I build?</a>
+    <a href="https://indyimby.com/digest/">Digest</a>
+    <a href="https://indyimby.com/zoning-gap/">Zoning Gap</a>
+    <a href="https://indyimby.com/how-to-testify/">Testify</a>
+  </nav>
+</header>
 
 <aside id="panel">
   <div class="titleblock">
@@ -191,7 +240,7 @@ const weekParam = urlq.get('week');
 // Embed mode: ?embed=1 hides the filter panel — used by digest post iframes.
 if(urlq.get('embed') === '1'){
   const st = document.createElement('style');
-  st.textContent = '#panel{display:none!important}#map{left:0!important;width:100%!important}';
+  st.textContent = '#panel{display:none!important}#map{left:0!important;width:100%!important}.topbar{display:none!important}body{padding-top:0!important}';
   document.head.appendChild(st);
   setTimeout(()=>map.invalidateSize(), 100);
 }
@@ -370,6 +419,22 @@ function popup(p){
     ${link}
   </div>`;
 }
+</script>
+<script>
+(function(){
+  if(window.self!==window.top){document.documentElement.classList.add('embedded');return;}
+  var tb=document.getElementById('topbar'),btn=document.getElementById('tbBtn');
+  if(!tb||!btn)return;
+  function set(open){
+    tb.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);
+    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.body.style.overflow=open?'hidden':'';
+  }
+  btn.addEventListener('click',function(){set(!tb.classList.contains('open'))});
+  tb.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
 </script>
 </body>
 </html>
