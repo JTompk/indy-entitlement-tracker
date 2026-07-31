@@ -52,6 +52,9 @@
   .verdict.v-s{border-top:2px solid var(--gold)}  .verdict.v-s .v-word{color:#9A6F00}
   .verdict.v-n{border-top:2px solid var(--red)}   .verdict.v-n .v-word{color:#C4483D}
   .verdict.v-u{border-top:2px solid var(--hairline)}
+  .verdict.v-v{border-top:2px solid var(--red)}   .verdict.v-v .v-word{color:#C4483D}
+  .verdict.v-a{border-top:2px solid var(--blue)}  .verdict.v-a .v-word{color:var(--blue)}
+  .verdict.v-x{border-top:2px solid var(--ink)}
 
   .lead{margin-top:14px;background:var(--accent);padding:18px;display:none}
   .lead.show{display:block}
@@ -157,6 +160,8 @@
   <div class="legend" id="legend" style="display:none">
     <div class="row"><span class="sw" style="background:rgba(35,120,195,.45)"></span> Allowed by right</div>
     <div class="row"><span class="sw" style="background:rgba(229,160,0,.5)"></span> Special exception (BZA hearing)</div>
+    <div class="row"><span class="sw" style="background:rgba(233,105,95,.45)"></span> Allowed if the building sat vacant 5+ years</div>
+    <div class="row"><span class="sw" style="background:rgba(35,120,195,.15);border-style:dashed"></span> Accessory use only</div>
     <div class="row"><span class="sw" style="background:rgba(58,58,56,.10)"></span> Not allowed — rezoning territory</div>
   </div>
 
@@ -196,9 +201,12 @@
   neighborhood-sized view.</div>
 
   <p class="credit">Zoning polygons served live by MapIndy (City of Indianapolis GIS).
-  Use permissions from a draft reading of the Consolidated Zoning &amp; Subdivision
-  Ordinance — overlays, commitments, variances, and the Regional Center can change
-  the answer for a specific site. This is a screening tool, not legal advice.
+  Use permissions machine-read from Table 743-1 of The Zoning Ordinance,
+  Indianapolis–Marion County, effective March 2, 2026, and verified row by row.
+  Secondary (overlay) districts, commitments, variances, and use-specific
+  standards can change the answer for a specific site — and DP, SU, and
+  Historic districts follow their own approvals. This is a screening tool,
+  not legal advice.
   Part of <a href="https://indyimby.com">IndyIMBY</a> ·
   <a href="index.html">back to the tracker</a></p>
 </aside>
@@ -228,7 +236,16 @@ const FIELD_CANDIDATES = ['ZONING','ZONE_CLASS','ZONING_1','ZONE','DISTRICT','ZO
 const STYLE = {
   P:{color:'#2378C3', weight:.7, fillColor:'#2378C3', fillOpacity:.35},
   S:{color:'#E5A000', weight:.7, fillColor:'#E5A000', fillOpacity:.40},
+  V:{color:'#E9695F', weight:.7, fillColor:'#E9695F', fillOpacity:.38},
+  A:{color:'#2378C3', weight:.8, dashArray:'3 4', fillColor:'#2378C3', fillOpacity:.13},
+  X:{color:'#232320', weight:.6, dashArray:'2 3', fillColor:'#232320', fillOpacity:.05},
   N:{color:'#232320', weight:.3, fillColor:'#3A3A38', fillOpacity:.07},
+};
+const CLSNAME = {
+  P:'allowed by right', S:'special exception (BZA hearing)',
+  V:'allowed if the building has sat vacant 5+ years',
+  A:'accessory use only', X:'special district \u2014 its own rulebook applies',
+  N:'not allowed \u2014 rezoning territory',
 };
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=v=>String(v||'').toUpperCase().replace(/\s+/g,'');
@@ -267,9 +284,9 @@ function resolveUse(q){
   if(!n) return null;
   let u=MATRIX.uses.find(u=>u.id===n); if(u) return u;
   u=MATRIX.uses.find(u=>u.label.toLowerCase().includes(n)); if(u) return u;
-  for(const [id,words] of Object.entries(ALIASES)){
-    if(words.some(w=>n===w||n.includes(w)||w.includes(n)))
-      return MATRIX.uses.find(u=>u.id===id);
+  for(const cand of MATRIX.uses){
+    const words=cand.aliases||ALIASES[cand.id]||[];
+    if(words.some(w=>n===w||n.includes(w)||w.includes(n))) return cand;
   }
   return null;
 }
@@ -281,7 +298,11 @@ let fieldName=CFG.field, fieldLogged=false, fetchSeq=0;
 fetch('data/use_matrix.json').then(r=>r.json()).then(m=>{
   MATRIX=m;
   const sel=document.getElementById('useSelect');
-  m.uses.forEach(u=>sel.add(new Option(u.label,u.id)));
+  let og=null, gname=null;
+  m.uses.forEach(u=>{
+    if((u.group||'')!==gname){gname=u.group||'';og=document.createElement('optgroup');og.label=gname;sel.appendChild(og);}
+    og.appendChild(new Option(u.label,u.id));
+  });
   sel.addEventListener('change',()=>{
     currentUse=m.uses.find(u=>u.id===sel.value)||null;
     document.getElementById('legend').style.display=currentUse?'block':'none';
@@ -314,14 +335,25 @@ fetch('data/use_matrix.json').then(r=>r.json()).then(m=>{
    (so "D-5 (FF)" or "C-3 w/ commitments" still land on the base district). */
 function classify(raw){
   if(!currentUse) return null;
-  const v=norm(raw);
-  const hit=(list)=>list.some(d=>{
+  let v=norm(raw);
+  const tr=MATRIX.gis_translate||{};
+  if(tr[v]) v=norm(tr[v]);
+  for(const pfx of Object.keys(MATRIX.special_prefixes||{})){
+    if(v.startsWith(norm(pfx))) return 'X';
+  }
+  const hit=(list)=>(list||[]).some(d=>{
     const n=norm(d);
     return v===n || v.replace(/-/g,'')===n.replace(/-/g,'') || v.startsWith(n);
   });
   if(hit(currentUse.P)) return 'P';
   if(hit(currentUse.S)) return 'S';
-  return 'N';
+  if(hit(currentUse.V)) return 'V';
+  if(hit(currentUse.A)) return 'A';
+  const known=(MATRIX.districts_known||[]).some(d=>{
+    const n=norm(d);
+    return v===n || v.replace(/-/g,'')===n.replace(/-/g,'') || v.startsWith(n);
+  });
+  return known ? 'N' : 'U';
 }
 
 /* ---------- viewport painting ---------- */
@@ -341,9 +373,10 @@ function paint(){
     zoningLayer.clearLayers();
     feats.forEach(f=>{
       const d=f.properties[fieldName];
-      const cls=classify(d);
-      L.geoJSON(f,{style:STYLE[cls]})
-        .bindPopup(`<b>${esc(d)}</b> — ${cls==='P'?'allowed by right':cls==='S'?'special exception':'not allowed'} for ${esc(currentUse.label.toLowerCase())}`)
+      let cls=classify(d);
+      const styleKey=(currentUse.acc&&cls==='A')?'P':(STYLE[cls]?cls:'X');
+      L.geoJSON(f,{style:STYLE[styleKey]})
+        .bindPopup(`<b>${esc(d)}</b> — ${(currentUse.acc&&cls==='A')?'allowed as an accessory use':CLSNAME[cls]||'district not in the 2026 use table'} for ${esc(currentUse.label.toLowerCase())}`)
         .addTo(zoningLayer);
     });
   }).catch(e=>warn('Zoning layer request failed — check <code>CFG.layerUrl</code> against the MapIndy REST directory. ('+esc(e.message)+')'));
@@ -403,7 +436,8 @@ async function verdictAt(latlng,label){
 function showVerdict(district,label){
   const v=document.getElementById('verdict'), lead=document.getElementById('lead');
   const cls=district?classify(district):null;
-  v.className='verdict show '+(cls==='P'?'v-p':cls==='S'?'v-s':cls==='N'?'v-n':'v-u');
+  const vcls={P:'v-p',S:'v-s',V:'v-v',A:(currentUse&&currentUse.acc)?'v-a':'v-s',N:'v-n',X:'v-x',U:'v-u'}[cls]||'v-u';
+  v.className='verdict show '+vcls;
   document.getElementById('vAddr').textContent=label;
   document.getElementById('vZone').textContent=district?('Zoned '+district):'Zoning district not found at this point';
   const W=document.getElementById('vWord'), B=document.getElementById('vBody');
@@ -418,6 +452,41 @@ function showVerdict(district,label){
     setLead('Permitted — but permits still await.',
       'Even by-right projects hit site-plan standards, variances of development standards, and review boards. Proformus can pressure-test the site before you commit.');
     lead.classList.add('show');
+  }else if(cls==='V'){
+    W.textContent='Allowed \u2014 if it sat empty \u2713*';
+    B.innerHTML='The 2026 ordinance allows <b>'+esc(currentUse.label.toLowerCase())+'</b> here in an <b>existing building vacant for 5+ consecutive years</b>, with the Administrator\u2019s acknowledgement and documentation of the vacancy. No hearing \u2014 but the paperwork has to hold up.';
+    setLead('The vacancy unlock \u2014 if you can prove it.',
+      'Five consecutive years of documented vacancy is an evidence problem: utility records, assessor data, affidavits. Proformus assembles the file and walks it through the Administrator.');
+    lead.classList.add('show');
+  }else if(cls==='A'&&currentUse.acc){
+    W.textContent='Allowed as an accessory \u2713';
+    B.innerHTML='<b>'+esc(currentUse.label)+'</b> is allowed here as an <b>accessory use</b> \u2014 attached and subordinate to the primary use of the property (like your house or your business), subject to its use-specific standards.';
+    setLead('Allowed \u2014 within the accessory-use rules.',
+      'Accessory uses come with size, placement, and operating standards. Proformus can confirm your plan fits before you build.');
+    lead.classList.add('show');
+  }else if(cls==='A'){
+    W.textContent='Accessory only \u26A0';
+    B.innerHTML='Here, <b>'+esc(currentUse.label.toLowerCase())+'</b> can only exist as an <b>accessory</b> \u2014 incidental and subordinate to a permitted primary use on the same site. As a standalone project, the path is a rezoning or variance of use.';
+    setLead('Standalone? That takes a rezoning.',
+      'If you want this as the main act \u2014 not a sidecar to another use \u2014 Proformus can scope the rezoning or variance path and tell you honestly whether it\u2019s winnable.');
+    lead.classList.add('show');
+  }else if(cls==='X'){
+    W.textContent='Different rulebook';
+    (function(){
+      let why='This parcel is in a DP, SU, or Historic district.';
+      const vv=norm(district), sp=MATRIX.special_prefixes||{};
+      for(const pfx of Object.keys(sp)){ if(vv.startsWith(norm(pfx))){ why=sp[pfx]; break; } }
+      B.innerHTML='The use table doesn\u2019t decide this one. '+esc(why)+'. What\u2019s allowed depends on that district\u2019s own approvals \u2014 and overlay (secondary) districts can override the base district anywhere in the county.';
+    })();
+    setLead('Special districts are our home turf.',
+      'DP amendments, SU rezonings, IHPC approvals \u2014 Proformus reads the site\u2019s actual entitlements and maps the fastest path.');
+    lead.classList.add('show');
+  }else if(cls==='U'){
+    W.textContent='Not in the 2026 table';
+    B.innerHTML='The city\u2019s GIS labels this parcel <b>'+esc(district)+'</b>, which isn\u2019t a district in the March 2026 use table \u2014 it may be a legacy code awaiting translation. Treat this verdict as unresolved.';
+    setLead('Let\u2019s pin down what this parcel really is.',
+      'Proformus can pull the parcel\u2019s current zoning of record and tell you exactly which rules apply.');
+    lead.classList.add('show');
   }else if(cls==='S'){
     W.textContent='Special exception \u26A0';
     B.innerHTML='<b>'+esc(currentUse.label)+'</b> needs a <b>special exception</b> here — a public hearing before the Board of Zoning Appeals. Winnable, with the right case.';
@@ -426,8 +495,9 @@ function showVerdict(district,label){
     lead.classList.add('show');
   }else{
     W.textContent='Not allowed \u2717';
-    B.innerHTML='Current zoning ('+esc(district)+') doesn\u2019t allow <b>'+esc(currentUse.label.toLowerCase())+'</b>. '
-      +'The path is a <b>rezoning</b> or a variance of use — a petition, a hearing, and a vote.';
+    B.innerHTML='Under the 2026 use table, zoning ('+esc(district)+') doesn\u2019t allow <b>'+esc(currentUse.label.toLowerCase())+'</b>. '
+      +'The path is a <b>rezoning</b> or a variance of use — a petition, a hearing, and a vote.'
+      +(currentUse.note?('<br><span style="color:var(--ink-soft)">'+esc(currentUse.note)+'</span>'):'');
     setLead('Need a rezoning? That\u2019s exactly what we do.',
       'Proformus shepherds rezonings through the Indianapolis process — petition to MDC vote. Tell us about the project and we\u2019ll tell you, honestly, whether it\u2019s winnable.');
     lead.classList.add('show');
