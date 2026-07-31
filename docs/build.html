@@ -87,11 +87,14 @@
     background:var(--paper);border:1px solid var(--ink);box-shadow:0 2px 14px rgba(0,0,0,.12);
     padding:12px 18px;font-family:'Jost',sans-serif;font-size:13px;max-width:520px;line-height:1.55}
 
+  #grab{display:none}
   @media (max-width:760px){
     body{flex-direction:column}
     #panel{width:100%;min-width:0;height:auto;max-height:calc(52vh - 26px);order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
     select,input[type=search],.lead input,.lead textarea{font-size:16px}
     #map{order:1;min-height:calc(48vh - 26px);transition:min-height .28s ease}
+    #grab{display:block;margin:-8px -20px 10px;padding:10px 0 8px;cursor:grab;touch-action:none}
+    #grab span{display:block;width:44px;height:4px;margin:0 auto;background:var(--hairline);border-radius:2px}
     #panel{transition:max-height .28s ease}
     body.panel-big #panel{max-height:calc(76vh - 26px)}
     body.panel-big #map{min-height:calc(24vh - 26px)}
@@ -153,6 +156,7 @@
 </header>
 
 <aside id="panel">
+  <div id="grab" aria-hidden="true"><span></span></div>
   <div class="titleblock">
     <div class="eyebrow">IndyIMBY</div>
     <h1>What can you build here?</h1>
@@ -565,9 +569,30 @@ function warn(html){const w=document.getElementById('configwarn');w.innerHTML=ht
     document.body.classList.remove('panel-big');
     document.body.classList.add('map-big'); settle();
   }
+  function panelDefault(){
+    if(!mq.matches) return;
+    if(!document.body.classList.contains('panel-big')) return;
+    document.body.classList.remove('panel-big'); settle();
+  }
   /* panel grows on tap-release / input focus — no mid-tap layout shift */
   panel.addEventListener('click',panelBig);
   panel.addEventListener('focusin',panelBig);
+  /* bottom-sheet gestures: swipe up to expand, swipe down from scroll-top to tuck */
+  let sy=null, st=0;
+  panel.addEventListener('touchstart',e=>{sy=e.touches[0].clientY; st=panel.scrollTop;},{passive:true});
+  panel.addEventListener('touchmove',e=>{
+    if(sy===null||!mq.matches) return;
+    const dy=e.touches[0].clientY-sy;
+    if(dy<-12) panelBig();
+    else if(dy>18 && st<=0) panelDefault();
+  },{passive:true});
+  panel.addEventListener('touchend',()=>{sy=null},{passive:true});
+  panel.addEventListener('scroll',panelBig,{passive:true});
+  const grab=document.getElementById('grab');
+  if(grab) grab.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(document.body.classList.contains('panel-big')) panelDefault(); else panelBig();
+  });
   /* map grows when actually navigated — pan or zoom, not a verdict tap */
   try{map.on('dragstart zoomstart',mapBig)}catch(e){}
   /* the lead moment: a verdict lands -> grow the panel and put the card on screen */
