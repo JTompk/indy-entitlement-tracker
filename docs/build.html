@@ -236,6 +236,43 @@ const map=L.map('map').setView([39.7838,-86.1520],11);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
   {attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19}).addTo(map);
 
+/* Free-text matching for ?use= deep links and the site's search box.
+   Keys are matrix use ids; values are everyday words people type. */
+const ALIASES={
+  sf_detached:['house','home','single family','single-family'],
+  adu:['adu','granny flat','backyard cottage','carriage house','accessory dwelling','in-law'],
+  duplex:['duplex','two-family','double'],
+  triplex_fourplex:['triplex','fourplex','quadplex','quad','plex'],
+  townhomes:['townhome','townhouse','rowhouse','row house'],
+  apartments:['apartment','apartments','multifamily','multi-family','condo','condos'],
+  childcare_home:['home daycare','in-home daycare','child care home'],
+  childcare_center:['daycare','day care','childcare','child care','preschool','pre-school','nursery'],
+  corner_store:['corner store','bodega','convenience store','retail','shop','store'],
+  grocery:['grocery','supermarket','market','food store'],
+  restaurant:['restaurant','cafe','café','coffee shop','coffee','diner','food','eatery'],
+  bar:['bar','tavern','pub','cocktail'],
+  brewery_taproom:['brewery','taproom','brewpub','beer'],
+  office_small:['office','coworking','co-working','studio'],
+  personal_services:['barbershop','barber','salon','nail salon','nails','spa','tattoo'],
+  worship:['church','mosque','temple','synagogue','worship','congregation'],
+  school_small:['school','academy','montessori'],
+  light_mfg:['manufacturing','maker space','makerspace','workshop','fabrication'],
+  warehouse:['warehouse','distribution','storage','logistics'],
+  auto_repair:['auto repair','mechanic','garage','auto shop','car repair','body shop'],
+};
+function resolveUse(q){
+  if(!MATRIX||!q) return null;
+  const n=String(q).toLowerCase().trim();
+  if(!n) return null;
+  let u=MATRIX.uses.find(u=>u.id===n); if(u) return u;
+  u=MATRIX.uses.find(u=>u.label.toLowerCase().includes(n)); if(u) return u;
+  for(const [id,words] of Object.entries(ALIASES)){
+    if(words.some(w=>n===w||n.includes(w)||w.includes(n)))
+      return MATRIX.uses.find(u=>u.id===id);
+  }
+  return null;
+}
+
 let MATRIX=null, currentUse=null, zoningLayer=L.layerGroup().addTo(map), pin=null;
 let fieldName=CFG.field, fieldLogged=false, fetchSeq=0;
 
@@ -256,6 +293,19 @@ fetch('data/use_matrix.json').then(r=>r.json()).then(m=>{
     // re-run the verdict if a pin is already down
     if(pin && currentUse) verdictAt(pin.getLatLng());
   });
+  // deep link: /build?use=daycare (or ?q=) preselects and paints
+  const uq=new URLSearchParams(location.search);
+  const want=uq.get('use')||uq.get('q');
+  if(want){
+    const match=resolveUse(want);
+    if(match){ sel.value=match.id; sel.dispatchEvent(new Event('change')); }
+    else{
+      const note=document.getElementById('zoomnote');
+      note.style.display='block';
+      note.textContent='Couldn\u2019t match \u201C'+want+'\u201D to a use \u2014 pick the closest one from the list above.';
+      sel.focus();
+    }
+  }
 }).catch(()=>warn('Could not load <b>data/use_matrix.json</b> — commit the matrix file next to this page.'));
 
 /* Classify a raw district value against the current use.
