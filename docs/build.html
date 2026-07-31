@@ -92,9 +92,13 @@
     #panel{width:100%;min-width:0;height:auto;max-height:calc(52vh - 26px);order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
     select,input[type=search],.lead input,.lead textarea{font-size:16px}
     #map{order:1;min-height:calc(48vh - 26px);transition:min-height .28s ease}
-    body.panel-focus #map{min-height:24vh}
-    body.panel-focus #panel{max-height:calc(76vh - 26px)}
+    #panel{transition:max-height .28s ease}
+    body.panel-big #panel{max-height:calc(76vh - 26px)}
+    body.panel-big #map{min-height:calc(24vh - 26px)}
+    body.map-big #map{min-height:calc(76vh - 26px)}
+    body.map-big #panel{max-height:calc(24vh - 26px)}
   }
+  @media (prefers-reduced-motion: reduce){#map,#panel{transition:none!important}}
 
   /* ---------- site topbar ---------- */
   .topbar{position:fixed;top:0;left:0;right:0;height:52px;z-index:1100;
@@ -504,6 +508,7 @@ function showVerdict(district,label){
       'Proformus shepherds rezonings through the Indianapolis process — petition to MDC vote. Tell us about the project and we\u2019ll tell you, honestly, whether it\u2019s winnable.');
     lead.classList.add('show');
   }
+  if(window.__revealVerdict) window.__revealVerdict();
   // carry context into the lead form + mailto
   const use=currentUse?currentUse.label:'';
   document.getElementById('fAddr').value=label;
@@ -543,23 +548,36 @@ document.getElementById('addr').addEventListener('keydown',async e=>{
 
 function warn(html){const w=document.getElementById('configwarn');w.innerHTML=html;w.style.display='block'}
 
-/* ---------- mobile: shrink the map while the panel is in use ---------- */
+/* ---------- mobile: reciprocal map/panel expansion + verdict reveal ---------- */
 (function(){
   const mq=window.matchMedia('(max-width:760px)');
   const panel=document.getElementById('panel'), mapEl=document.getElementById('map');
   if(!panel||!mapEl) return;
   let t;
   function settle(){clearTimeout(t);t=setTimeout(()=>{try{map.invalidateSize()}catch(e){}},320)}
-  panel.addEventListener('focusin',e=>{
-    if(mq.matches && e.target && e.target.matches('select,input,textarea')){
-      document.body.classList.add('panel-focus'); settle();
-    }
-  });
-  ['touchstart','mousedown'].forEach(ev=>mapEl.addEventListener(ev,()=>{
-    if(document.body.classList.contains('panel-focus')){
-      document.body.classList.remove('panel-focus'); settle();
-    }
-  },{passive:true}));
+  function panelBig(){
+    if(!mq.matches || document.body.classList.contains('panel-big')) return;
+    document.body.classList.remove('map-big');
+    document.body.classList.add('panel-big'); settle();
+  }
+  function mapBig(){
+    if(!mq.matches || document.body.classList.contains('map-big')) return;
+    document.body.classList.remove('panel-big');
+    document.body.classList.add('map-big'); settle();
+  }
+  /* panel grows on tap-release / input focus — no mid-tap layout shift */
+  panel.addEventListener('click',panelBig);
+  panel.addEventListener('focusin',panelBig);
+  /* map grows when actually navigated — pan or zoom, not a verdict tap */
+  try{map.on('dragstart zoomstart',mapBig)}catch(e){}
+  /* the lead moment: a verdict lands -> grow the panel and put the card on screen */
+  window.__revealVerdict=function(){
+    if(!mq.matches) return;
+    panelBig();
+    setTimeout(()=>{
+      try{document.getElementById('verdict').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
+    },340);
+  };
 })();
 </script>
 <script>
