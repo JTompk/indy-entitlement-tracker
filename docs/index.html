@@ -84,7 +84,12 @@
     body{flex-direction:column}
     #panel{width:100%;min-width:0;height:auto;max-height:calc(46vh - 26px);order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
     select,input[type=search]{font-size:16px}
-    #map{order:1;min-height:calc(54vh - 26px)}
+    #map{order:1;min-height:calc(54vh - 26px);transition:min-height .28s ease}
+    #panel{transition:max-height .28s ease}
+    body.panel-big #panel{max-height:calc(72vh - 26px)}
+    body.panel-big #map{min-height:calc(28vh - 26px)}
+    body.map-big #map{min-height:calc(72vh - 26px)}
+    body.map-big #panel{max-height:calc(28vh - 26px)}
   }
   @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 
@@ -239,7 +244,7 @@ const state = { agendaTypes:new Set(), cityTypes:new Set(), board:'', yearFrom:'
 const urlq = new URLSearchParams(location.search);
 const weekParam = urlq.get('week');
 // Embed mode: ?embed=1 hides the filter panel — used by digest post iframes.
-if(urlq.get('embed') === '1'){
+if(urlq.get('embed') === '1'){window.__embed=1;
   const st = document.createElement('style');
   st.textContent = '#panel{display:none!important}#map{left:0!important;width:100%!important}.topbar{display:none!important}body{padding-top:0!important}';
   document.head.appendChild(st);
@@ -420,6 +425,33 @@ function popup(p){
     ${link}
   </div>`;
 }
+
+/* ---------- mobile: reciprocal map/panel expansion ---------- */
+(function(){
+  if(window.__embed) return;
+  const mq=window.matchMedia('(max-width:760px)');
+  const panel=document.getElementById('panel'), mapEl=document.getElementById('map');
+  if(!panel||!mapEl) return;
+  let t;
+  function settle(){clearTimeout(t);t=setTimeout(()=>{try{map.invalidateSize()}catch(e){}},320)}
+  function panelBig(){
+    if(!mq.matches) return;
+    if(document.body.classList.contains('panel-big')) return;
+    document.body.classList.remove('map-big');
+    document.body.classList.add('panel-big'); settle();
+  }
+  function mapBig(){
+    if(!mq.matches) return;
+    if(document.body.classList.contains('map-big')) return;
+    document.body.classList.remove('panel-big');
+    document.body.classList.add('map-big'); settle();
+  }
+  /* panel grows on click/focus (after the tap resolves — no mid-tap layout shift) */
+  panel.addEventListener('click',panelBig);
+  panel.addEventListener('focusin',panelBig);
+  /* map grows on touch (it's the top element — nothing above it moves) */
+  ['touchstart','mousedown'].forEach(ev=>mapEl.addEventListener(ev,mapBig,{passive:true}));
+})();
 </script>
 <script>
 (function(){
