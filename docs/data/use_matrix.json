@@ -1,165 +1,2325 @@
 {
-  "updated": "2026-07-30",
-  "draft": true,
-  "_readme": [
-    "DRAFT — every cell below was seeded from general knowledge of the",
-    "Consolidated Zoning & Subdivision Ordinance of Marion County and MUST be",
-    "verified against the ordinance use tables before this goes public.",
-    "Structure: for each use, 'P' lists districts where it is permitted by",
-    "right, 'S' lists districts where it needs a special exception (BZA).",
-    "Any district not listed = not allowed = rezoning / variance-of-use path.",
-    "District codes should match MapIndy's zoning field after normalization",
-    "(uppercased, spaces stripped). Add or remove districts freely; the page",
-    "reads this file on load, so calibration never requires touching build.html."
-  ],
-  "districts_known": [
-    "D-A","D-S","D-1","D-2","D-3","D-4","D-5","D-5II","D-6","D-6II",
-    "D-7","D-8","D-9","D-10","D-11","D-12","D-P",
-    "MU-1","MU-2","MU-3","MU-4",
-    "C-1","C-2","C-3","C-3C","C-4","C-5","C-6","C-7","C-S","C-ID",
-    "I-1","I-2","I-3","I-4",
-    "SU-1","SU-2","PK-1","HD-1"
-  ],
-  "uses": [
-    {
-      "id": "sf_detached",
-      "label": "Single-family home (detached)",
-      "P": ["D-A","D-S","D-1","D-2","D-3","D-4","D-5","D-5II","D-6","D-6II","D-7","D-8","MU-1","MU-2"],
-      "S": [],
-      "note": "Verify whether D-9 and the MU districts permit detached single-family by right."
-    },
-    {
-      "id": "adu",
-      "label": "Accessory dwelling unit (ADU)",
-      "P": ["D-5","D-5II","D-6","D-6II","D-7","D-8","MU-1","MU-2"],
-      "S": ["D-1","D-2","D-3","D-4"],
-      "note": "DRAFT — check §744 secondary/accessory dwelling standards; owner-occupancy and size limits apply."
-    },
-    {
-      "id": "duplex",
-      "label": "Duplex (two-family)",
-      "P": ["D-5","D-5II","D-6","D-6II","D-7","D-8","MU-2","MU-3"],
-      "S": ["D-3","D-4"],
-      "note": "Verify the lowest D district permitting two-family by right."
-    },
-    {
-      "id": "triplex_fourplex",
-      "label": "Triplex / fourplex",
-      "P": ["D-6","D-6II","D-7","D-8","MU-2","MU-3","MU-4"],
-      "S": ["D-5","D-5II"],
-      "note": ""
-    },
-    {
-      "id": "townhomes",
-      "label": "Townhomes (attached)",
-      "P": ["D-6","D-6II","D-7","D-8","MU-1","MU-2","MU-3","MU-4"],
-      "S": ["D-5","D-5II"],
-      "note": ""
-    },
-    {
-      "id": "apartments",
-      "label": "Apartments (5+ units)",
-      "P": ["D-7","D-8","D-9","MU-2","MU-3","MU-4"],
-      "S": ["D-6","D-6II","C-3","C-4","C-5"],
-      "note": "Check dwellings-in-commercial-districts rules (upper-floor residential in C districts)."
-    },
-    {
-      "id": "childcare_home",
-      "label": "Home daycare (child care home)",
-      "P": ["D-A","D-S","D-1","D-2","D-3","D-4","D-5","D-5II","D-6","D-6II","D-7","D-8","MU-1","MU-2","MU-3"],
-      "S": [],
-      "note": "Accessory to an occupied dwelling; state registration and child-count caps apply — verify thresholds."
-    },
-    {
-      "id": "childcare_center",
-      "label": "Daycare center (child care center)",
-      "P": ["C-1","C-3","C-3C","C-4","C-5","MU-1","MU-2","MU-3","MU-4"],
-      "S": ["D-A","D-S","D-1","D-2","D-3","D-4","D-5","D-5II","D-6","D-6II","D-7","D-8","SU-1","SU-2"],
-      "note": "Special exception in dwelling districts is the classic BZA case — outdoor play area and drop-off standards apply."
-    },
-    {
-      "id": "corner_store",
-      "label": "Corner store / small retail",
-      "P": ["C-3","C-3C","C-4","C-5","C-6","C-7","MU-1","MU-2","MU-3","MU-4"],
-      "S": ["C-2"],
-      "note": "The Zoning Gap headline use — ~60.7% of analyzed land bans it."
-    },
-    {
-      "id": "grocery",
-      "label": "Grocery store",
-      "P": ["C-4","C-5","MU-2","MU-3","MU-4"],
-      "S": ["C-3","C-3C","MU-1"],
-      "note": "Verify floor-area limits in C-3 / MU-1."
-    },
-    {
-      "id": "restaurant",
-      "label": "Restaurant / café",
-      "P": ["C-3","C-3C","C-4","C-5","C-6","C-7","MU-2","MU-3","MU-4"],
-      "S": ["MU-1"],
-      "note": "Drive-through service typically needs a higher district or approval — treated separately."
-    },
-    {
-      "id": "bar",
-      "label": "Bar / tavern",
-      "P": ["C-4","C-5","C-6","C-7"],
-      "S": ["C-3","MU-3","MU-4"],
-      "note": ""
-    },
-    {
-      "id": "brewery_taproom",
-      "label": "Brewery with taproom",
-      "P": ["C-7","I-2","I-3","C-ID"],
-      "S": ["C-4","C-5","MU-3","MU-4"],
-      "note": "Production scale usually decides the district — verify artisan-scale carve-outs."
-    },
-    {
-      "id": "office_small",
-      "label": "Small professional office",
-      "P": ["C-1","C-2","C-3","C-3C","C-4","C-5","MU-1","MU-2","MU-3","MU-4"],
-      "S": [],
-      "note": ""
-    },
-    {
-      "id": "personal_services",
-      "label": "Barbershop / salon / personal services",
-      "P": ["C-3","C-3C","C-4","C-5","MU-1","MU-2","MU-3","MU-4"],
-      "S": ["C-1"],
-      "note": ""
-    },
-    {
-      "id": "worship",
-      "label": "Church / place of worship",
-      "P": ["SU-1"],
-      "S": ["C-4","C-5"],
-      "note": "Marion County historically requires a rezoning to SU-1 for religious uses — a major, recurring rezoning category. Verify current RLUIPA-era treatment."
-    },
-    {
-      "id": "school_small",
-      "label": "School (K-12)",
-      "P": ["SU-2"],
-      "S": ["D-A","D-S","D-1","D-2","D-3","D-4","D-5","D-6"],
-      "note": "Like worship: SU-2 rezoning is the standard path. Verify SE availability in dwelling districts."
-    },
-    {
-      "id": "light_mfg",
-      "label": "Light manufacturing / maker space",
-      "P": ["I-2","I-3","I-4","C-ID"],
-      "S": ["I-1","C-7"],
-      "note": "Verify whether small artisan production is allowed in MU-3/MU-4."
-    },
-    {
-      "id": "warehouse",
-      "label": "Warehouse / distribution",
-      "P": ["I-2","I-3","I-4","C-ID"],
-      "S": ["C-7"],
-      "note": ""
-    },
-    {
-      "id": "auto_repair",
-      "label": "Auto repair",
-      "P": ["C-6","C-7","I-2","I-3","I-4"],
-      "S": ["C-4","C-5"],
-      "note": ""
-    }
-  ]
+ "updated": "2026-07-31",
+ "source": "Table 743-1, The Zoning Ordinance — Indianapolis-Marion County, effective March 2, 2026",
+ "draft": false,
+ "_readme": [
+  "Every cell below was machine-extracted from the Table 743-1 PDF using the",
+  "table’s own cell borders for column assignment, then cross-validated row by",
+  "row against an independent text extraction (0 mismatches across 153 rows).",
+  "Codes: P = permitted by right; S = special exception (BZA hearing);",
+  "V = permitted in an existing building vacant 5+ consecutive years, with",
+  "Administrator acknowledgement; A = allowed only as an accessory to a",
+  "primary use. A district absent from all four lists = prohibited — the",
+  "path is a rezoning or variance of use. Uses flagged “acc” are inherently",
+  "accessory (ADU, home daycare, drive-through…): for those, A is the",
+  "operative “yes.” The table covers Primary districts only — DP, SU, and",
+  "HD districts and all Secondary/overlay districts follow their own rules",
+  "(Sections 742-108/109/110, 742-200), and secondary districts override",
+  "primary ones. gis_translate maps legacy MapIndy labels onto 2026 table",
+  "columns — fill it in if the city’s GIS still serves pre-2026 codes."
+ ],
+ "districts_known": [
+  "D-A",
+  "D-S",
+  "D-1",
+  "D-2",
+  "D-3",
+  "D-4",
+  "D-5",
+  "D-5II",
+  "D-6",
+  "D-6II",
+  "D-7",
+  "D-8",
+  "D-9",
+  "D-10",
+  "D-11",
+  "C-1",
+  "C-3",
+  "C-4",
+  "C-5",
+  "C-7",
+  "MU-1",
+  "MU-2",
+  "MU-3",
+  "MU-4",
+  "I-1",
+  "I-2",
+  "I-3",
+  "I-4",
+  "CBD-1",
+  "CBD-2",
+  "CBD-3"
+ ],
+ "special_prefixes": {
+  "DP": "Development Plan district — the approved plan governs (§742-108)",
+  "SU": "Special Use district — uses set by SU rezoning (§742-109)",
+  "HD": "Historic Preservation district — IHPC review governs (§742-110)",
+  "HP": "Historic Preservation district — IHPC review governs (§742-110)"
+ },
+ "gis_translate": {},
+ "uses": [
+  {
+   "id": "sf_detached",
+   "label": "Single-family house (detached)",
+   "group": "Housing",
+   "P": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-8",
+    "MU-3"
+   ],
+   "S": [],
+   "V": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "house",
+    "home",
+    "single family",
+    "single-family"
+   ],
+   "note": "Heads-up: the 2026 use table does not list new detached houses in D-6, D-6II, or D-7."
+  },
+  {
+   "id": "duplex",
+   "label": "Duplex (two-family)",
+   "group": "Housing",
+   "P": [
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "MU-3"
+   ],
+   "S": [],
+   "V": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "duplex",
+    "two-family",
+    "double"
+   ]
+  },
+  {
+   "id": "triplex_fourplex",
+   "label": "Triplex / fourplex",
+   "group": "Housing",
+   "P": [
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "MU-2",
+    "MU-3"
+   ],
+   "S": [],
+   "V": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "triplex",
+    "fourplex",
+    "quadplex",
+    "quad",
+    "plex"
+   ]
+  },
+  {
+   "id": "townhomes",
+   "label": "Townhomes (attached)",
+   "group": "Housing",
+   "P": [
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "MU-2",
+    "MU-3",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "townhome",
+    "townhouse",
+    "rowhouse",
+    "row house"
+   ]
+  },
+  {
+   "id": "apartments",
+   "label": "Apartments (5+ units)",
+   "group": "Housing",
+   "P": [
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "D-9",
+    "D-10",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "apartment",
+    "apartments",
+    "multifamily",
+    "multi-family",
+    "condo",
+    "condos"
+   ]
+  },
+  {
+   "id": "live_work",
+   "label": "Live/work unit",
+   "group": "Housing",
+   "P": [
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "live work",
+    "live/work",
+    "storefront apartment"
+   ]
+  },
+  {
+   "id": "manufactured_home",
+   "label": "Manufactured home",
+   "group": "Housing",
+   "P": [
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II"
+   ],
+   "S": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-8"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "manufactured home",
+    "mobile home"
+   ],
+   "note": "Shown for lots platted on or after 7-1-1982; lots platted earlier follow a different row of the table."
+  },
+  {
+   "id": "adu",
+   "label": "Accessory dwelling unit (ADU)",
+   "group": "Housing",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-8",
+    "MU-2",
+    "MU-3"
+   ],
+   "aliases": [
+    "adu",
+    "granny flat",
+    "backyard cottage",
+    "carriage house",
+    "accessory dwelling",
+    "in-law",
+    "secondary dwelling"
+   ],
+   "acc": true
+  },
+  {
+   "id": "assisted_living",
+   "label": "Assisted living facility",
+   "group": "Group living & care",
+   "P": [
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-9",
+    "D-10",
+    "C-1",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4"
+   ],
+   "S": [
+    "D-8"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "assisted living",
+    "senior living"
+   ]
+  },
+  {
+   "id": "nursing_home",
+   "label": "Nursing home",
+   "group": "Group living & care",
+   "P": [
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-9",
+    "D-10",
+    "C-1",
+    "C-3",
+    "MU-2"
+   ],
+   "S": [
+    "D-8"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "nursing home",
+    "skilled nursing"
+   ]
+  },
+  {
+   "id": "group_home",
+   "label": "Group home",
+   "group": "Group living & care",
+   "P": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "D-9",
+    "D-10",
+    "D-11",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "group home"
+   ]
+  },
+  {
+   "id": "emergency_shelter",
+   "label": "Emergency shelter (daily)",
+   "group": "Group living & care",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7"
+   ],
+   "S": [
+    "CBD-2"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "shelter",
+    "emergency shelter",
+    "homeless shelter"
+   ]
+  },
+  {
+   "id": "transitional_living",
+   "label": "Transitional living quarters",
+   "group": "Group living & care",
+   "P": [
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-9",
+    "D-10"
+   ],
+   "S": [
+    "D-8"
+   ],
+   "V": [],
+   "A": [
+    "MU-1",
+    "MU-3",
+    "MU-4"
+   ],
+   "aliases": [
+    "transitional living",
+    "halfway house"
+   ]
+  },
+  {
+   "id": "restaurant",
+   "label": "Restaurant / café",
+   "group": "Food & drink",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-9",
+    "D-10",
+    "C-1",
+    "MU-1",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "aliases": [
+    "restaurant",
+    "cafe",
+    "café",
+    "coffee shop",
+    "coffee",
+    "diner",
+    "food",
+    "eatery"
+   ]
+  },
+  {
+   "id": "bar",
+   "label": "Bar / tavern",
+   "group": "Food & drink",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "MU-1"
+   ],
+   "aliases": [
+    "bar",
+    "tavern",
+    "pub",
+    "cocktail"
+   ]
+  },
+  {
+   "id": "brewery_taproom",
+   "label": "Brewery / artisan food & beverage",
+   "group": "Food & drink",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "I-1",
+    "I-2"
+   ],
+   "A": [
+    "MU-1"
+   ],
+   "aliases": [
+    "brewery",
+    "taproom",
+    "brewpub",
+    "beer",
+    "distillery",
+    "winery",
+    "cidery",
+    "roastery"
+   ],
+   "note": "The ordinance category is \"Artisan Food and Beverage\" — small-scale production with tasting or retail."
+  },
+  {
+   "id": "nightclub",
+   "label": "Night club / cabaret",
+   "group": "Food & drink",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "MU-1"
+   ],
+   "aliases": [
+    "night club",
+    "nightclub",
+    "cabaret",
+    "music venue"
+   ]
+  },
+  {
+   "id": "grocery",
+   "label": "Grocery store",
+   "group": "Food & drink",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-9",
+    "D-10",
+    "C-1",
+    "MU-1"
+   ],
+   "aliases": [
+    "grocery",
+    "supermarket",
+    "market",
+    "food store"
+   ]
+  },
+  {
+   "id": "liquor_store",
+   "label": "Liquor store",
+   "group": "Food & drink",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "liquor",
+    "liquor store",
+    "package store"
+   ]
+  },
+  {
+   "id": "farmers_market",
+   "label": "Farmers’ market",
+   "group": "Food & drink",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "MU-2",
+    "CBD-1"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-A",
+    "MU-3",
+    "MU-4"
+   ],
+   "aliases": [
+    "farmers market",
+    "farmer's market"
+   ]
+  },
+  {
+   "id": "food_processing",
+   "label": "Food & beverage processing plant",
+   "group": "Food & drink",
+   "P": [
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [
+    "I-1"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "food processing",
+    "food packaging",
+    "commissary",
+    "bottling"
+   ]
+  },
+  {
+   "id": "corner_store",
+   "label": "Corner store / small retail",
+   "group": "Shops & services",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-9",
+    "D-10",
+    "C-1",
+    "MU-1",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "aliases": [
+    "corner store",
+    "bodega",
+    "convenience store",
+    "retail",
+    "shop",
+    "store",
+    "boutique"
+   ]
+  },
+  {
+   "id": "heavy_retail",
+   "label": "Heavy retail (lumber yard, etc.)",
+   "group": "Shops & services",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "I-1",
+    "CBD-1",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "heavy retail",
+    "lumber yard",
+    "building supply",
+    "garden center"
+   ]
+  },
+  {
+   "id": "department_store",
+   "label": "Department store / big box",
+   "group": "Shops & services",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "department store",
+    "big box",
+    "superstore"
+   ]
+  },
+  {
+   "id": "personal_services",
+   "label": "Barbershop / salon / spa",
+   "group": "Shops & services",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-9",
+    "D-10",
+    "MU-1",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "aliases": [
+    "barbershop",
+    "barber",
+    "salon",
+    "nail salon",
+    "nails",
+    "spa"
+   ]
+  },
+  {
+   "id": "tattoo",
+   "label": "Tattoo parlor",
+   "group": "Shops & services",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7"
+   ],
+   "S": [
+    "C-3",
+    "MU-3",
+    "MU-4"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "tattoo"
+   ]
+  },
+  {
+   "id": "laundromat",
+   "label": "Laundromat",
+   "group": "Shops & services",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4"
+   ],
+   "S": [],
+   "V": [
+    "I-1",
+    "I-2"
+   ],
+   "A": [
+    "D-9",
+    "D-10"
+   ],
+   "aliases": [
+    "laundromat",
+    "laundry"
+   ]
+  },
+  {
+   "id": "consumer_repair",
+   "label": "Repair shop (consumer goods)",
+   "group": "Shops & services",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-9",
+    "D-10",
+    "C-1",
+    "MU-1"
+   ],
+   "aliases": [
+    "repair shop",
+    "electronics repair",
+    "shoe repair",
+    "tailor",
+    "cobbler"
+   ]
+  },
+  {
+   "id": "financial",
+   "label": "Bank / financial services",
+   "group": "Shops & services",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "bank",
+    "credit union",
+    "insurance",
+    "financial"
+   ]
+  },
+  {
+   "id": "check_cashing",
+   "label": "Check cashing service",
+   "group": "Shops & services",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "check cashing",
+    "payday"
+   ]
+  },
+  {
+   "id": "pawn_shop",
+   "label": "Pawn shop",
+   "group": "Shops & services",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7"
+   ],
+   "S": [
+    "MU-3",
+    "MU-4"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "pawn"
+   ]
+  },
+  {
+   "id": "firearm_sales",
+   "label": "Firearm sales",
+   "group": "Shops & services",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-3",
+    "I-1",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "gun store",
+    "firearm",
+    "gun shop"
+   ]
+  },
+  {
+   "id": "printing",
+   "label": "Print shop",
+   "group": "Shops & services",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "print shop",
+    "printing",
+    "copy shop"
+   ]
+  },
+  {
+   "id": "funeral_home",
+   "label": "Funeral home / mortuary",
+   "group": "Shops & services",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "funeral home",
+    "mortuary"
+   ]
+  },
+  {
+   "id": "worship",
+   "label": "Church / place of worship",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "D-9",
+    "D-10",
+    "D-11",
+    "MU-1",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "church",
+    "mosque",
+    "temple",
+    "synagogue",
+    "worship",
+    "congregation"
+   ]
+  },
+  {
+   "id": "school_small",
+   "label": "School (K-12)",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "MU-2",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "school",
+    "academy",
+    "montessori",
+    "elementary",
+    "high school"
+   ]
+  },
+  {
+   "id": "vocational_school",
+   "label": "Vocational / trade school",
+   "group": "Community & institutions",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "trade school",
+    "vocational",
+    "training facility"
+   ]
+  },
+  {
+   "id": "proprietary_school",
+   "label": "Post-secondary school (business, art…)",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "I-1",
+    "I-2",
+    "CBD-1"
+   ],
+   "A": [],
+   "aliases": [
+    "college",
+    "art school",
+    "business school",
+    "coding bootcamp"
+   ]
+  },
+  {
+   "id": "childcare_center",
+   "label": "Daycare center (child care center)",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8"
+   ],
+   "V": [],
+   "A": [
+    "D-9",
+    "D-10",
+    "D-11",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "I-3",
+    "I-4"
+   ],
+   "aliases": [
+    "daycare",
+    "day care",
+    "childcare",
+    "child care",
+    "preschool",
+    "pre-school",
+    "nursery"
+   ]
+  },
+  {
+   "id": "childcare_home",
+   "label": "Home daycare (child care home)",
+   "group": "Community & institutions",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "D-9",
+    "D-10",
+    "D-11",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "aliases": [
+    "home daycare",
+    "in-home daycare",
+    "child care home"
+   ],
+   "acc": true
+  },
+  {
+   "id": "community_center",
+   "label": "Community center",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [
+    "D-7",
+    "D-9",
+    "D-10"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "community center"
+   ]
+  },
+  {
+   "id": "club_lodge",
+   "label": "Club or lodge",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "club",
+    "lodge",
+    "social club"
+   ]
+  },
+  {
+   "id": "museum",
+   "label": "Museum / library / art gallery",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "A": [
+    "MU-1"
+   ],
+   "aliases": [
+    "museum",
+    "library",
+    "art gallery",
+    "gallery"
+   ]
+  },
+  {
+   "id": "hospital",
+   "label": "Hospital",
+   "group": "Community & institutions",
+   "P": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "hospital"
+   ]
+  },
+  {
+   "id": "medical_office",
+   "label": "Medical / dental office or clinic",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "aliases": [
+    "clinic",
+    "medical office",
+    "dental",
+    "dentist",
+    "doctor",
+    "urgent care"
+   ]
+  },
+  {
+   "id": "medical_lab",
+   "label": "Medical / dental laboratory",
+   "group": "Community & institutions",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "medical lab",
+    "dental lab",
+    "laboratory"
+   ]
+  },
+  {
+   "id": "bnb",
+   "label": "Bed and breakfast",
+   "group": "Lodging",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8"
+   ],
+   "V": [],
+   "A": [
+    "MU-1"
+   ],
+   "aliases": [
+    "bed and breakfast",
+    "b&b",
+    "bnb",
+    "airbnb"
+   ],
+   "note": "Short-term rental of a whole dwelling is regulated separately from the bed-and-breakfast use."
+  },
+  {
+   "id": "hotel",
+   "label": "Hotel / motel / hostel",
+   "group": "Lodging",
+   "P": [
+    "C-4",
+    "C-5",
+    "MU-1",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "hotel",
+    "motel",
+    "hostel"
+   ]
+  },
+  {
+   "id": "office_small",
+   "label": "Office (business or professional)",
+   "group": "Offices & R&D",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "A": [],
+   "aliases": [
+    "office",
+    "coworking",
+    "co-working",
+    "studio"
+   ]
+  },
+  {
+   "id": "rd_it",
+   "label": "R&D — information technology",
+   "group": "Offices & R&D",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "tech r&d",
+    "software lab",
+    "it r&d"
+   ]
+  },
+  {
+   "id": "rd_life",
+   "label": "R&D — life sciences",
+   "group": "Offices & R&D",
+   "P": [
+    "C-5",
+    "C-7",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "life sciences",
+    "biotech",
+    "lab space"
+   ]
+  },
+  {
+   "id": "rd_clean",
+   "label": "R&D — clean energy",
+   "group": "Offices & R&D",
+   "P": [
+    "C-5",
+    "C-7",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [
+    "D-A"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "clean energy",
+    "energy r&d"
+   ]
+  },
+  {
+   "id": "rd_logistics",
+   "label": "R&D — logistics",
+   "group": "Offices & R&D",
+   "P": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "logistics r&d"
+   ]
+  },
+  {
+   "id": "rd_ag",
+   "label": "R&D — agricultural sciences",
+   "group": "Offices & R&D",
+   "P": [
+    "D-A",
+    "C-5",
+    "C-7",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "ag r&d",
+    "agricultural research"
+   ]
+  },
+  {
+   "id": "rd_other",
+   "label": "R&D — other",
+   "group": "Offices & R&D",
+   "P": [
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [],
+   "V": [
+    "C-5",
+    "C-7"
+   ],
+   "A": [],
+   "aliases": [
+    "research and development",
+    "r&d"
+   ]
+  },
+  {
+   "id": "artisan_mfg",
+   "label": "Maker space / artisan manufacturing",
+   "group": "Making & industry",
+   "P": [
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [
+    "C-5",
+    "C-7",
+    "MU-1"
+   ],
+   "A": [],
+   "aliases": [
+    "maker space",
+    "makerspace",
+    "artisan manufacturing",
+    "workshop",
+    "woodshop",
+    "ceramics studio"
+   ]
+  },
+  {
+   "id": "light_mfg",
+   "label": "Light manufacturing",
+   "group": "Making & industry",
+   "P": [
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "manufacturing",
+    "light manufacturing",
+    "fabrication"
+   ]
+  },
+  {
+   "id": "medium_mfg",
+   "label": "Medium manufacturing",
+   "group": "Making & industry",
+   "P": [
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [
+    "I-1"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "medium manufacturing"
+   ]
+  },
+  {
+   "id": "heavy_mfg",
+   "label": "Heavy manufacturing",
+   "group": "Making & industry",
+   "P": [
+    "I-4"
+   ],
+   "S": [
+    "I-3"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "heavy manufacturing"
+   ]
+  },
+  {
+   "id": "mini_warehouse",
+   "label": "Self-storage (mini-warehouse)",
+   "group": "Making & industry",
+   "P": [
+    "C-7",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [],
+   "V": [
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "self storage",
+    "self-storage",
+    "storage units",
+    "mini warehouse"
+   ]
+  },
+  {
+   "id": "warehouse",
+   "label": "Warehouse / distribution",
+   "group": "Making & industry",
+   "P": [
+    "C-7",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-1",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [
+    "C-5"
+   ],
+   "A": [],
+   "aliases": [
+    "warehouse",
+    "distribution",
+    "logistics"
+   ]
+  },
+  {
+   "id": "contractors",
+   "label": "Contractor’s yard / shop",
+   "group": "Making & industry",
+   "P": [
+    "C-5",
+    "C-7",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [
+    "C-4"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "contractor",
+    "contractors yard",
+    "construction company"
+   ]
+  },
+  {
+   "id": "recycling_station",
+   "label": "Recycling station",
+   "group": "Making & industry",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "recycling"
+   ]
+  },
+  {
+   "id": "auto_repair",
+   "label": "Auto repair",
+   "group": "Auto & transport",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "I-3",
+    "I-4",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "auto repair",
+    "mechanic",
+    "garage",
+    "auto shop",
+    "car repair",
+    "body shop"
+   ]
+  },
+  {
+   "id": "auto_sales",
+   "label": "Car sales / rental lot",
+   "group": "Auto & transport",
+   "P": [
+    "C-5",
+    "C-7",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "car dealer",
+    "car sales",
+    "dealership",
+    "car rental"
+   ]
+  },
+  {
+   "id": "fueling_station",
+   "label": "Gas station",
+   "group": "Auto & transport",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-2"
+   ],
+   "S": [
+    "MU-3"
+   ],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "gas station",
+    "fuel",
+    "fueling"
+   ]
+  },
+  {
+   "id": "car_wash",
+   "label": "Car wash",
+   "group": "Auto & transport",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [
+    "I-1",
+    "I-2"
+   ],
+   "A": [],
+   "aliases": [
+    "car wash"
+   ]
+  },
+  {
+   "id": "parking_lot",
+   "label": "Commercial parking lot",
+   "group": "Auto & transport",
+   "P": [
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-1"
+   ],
+   "V": [],
+   "A": [
+    "C-1",
+    "C-3"
+   ],
+   "aliases": [
+    "parking lot",
+    "surface parking"
+   ]
+  },
+  {
+   "id": "parking_garage",
+   "label": "Commercial parking garage",
+   "group": "Auto & transport",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1"
+   ],
+   "V": [],
+   "A": [
+    "C-1",
+    "C-3",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "aliases": [
+    "parking garage"
+   ]
+  },
+  {
+   "id": "indoor_rec",
+   "label": "Indoor recreation (gym, bowling…)",
+   "group": "Recreation & entertainment",
+   "P": [
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [
+    "I-1",
+    "I-2"
+   ],
+   "A": [
+    "C-1",
+    "C-3",
+    "MU-1",
+    "MU-2"
+   ],
+   "aliases": [
+    "gym",
+    "fitness",
+    "bowling",
+    "arcade",
+    "climbing gym",
+    "indoor recreation",
+    "yoga studio"
+   ]
+  },
+  {
+   "id": "indoor_venue",
+   "label": "Indoor spectator venue",
+   "group": "Recreation & entertainment",
+   "P": [
+    "C-4",
+    "C-5",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "theater",
+    "theatre",
+    "concert hall",
+    "venue"
+   ]
+  },
+  {
+   "id": "outdoor_rec",
+   "label": "Outdoor recreation & entertainment",
+   "group": "Recreation & entertainment",
+   "P": [
+    "C-5",
+    "C-7",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "outdoor recreation",
+    "mini golf",
+    "go kart"
+   ]
+  },
+  {
+   "id": "marina",
+   "label": "Marina",
+   "group": "Recreation & entertainment",
+   "P": [
+    "C-7",
+    "I-2",
+    "I-3",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [],
+   "aliases": [
+    "marina",
+    "boat dock"
+   ]
+  },
+  {
+   "id": "vet_animal",
+   "label": "Vet / animal care & boarding",
+   "group": "Animals & agriculture",
+   "P": [
+    "D-A",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "I-2",
+    "CBD-2"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "MU-1"
+   ],
+   "aliases": [
+    "vet",
+    "veterinarian",
+    "animal boarding",
+    "kennel",
+    "doggy daycare",
+    "dog daycare",
+    "groomer"
+   ]
+  },
+  {
+   "id": "agriculture",
+   "label": "Agricultural use / buildings",
+   "group": "Animals & agriculture",
+   "P": [
+    "D-A",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4"
+   ],
+   "S": [],
+   "V": [
+    "C-5",
+    "C-7"
+   ],
+   "A": [],
+   "aliases": [
+    "farm",
+    "agriculture",
+    "barn"
+   ]
+  },
+  {
+   "id": "garden_primary",
+   "label": "Garden as the main use of a lot",
+   "group": "Animals & agriculture",
+   "P": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "D-9",
+    "D-10",
+    "D-11",
+    "C-1",
+    "C-3",
+    "C-4",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "S": [],
+   "V": [],
+   "A": [
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1"
+   ],
+   "aliases": [
+    "community garden",
+    "garden lot",
+    "urban farm"
+   ]
+  },
+  {
+   "id": "home_occupation",
+   "label": "Home business (home occupation)",
+   "group": "At home (accessory uses)",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8",
+    "D-9",
+    "D-10",
+    "D-11"
+   ],
+   "aliases": [
+    "home business",
+    "home occupation",
+    "home office business"
+   ],
+   "acc": true
+  },
+  {
+   "id": "personal_livestock",
+   "label": "Backyard chickens / personal livestock",
+   "group": "At home (accessory uses)",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "D-A",
+    "D-S",
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "D-5II",
+    "D-6",
+    "D-6II",
+    "D-7",
+    "D-8"
+   ],
+   "aliases": [
+    "chickens",
+    "backyard chickens",
+    "livestock",
+    "goats",
+    "bees",
+    "beehive"
+   ],
+   "acc": true
+  },
+  {
+   "id": "drive_through",
+   "label": "Drive-through window",
+   "group": "At home (accessory uses)",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "I-1",
+    "I-2",
+    "I-3",
+    "I-4",
+    "CBD-2"
+   ],
+   "aliases": [
+    "drive through",
+    "drive-through",
+    "drive thru"
+   ],
+   "acc": true,
+   "note": "A drive-through is an accessory to a primary use like a restaurant or bank — check the primary use too."
+  },
+  {
+   "id": "sidewalk_cafe",
+   "label": "Sidewalk café",
+   "group": "At home (accessory uses)",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "aliases": [
+    "sidewalk cafe",
+    "sidewalk seating"
+   ],
+   "acc": true
+  },
+  {
+   "id": "outdoor_seating",
+   "label": "Outdoor seating / patio",
+   "group": "At home (accessory uses)",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "C-1",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "I-1",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "aliases": [
+    "patio",
+    "outdoor seating",
+    "beer garden"
+   ],
+   "acc": true
+  },
+  {
+   "id": "walkup_window",
+   "label": "Walk-up window",
+   "group": "At home (accessory uses)",
+   "P": [],
+   "S": [],
+   "V": [],
+   "A": [
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-7",
+    "MU-1",
+    "MU-2",
+    "MU-3",
+    "MU-4",
+    "CBD-1",
+    "CBD-2",
+    "CBD-3"
+   ],
+   "aliases": [
+    "walk up window",
+    "walk-up window"
+   ],
+   "acc": true
+  }
+ ]
 }
