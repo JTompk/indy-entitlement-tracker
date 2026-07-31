@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What can you build here? — Indy Entitlement Tracker</title>
+<meta name="description" content="Pick a use — a daycare, a fourplex, a corner store — and see where Indianapolis zoning already says yes. And where it doesn't.">
+<meta property="og:site_name" content="IndyIMBY">
+<meta property="og:type" content="website">
+<meta property="og:title" content="What can you build here?">
+<meta property="og:description" content="Pick a use — a daycare, a fourplex, a corner store — and see where Indianapolis zoning already says yes. And where it doesn't.">
+<meta property="og:image" content="https://map.indyimby.com/og-build.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://map.indyimby.com/build">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -64,6 +74,12 @@
   .leaflet-popup-content-wrapper{border-radius:0;font-family:'Jost',sans-serif;background:var(--paper);border:1px solid var(--hairline);box-shadow:0 2px 14px rgba(0,0,0,.10)}
   .leaflet-popup-tip{background:var(--paper)}
 
+  #zoomhint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1000;display:none;
+    background:var(--paper);border:1px solid var(--ink);padding:9px 16px;
+    font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.02em;white-space:nowrap;
+    box-shadow:0 2px 14px rgba(0,0,0,.12)}
+  #zoomhint.show{display:block}
+  @media (max-width:760px){#zoomhint{white-space:normal;text-align:center;max-width:86%;bottom:16px}}
   #configwarn{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:1000;display:none;
     background:var(--paper);border:1px solid var(--ink);box-shadow:0 2px 14px rgba(0,0,0,.12);
     padding:12px 18px;font-family:'Jost',sans-serif;font-size:13px;max-width:520px;line-height:1.55}
@@ -79,10 +95,11 @@
 
 <aside id="panel">
   <div class="titleblock">
-    <div class="eyebrow">IndyIMBY</div>
+    <div class="eyebrow">Proformus · IndyIMBY</div>
     <h1>What can you build here?</h1>
     <div class="caption">Pick something you want to build. The map paints where
     Indianapolis zoning says yes, maybe, and no — live from the city's own GIS.</div>
+    <span class="draftflag">DRAFT USE TABLE — VERIFY BEFORE RELYING</span>
   </div>
 
   <h2>I want to build a…</h2>
@@ -139,6 +156,7 @@
 
 <div id="map">
   <div id="configwarn"></div>
+  <div id="zoomhint">Zoom in — or search an address — to paint zoning</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -154,7 +172,7 @@ const CFG = {
   field: 'LABEL',              // confirmed district field on layer 6
   minZoom: 13,                 // don't query county-wide
   maxFeaturesPerView: 3000,    // pagination cap per viewport
-  leadEmail: 'jeffery@proformus.com',   // mailto fallback for the lead card
+  leadEmail: 'hello@proformus.com',   // mailto fallback for the lead card
 };
 const FIELD_CANDIDATES = ['ZONING','ZONE_CLASS','ZONING_1','ZONE','DISTRICT','ZONEDESC','ZONING_DISTRICT','CLASS'];
 
@@ -181,6 +199,11 @@ fetch('data/use_matrix.json').then(r=>r.json()).then(m=>{
   sel.addEventListener('change',()=>{
     currentUse=m.uses.find(u=>u.id===sel.value)||null;
     document.getElementById('legend').style.display=currentUse?'block':'none';
+    // county-wide zoom shows nothing — fly to street level so paint appears
+    // immediately (near-downtown start; moveend triggers the fetch+paint)
+    if(currentUse && map.getZoom()<CFG.minZoom){
+      map.flyTo([39.7743,-86.1580], CFG.minZoom+1, {duration:.9});
+    }
     paint();
     // re-run the verdict if a pin is already down
     if(pin && currentUse) verdictAt(pin.getLatLng());
