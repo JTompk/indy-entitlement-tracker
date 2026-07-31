@@ -79,12 +79,15 @@
   #empty[hidden]{display:none}
   #empty .card{pointer-events:auto;background:var(--paper);color:var(--ink);border:1px solid var(--ink);max-width:420px;padding:26px;font-size:14.5px;line-height:1.6}
   #empty code{font-family:'IBM Plex Mono',monospace;background:var(--accent-tint);padding:1px 5px;font-size:12.5px}
+  #grab{display:none}
 
   @media (max-width:760px){
     body{flex-direction:column}
     #panel{width:100%;min-width:0;height:auto;max-height:calc(46vh - 26px);order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
     select,input[type=search]{font-size:16px}
     #map{order:1;min-height:calc(54vh - 26px);transition:min-height .28s ease}
+    #grab{display:block;margin:-8px -20px 10px;padding:10px 0 8px;cursor:grab;touch-action:none}
+    #grab span{display:block;width:44px;height:4px;margin:0 auto;background:var(--hairline);border-radius:2px}
     #panel{transition:max-height .28s ease}
     body.panel-big #panel{max-height:calc(72vh - 26px)}
     body.panel-big #map{min-height:calc(28vh - 26px)}
@@ -146,6 +149,7 @@
 </header>
 
 <aside id="panel">
+  <div id="grab" aria-hidden="true"><span></span></div>
   <div class="titleblock">
     <div class="eyebrow">IndyIMBY</div>
     <h1>Indy Entitlement Tracker</h1>
@@ -446,9 +450,33 @@ function popup(p){
     document.body.classList.remove('panel-big');
     document.body.classList.add('map-big'); settle();
   }
+  function panelDefault(){
+    if(!mq.matches) return;
+    if(!document.body.classList.contains('panel-big')) return;
+    document.body.classList.remove('panel-big'); settle();
+  }
   /* panel grows on click/focus (after the tap resolves — no mid-tap layout shift) */
   panel.addEventListener('click',panelBig);
   panel.addEventListener('focusin',panelBig);
+  /* bottom-sheet gestures: swipe up anywhere on the panel to expand,
+     swipe down from the top of its scroll to tuck it back */
+  let sy=null, st=0;
+  panel.addEventListener('touchstart',e=>{sy=e.touches[0].clientY; st=panel.scrollTop;},{passive:true});
+  panel.addEventListener('touchmove',e=>{
+    if(sy===null||!mq.matches) return;
+    const dy=e.touches[0].clientY-sy;
+    if(dy<-12) panelBig();
+    else if(dy>18 && st<=0) panelDefault();
+  },{passive:true});
+  panel.addEventListener('touchend',()=>{sy=null},{passive:true});
+  /* scrolling the panel implies using it */
+  panel.addEventListener('scroll',panelBig,{passive:true});
+  /* grabber tap toggles */
+  const grab=document.getElementById('grab');
+  if(grab) grab.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(document.body.classList.contains('panel-big')) panelDefault(); else panelBig();
+  });
   /* map grows on touch (it's the top element — nothing above it moves) */
   ['touchstart','mousedown'].forEach(ev=>mapEl.addEventListener(ev,mapBig,{passive:true}));
 })();
