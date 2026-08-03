@@ -70,5 +70,113 @@
   "meeting_date": "2026-07-15",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-96d0f968162d4d1cb289fc6afd34f564.pdf",
   "ingested": "2026-07-13"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-016",
+  "title": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive in Council District #8, C",
+  "summary": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive in Council District #8, Center Township. (Recommend approval of ten (10) years real property tax abatement.) **Request will be made to continue to August 19, 2026 4.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-017",
+  "title": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive in Council District #8, C",
+  "summary": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive in Council District #8, Center Township. (Recommend approval of fifteen (15) years enhanced personal property tax abatement.) **Request will be made to continue to August 19, 2026 5.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-028",
+  "title": "2026-A-028 (For Public Hearing) Final Economic Revitalization Area Resolution for Prysmian Cables & Systems USA, LLC, located at 7950 Rockville Road, Council Di",
+  "summary": "2026-A-028 (For Public Hearing) Final Economic Revitalization Area Resolution for Prysmian Cables & Systems USA, LLC, located at 7950 Rockville Road, Council District #16, Wayne Township. (Recommend approval of seven (7) years real property tax abatement.) 6.",
+  "address": "7950 Rockville Road",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-029",
+  "title": "2026-A-029 (For Public Hearing) Final Economic Revitalization Area Resolution for Prysmian Cables & Systems USA, LLC, located at 7950 Rockville Road, Council Di",
+  "summary": "2026-A-029 (For Public Hearing) Final Economic Revitalization Area Resolution for Prysmian Cables & Systems USA, LLC, located at 7950 Rockville Road, Council District #16, Wayne Township. (Recommend approval of seven (7) years personal property tax abatement.) 7.",
+  "address": "7950 Rockville Road",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-034",
+  "title": "2026-A-034 (For Public Hearing) Final Economic Revitalization Area Resolution for Zima International, Inc., located at 429 Fintail Drive, Council District #20, ",
+  "summary": "2026-A-034 (For Public Hearing) Final Economic Revitalization Area Resolution for Zima International, Inc., located at 429 Fintail Drive, Council District #20, Warren Township. (Recommend approval of seven (7) years personal property tax abatement.) 8.",
+  "address": "429 Fintail Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-035",
+  "title": "2026-A-035 (For Public Hearing) Resolution authorizing a hearing regarding termination and settlement of the Personal Property Tax Abatement associated with Eco",
+  "summary": "2026-A-035 (For Public Hearing) Resolution authorizing a hearing regarding termination and settlement of the Personal Property Tax Abatement associated with Economic Revitalization Area",
+  "address": null,
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2021-A-024",
+  "title": "2021-A-024, 2021, Airwave Packaging, Inc., located at 5302 West 78th Street, Council District #6, Pike Township. 9.",
+  "summary": "2021-A-024, 2021, Airwave Packaging, Inc., located at 5302 West 78th Street, Council District #6, Pike Township. 9.",
+  "address": "5302 West 78th Street",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-036",
+  "title": "2026-A-036 (For Public Hearing) Resolution authorizing a hearing regarding termination of the Real Property Tax Abatement associated with Economic Revitalizatio",
+  "summary": "2026-A-036 (For Public Hearing) Resolution authorizing a hearing regarding termination of the Real Property Tax Abatement associated with Economic Revitalization Area",
+  "address": null,
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2019-A-006",
+  "title": "2019-A-006, 2019, Exeter Lynhurst Land, LLC, located at 5325 Seerley Road, Council District #21, Decatur Township. BOND BANK: 10.",
+  "summary": "2019-A-006, 2019, Exeter Lynhurst Land, LLC, located at 5325 Seerley Road, Council District #21, Decatur Township. BOND BANK: 10.",
+  "address": "5325 Seerley Road",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
  }
 ]

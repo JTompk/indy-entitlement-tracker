@@ -9870,5 +9870,37 @@
   "meeting_date": "2026-07-21",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-3fdd94f1035743dca5dc3ff176bf9bb2.pdf",
   "ingested": "2026-07-17"
+ },
+ {
+  "case": "2026-BB-001",
+  "year": 2026,
+  "prefix": "BB",
+  "type": "Other",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-BB-001 Authorizes the expenditure of unobligated funds on deposit in the respective Allocation Funds to reimburse the Bond Bank for prior expenditures incurred by the Bond Bank, acting for and on behalf of the City pursuant to Section 26(b)(3)(G) of the Redevelopment Act. PLANNING: Zoning Petitions: PETITIONS OF NO APPEAL (RECOMMENDED FOR APPROVAL): 11.",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
+ },
+ {
+  "case": "2022-ZON-112",
+  "year": 2022,
+  "prefix": "ZON",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2022-ZON-112, item A. Commercial Area, 2. Site Development to allow for 130 parking spaces (development standards of C-3 district shall be required with a maximum of 78 parking spaces permitted. 14.",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-05",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
+  "ingested": "2026-08-03"
  }
 ]
