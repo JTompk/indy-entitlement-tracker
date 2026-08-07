@@ -9902,5 +9902,21 @@
   "meeting_date": "2026-08-05",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
   "ingested": "2026-08-03"
+ },
+ {
+  "case": "2026-PLT-030",
+  "year": 2026,
+  "prefix": "PLT",
+  "type": "Plat / Subdivision",
+  "address": "6620 NORTHVIEW WAY",
+  "township": "Washington",
+  "council_district": 3,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-PLT-030 | 6620 Northview Way Washington Township, Council District #3, zoned SU-1 Northview Christian Church Inc., by Seth Heim Approval of a Subdivision Plat to be known as Northview Reserve Secondary Plat, subdividing 16.87 acres into one lot and one block. 5.",
+  "board": "Plat Committee",
+  "meeting_date": "2026-08-12",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-71deb629da9541f793d4c43fe9436826.pdf",
+  "ingested": "2026-08-07"
  }
 ]
