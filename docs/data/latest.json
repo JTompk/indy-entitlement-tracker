@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-PLT-032",
-  "type": "Plat / Subdivision",
-  "address": "10853 EAST 52ND STREET",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 48.07-acre site at 10853 East 52nd Street into new lots."
+  "case": "2025-ZON-123",
+  "type": "Rezoning",
+  "address": "8500 WEST 10TH STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 8500 West 10th Street proposes residential development."
  },
  {
-  "case": "2026-PLT-027",
-  "type": "Plat / Subdivision",
-  "address": "547 DORMAN STREET",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 0.345-acre site at 547 Dorman Street into new lots."
+  "case": "2026-ZON-049",
+  "type": "Rezoning",
+  "address": "5051 EAST 16TH STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.8-acre site at 5051 East 16th Street from general commercial (C-3) to community commercial (C-4) zoning to build commercial uses."
  },
  {
-  "case": "2026-PLT-017",
-  "type": "Plat / Subdivision",
-  "address": "8530 NORTH CARROLL ROAD",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 4.63-acre site at 8530 North Carroll Road into new lots."
+  "case": "2025-CVR-865",
+  "type": "Commitment / Covenant",
+  "address": "411 SOUTH SHORTRIDGE ROAD",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 8.48-acre site at 411 South Shortridge Road from planned commercial (C-S) to planned commercial (C-S) zoning to build all I-1 uses."
  },
  {
-  "case": "2026-PLT-028",
-  "type": "Plat / Subdivision",
-  "address": "7305 KENTUCKY AVENUE",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 11.11-acre site at 7305 Kentucky Avenue into new lots."
+  "case": "2026-APP-014",
+  "type": "Approval / Appeal",
+  "address": "524 EAST 16TH STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 524 East 16th Street proposes one freestanding sign and one building signs on existing building."
  },
  {
-  "case": "2026-PLT-036",
-  "type": "Plat / Subdivision",
-  "address": "5550 NORTH KEYSTONE AVENUE",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 20.505-acre site at 5550 North Keystone Avenue into new lots."
+  "case": "2026-ZON-039",
+  "type": "Rezoning",
+  "address": "6501 MANN ROAD",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 6501 Mann Road proposes multi-family residential development."
  },
  {
-  "case": "2026-PLT-037",
-  "type": "Plat / Subdivision",
-  "address": "11127 EAST 46TH STREET",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 30.10-acre site at 11127 East 46th Street into new lots."
+  "case": "2026-ZON-041",
+  "type": "Rezoning",
+  "address": "3553 SHELBY STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 3553 Shelby Street proposes multifamily housing."
  },
  {
-  "case": "2026-PLT-038",
-  "type": "Plat / Subdivision",
-  "address": "9906 EAST 63RD STREET",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 0.918-acre site at 9906 East 63rd Street into new lots."
+  "case": "2026-ZON-059",
+  "type": "Rezoning",
+  "address": "337 EAST MORRIS STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.093-acre site at 337 East Morris Street from SU-1 to low-rise apartment (D-8) zoning to build residential uses."
  },
  {
-  "case": "2026-VAC-004",
+  "case": "2026-ZON-066",
+  "type": "Rezoning",
+  "address": "931 SOUTH EAST STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 931 South East Street proposes residential development."
+ },
+ {
+  "case": "2026-CVR-829",
+  "type": "Commitment / Covenant",
+  "address": "5430 WEST 86TH STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 3.05-acre site at 5430 West 86th Street from community commercial (C-4) to high-intensity commercial (C-7) zoning to build high-intensity commercial uses."
+ },
+ {
+  "case": "2026-CPL-834",
   "type": "Other",
-  "address": "5611 LAWRENCE VILLAGE PARKWAY",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "2026-VAC-004 | 5611 Lawrence Village Parkway City of Lawrence, Lawrence Township, Council Districts #10 KG Fort, LLC, by Joseph. D. Calderon"
- },
- {
-  "case": "2026-VAC-007",
-  "type": "Other",
-  "address": "1543 WEST OHIO STREET",
-  "meeting_date": "2026-08-12",
-  "board": "Plat Committee",
-  "summary": "2026-VAC-007 | 1525, 1540, and 1543 West Ohio Street; 211, 217 and 221 North Reisner Street; & 126 and 130 Koehne Street Center Township, Co"
- },
- {
-  "case": "2026-DV2-022",
-  "type": "Variance / Special Exception",
-  "address": "200 AND 206 NORTH RURAL AVENUE",
-  "meeting_date": "2026-08-11",
-  "board": "BZA II",
-  "summary": "The owner of 200 and 206 North Rural Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+  "address": "6509 DEAN ROAD",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 1.73-acre site at 6509 Dean Road from suburban residential (D-S) to large-lot single-family (D-1) zoning to build two, detached single-family dwellings."
  }
 ]
