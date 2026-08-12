@@ -57076,7 +57076,111 @@
     "agenda_url": "https://indianapolis-in.municodemeetings.com/sites/indianapolis-in.municodemeetings.com/files/fileattachments/mdc_hearing_examiner/meeting/5462/8-13-2026_he_agenda.pdf",
     "ingested": "2026-08-10"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.166918,
+     39.75678
+    ]
+   },
+   "properties": {
+    "case": "2026-REG-015",
+    "year": 2026,
+    "prefix": "REG",
+    "type": "Other",
+    "address": "412 WEST MCCARTY STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-REG-015 | 412 West McCarty Street, 1717 and 1721 Chadwick Street Center Township, Council District #18 CBD-2 (RC) TWG 412 McCarty Street, LLC, by Joseph D. Calderon Regional Center Approval to provide for a six-story, mixed-use development, consisting of 270 dwelling units, 204 parking spaces within an integrated parking garage, and approximately 6,500 square feet of commercial and retail space. PART II PROPOSAL TO AMEND THE ZONING AND SUBDIVISION CONTROL ORDINANCE OF INDIANAPOLIS-MARION COUNTY, INDIANA:",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://indianapolis-in.municodemeetings.com/sites/indianapolis-in.municodemeetings.com/files/fileattachments/mdc_hearing_examiner/meeting/5465/8-19-2026_mdc_agenda_-_zoning_.pdf",
+    "ingested": "2026-08-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.135837,
+     39.868962
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-060",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "1305 BROAD RIPPLE AVENUE",
+    "township": "Washington",
+    "council_district": 7,
+    "zoning_from": "D-5",
+    "zoning_to": "D-P",
+    "summary": "2026-ZON-060 | 1305 Broad Ripple Avenue Washington Township, Council District #7 Zinkan Enterprises, by Misha Rabinowitch Rezoning of 1.54 acres from the D-5 district to the D-P district to provide for a mixed-use development consisting of 94 multi-family dwellings and approximately 9,000 square feet of neighborhood and service commercial uses. 1 For a complete list of petitions, staff reports, and hearing results, visit https://indianapolis- in.municodemeetings.com/DMDmeetings. The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. C",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://indianapolis-in.municodemeetings.com/sites/indianapolis-in.municodemeetings.com/files/fileattachments/mdc_hearing_examiner/meeting/5465/8-19-2026_mdc_agenda_-_zoning_.pdf",
+    "ingested": "2026-08-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.156624,
+     39.80934
+    ]
+   },
+   "properties": {
+    "case": "2026-REG-044",
+    "year": 2026,
+    "prefix": "REG",
+    "type": "Other",
+    "address": "2955 NORTH MERIDIAN STREET",
+    "township": "Center",
+    "council_district": null,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-REG-044 | 2955 North Meridian Street Center Township, zoned C-S (RC) (TOD) CD# 12 Stock Yards Back and Trust Co., by Megan Short Regional Center Approval to provide for a one-story bank branch, with associated surface parking, landscaping, and pedestrian connections to Meridian Street and 29th Street. ** A registered neighborhood organization has submitted an Automatic Continuance of this petition, to the September 10, 2026, hearing. Petitions for Public Hearing PETITIONS FOR PUBLIC HEARING (Continued Petitions): PETITIONS FOR PUBLIC HEARING (New Petitions): 2.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-08-13",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-8ced2cff8f864a70ae0529c02074dc03.pdf",
+    "ingested": "2026-08-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.176343,
+     39.755746
+    ]
+   },
+   "properties": {
+    "case": "2026-REG-041",
+    "year": 2026,
+    "prefix": "REG",
+    "type": "Other",
+    "address": "951 SOUTH WHITE RIVER PARKWAY",
+    "township": "Center",
+    "council_district": null,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-REG-041 | 951 South White River Parkway West Drive Center Township, zoned C-S (RC), CD# 18 951 South White Parkway LLC, by Justin Kingen Regional Center Approval to provide for a 79-space surface parking lot. Additional Business: **The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. Copies of the proposals are available for examination prior to the hearing by emailing planneroncall@indy.gov. Written objections to a proposal are encouraged to be filed via email at planneroncall@indy.gov before the hearing and such objections wi",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-08-13",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-8ced2cff8f864a70ae0529c02074dc03.pdf",
+    "ingested": "2026-08-12"
+   }
   }
  ],
- "updated": "2026-08-10T11:46:01+00:00"
+ "updated": "2026-08-12T11:44:15+00:00"
 }

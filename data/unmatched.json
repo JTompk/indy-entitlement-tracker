@@ -10238,5 +10238,21 @@
   "meeting_date": "2026-08-13",
   "agenda_url": "https://indianapolis-in.municodemeetings.com/sites/indianapolis-in.municodemeetings.com/files/fileattachments/mdc_hearing_examiner/meeting/5462/8-13-2026_he_agenda.pdf",
   "ingested": "2026-08-10"
+ },
+ {
+  "case": "2026-AO-001",
+  "year": 2026,
+  "prefix": "AO",
+  "type": "Other",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-AO-001 (Amended) A proposal for a General Ordinance to amend Chapter 740-202 (Definitions) and 742-109 (Special Use Districts), pertaining to data center development, of the Consolidated Zoning and Subdivision Control Ordinance for Indianapolis-Marion County. PART III REZONING PETITION SCHEDULED FOR INITIAL HEARING:",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-19",
+  "agenda_url": "https://indianapolis-in.municodemeetings.com/sites/indianapolis-in.municodemeetings.com/files/fileattachments/mdc_hearing_examiner/meeting/5465/8-19-2026_mdc_agenda_-_zoning_.pdf",
+  "ingested": "2026-08-12"
  }
 ]

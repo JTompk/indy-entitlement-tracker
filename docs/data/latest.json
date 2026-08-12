@@ -1,5 +1,37 @@
 [
  {
+  "case": "2026-REG-015",
+  "type": "Other",
+  "address": "412 WEST MCCARTY STREET",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 412 West Mccarty Street proposes six-story."
+ },
+ {
+  "case": "2026-ZON-060",
+  "type": "Rezoning",
+  "address": "1305 BROAD RIPPLE AVENUE",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 1.54-acre site at 1305 Broad Ripple Avenue from compact single-family/two-family (D-5) to planned residential (D-P) zoning to build mixed-use development consisting of 94 multi-family dwellings and approximately 9."
+ },
+ {
+  "case": "2026-REG-044",
+  "type": "Other",
+  "address": "2955 NORTH MERIDIAN STREET",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 2955 North Meridian Street proposes one-story bank branch."
+ },
+ {
+  "case": "2026-REG-041",
+  "type": "Other",
+  "address": "951 SOUTH WHITE RIVER PARKWAY",
+  "meeting_date": "2026-08-13",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 951 South White River Parkway proposes 79-space surface parking lot."
+ },
+ {
   "case": "2025-ZON-123",
   "type": "Rezoning",
   "address": "8500 WEST 10TH STREET",
@@ -46,37 +78,5 @@
   "meeting_date": "2026-08-13",
   "board": "Hearing Examiner",
   "summary": "A filing at 3553 Shelby Street proposes multifamily housing."
- },
- {
-  "case": "2026-ZON-059",
-  "type": "Rezoning",
-  "address": "337 EAST MORRIS STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.093-acre site at 337 East Morris Street from SU-1 to low-rise apartment (D-8) zoning to build residential uses."
- },
- {
-  "case": "2026-ZON-066",
-  "type": "Rezoning",
-  "address": "931 SOUTH EAST STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 931 South East Street proposes residential development."
- },
- {
-  "case": "2026-CVR-829",
-  "type": "Commitment / Covenant",
-  "address": "5430 WEST 86TH STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 3.05-acre site at 5430 West 86th Street from community commercial (C-4) to high-intensity commercial (C-7) zoning to build high-intensity commercial uses."
- },
- {
-  "case": "2026-CPL-834",
-  "type": "Other",
-  "address": "6509 DEAN ROAD",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 1.73-acre site at 6509 Dean Road from suburban residential (D-S) to large-lot single-family (D-1) zoning to build two, detached single-family dwellings."
  }
 ]
