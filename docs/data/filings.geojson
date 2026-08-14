@@ -57180,7 +57180,189 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-8ced2cff8f864a70ae0529c02074dc03.pdf",
     "ingested": "2026-08-12"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.049613,
+     39.748301
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-007",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "1531 HUNTER ROAD",
+    "township": "Warren",
+    "council_district": 20,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-007 | 1531 Hunter Road Warren Township, Council District #20, zoned D-A Joel Gomez & Asuncion Caballero, by Arnoldo Gonzalez Variance of Use to allow for a 240 foot by 140 foot soccer field with accessory parking and structures (outdoor recreation not permitted within D-A) and a variance of development standards to provide for a side setback of 21 feet and 9 inches (minimum 30 feet required), a rear setback of 21 feet and 6 inches (minimum 75 feet required), to provide for a fence taller than 6 feet (not permitted in D-A), and deficient bike parking (greater of 3 spaces or 10% of requ",
+    "board": "BZA III",
+    "meeting_date": "2026-08-18",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
+    "ingested": "2026-08-14"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.195447,
+     39.766328
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-011",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "2001 WEST WASHINGTON STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-011 | 2001 West Washington Street Center Township, Council District #18, zoned C-4 (TOD) Don\u2019s Legacy LLC, by Jennifer Wright Variance of Use of the Consolidated Zoning and Subdivision Ordinance to provide for the operation of an automobile parts and supply store on a lot greater than 0.5-acre (automobile service and repair prohibited on lots larger than 0.5-acre in the TOD district). **A Registered Neighborhood Organization has automatically continued this petition to the September 15, 2026 hearing. Petitions for Public Hearing PETITIONS TO BE EXPEDITED: 2.",
+    "board": "BZA III",
+    "meeting_date": "2026-08-18",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
+    "ingested": "2026-08-14"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.058819,
+     39.859357
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-028",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "6335 OLD ORCHARD ROAD",
+    "township": "Lawrence",
+    "council_district": 9,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-028 | 6335 Old Orchard Road Lawrence Township, Council District #9, zoned D-S (W-5) Gabriel D. Browne & Emily Kay Love Browne, by Misha Rabinowitch Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the placement of an accessory hot tub and deck within the front yard (side or rear yard required) and with a front setback of 70 feet (100 feet required), and to legally establish the existing home on a lot without access from a public street (required). 3.",
+    "board": "BZA III",
+    "meeting_date": "2026-08-18",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
+    "ingested": "2026-08-14"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.135452,
+     39.707008
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-014",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "4040 OTTERBEIN AVENUE",
+    "township": "Perry",
+    "council_district": 23,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-014 | 4038 & 4040 Otterbein Avenue Perry Township, Council District #23, zoned D-4 (TOD) Roberta Lopez, by Anthony S. Ridolfo Variance of Use of the Consolidated Zoning and Subdivision Ordinance to allow for a secondary dwelling unit with a size of 727 square feet (maximum 720 feet permitted) and to allow for a primary and secondary dwelling unit without permanent occupancy by the owner (occupancy of either the primary or secondary dwelling unit by the owner required). PETITIONS FOR PUBLIC HEARING (Transferred Petitions): PETITIONS FOR PUBLIC HEARING (Continued Petitions): 4.",
+    "board": "BZA III",
+    "meeting_date": "2026-08-18",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
+    "ingested": "2026-08-14"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.117632,
+     39.70612
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-014",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "4202 CARSON AVENUE",
+    "township": "Perry",
+    "council_district": 19,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-014 | 4202 Carson Avenue Perry Township, Council District #19, zoned D-A (FW) (FF) / D-6II Kevin and Heather Davis Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a six- foot tall fence within the front yard of Carson Avenue (maximum 3.5-foot tall fence permitted) and encroaching within the required clear-sight triangle (not permitted). 5.",
+    "board": "BZA III",
+    "meeting_date": "2026-08-18",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
+    "ingested": "2026-08-14"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.985228,
+     39.775188
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-016",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "10220 EAST WASHINGTON STREET",
+    "township": "Warren",
+    "council_district": 20,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-016 (Amended) | 10220 East Washington Street Warren Township, Council District #20, zoned C-4 (TOD) Indy WS40 LLC, by Barnes & Thornburg LLP (Joseph Calderon) Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a drive through with access provided by Ring Road instead of an alley (drive throughs prohibited within 600 feet of a transit station except where located behind the building and all access is provided by alleys), for a drive through without an exclusive bypass aisle (bypass aisle required). PETITIONS FOR PUBLIC HEARING (New Pet",
+    "board": "BZA III",
+    "meeting_date": "2026-08-18",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
+    "ingested": "2026-08-14"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.109062,
+     39.660031
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-015",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "3305 PINETOP DRIVE",
+    "township": "Perry",
+    "council_district": 24,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-015 | 3305 Pinetop Drive Perry Township, Council District #24, zoned D-3 Min Sung Zi and Mang Hluan Variance of Use and Development Standards of the Consolidated Zoning and Subdivision Ordinance to permit more than 12 chickens as personal livestock (maximum 12 permitted); to permit an accessory chicken coop with a 16-foot front-yard setback (25-feet minimum) in a front yard (not permitted); a 6-foot-tall fence within a front yard (maximum 3.5-feet permitted) and reduced side-yard setbacks (6-feet required) for all existing accessory structures. Additional Business: **The addresses of ",
+    "board": "BZA III",
+    "meeting_date": "2026-08-18",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
+    "ingested": "2026-08-14"
+   }
   }
  ],
- "updated": "2026-08-12T11:44:15+00:00"
+ "updated": "2026-08-14T11:41:57+00:00"
 }

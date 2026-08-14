@@ -1,5 +1,61 @@
 [
  {
+  "case": "2026-UV3-007",
+  "type": "Variance / Special Exception",
+  "address": "1531 HUNTER ROAD",
+  "meeting_date": "2026-08-18",
+  "board": "BZA III",
+  "summary": "The owner of 1531 Hunter Road is asking permission for a use the current zoning doesn't allow: side setback of 21 feet and 9 inches (minimum 30 feet required)."
+ },
+ {
+  "case": "2026-UV3-011",
+  "type": "Variance / Special Exception",
+  "address": "2001 WEST WASHINGTON STREET",
+  "meeting_date": "2026-08-18",
+  "board": "BZA III",
+  "summary": "The owner of 2001 West Washington Street is asking permission for a use the current zoning doesn't allow: operation of an automobile parts and supply store on a lot greater than 0."
+ },
+ {
+  "case": "2026-DV3-028",
+  "type": "Variance / Special Exception",
+  "address": "6335 OLD ORCHARD ROAD",
+  "meeting_date": "2026-08-18",
+  "board": "BZA III",
+  "summary": "The owner of 6335 Old Orchard Road is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+ },
+ {
+  "case": "2026-UV3-014",
+  "type": "Variance / Special Exception",
+  "address": "4040 OTTERBEIN AVENUE",
+  "meeting_date": "2026-08-18",
+  "board": "BZA III",
+  "summary": "The owner of 4040 Otterbein Avenue is asking permission for a use the current zoning doesn't allow."
+ },
+ {
+  "case": "2026-DV3-014",
+  "type": "Variance / Special Exception",
+  "address": "4202 CARSON AVENUE",
+  "meeting_date": "2026-08-18",
+  "board": "BZA III",
+  "summary": "The owner of 4202 Carson Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+ },
+ {
+  "case": "2026-DV3-016",
+  "type": "Variance / Special Exception",
+  "address": "10220 EAST WASHINGTON STREET",
+  "meeting_date": "2026-08-18",
+  "board": "BZA III",
+  "summary": "The owner of 10220 East Washington Street is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+ },
+ {
+  "case": "2026-UV3-015",
+  "type": "Variance / Special Exception",
+  "address": "3305 PINETOP DRIVE",
+  "meeting_date": "2026-08-18",
+  "board": "BZA III",
+  "summary": "The owner of 3305 Pinetop Drive is asking permission for a use the current zoning doesn't allow."
+ },
+ {
   "case": "2026-REG-015",
   "type": "Other",
   "address": "412 WEST MCCARTY STREET",
@@ -22,61 +78,5 @@
   "meeting_date": "2026-08-13",
   "board": "Hearing Examiner",
   "summary": "A filing at 2955 North Meridian Street proposes one-story bank branch."
- },
- {
-  "case": "2026-REG-041",
-  "type": "Other",
-  "address": "951 SOUTH WHITE RIVER PARKWAY",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 951 South White River Parkway proposes 79-space surface parking lot."
- },
- {
-  "case": "2025-ZON-123",
-  "type": "Rezoning",
-  "address": "8500 WEST 10TH STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 8500 West 10th Street proposes residential development."
- },
- {
-  "case": "2026-ZON-049",
-  "type": "Rezoning",
-  "address": "5051 EAST 16TH STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.8-acre site at 5051 East 16th Street from general commercial (C-3) to community commercial (C-4) zoning to build commercial uses."
- },
- {
-  "case": "2025-CVR-865",
-  "type": "Commitment / Covenant",
-  "address": "411 SOUTH SHORTRIDGE ROAD",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 8.48-acre site at 411 South Shortridge Road from planned commercial (C-S) to planned commercial (C-S) zoning to build all I-1 uses."
- },
- {
-  "case": "2026-APP-014",
-  "type": "Approval / Appeal",
-  "address": "524 EAST 16TH STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 524 East 16th Street proposes one freestanding sign and one building signs on existing building."
- },
- {
-  "case": "2026-ZON-039",
-  "type": "Rezoning",
-  "address": "6501 MANN ROAD",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 6501 Mann Road proposes multi-family residential development."
- },
- {
-  "case": "2026-ZON-041",
-  "type": "Rezoning",
-  "address": "3553 SHELBY STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 3553 Shelby Street proposes multifamily housing."
  }
 ]
