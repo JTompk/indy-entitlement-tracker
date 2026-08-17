@@ -57362,7 +57362,155 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-ccdd1a9d2aab4c8b9a1a7d36045abc69.pdf",
     "ingested": "2026-08-14"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.1024,
+     39.803534
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-016",
+    "title": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+    "summary": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of ten (10) year real property tax abatement.) **Request will be made to continue to September 2, 2026 6.",
+    "address": "2505 North Sherman Drive",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-08-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.1024,
+     39.803534
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-017",
+    "title": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+    "summary": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of fifteen (15) year enhanced personal property tax abatement.) **Request will be made to continue to September 2, 2026 7.",
+    "address": "2505 North Sherman Drive",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-08-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.300596,
+     39.670231
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-042",
+    "title": "2026-A-042 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Deca",
+    "summary": "2026-A-042 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Decatur Township. (IEDI recommends approval of ten (10) year real property tax abatement.) 8.",
+    "address": "6400 Kentucky Avenue",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-08-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.300596,
+     39.670231
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-043",
+    "title": "2026-A-043 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Deca",
+    "summary": "2026-A-043 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Decatur Township. (IEDI recommends approval of fifteen (15) year enhanced personal property tax abatement.) Zoning Petitions: PETITIONS OF NO APPEAL (RECOMMENDED FOR APPROVAL): 9.",
+    "address": "6400 Kentucky Avenue",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-08-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.166918,
+     39.75678
+    ]
+   },
+   "properties": {
+    "case": "2026-REG-015",
+    "year": 2026,
+    "prefix": "REG",
+    "type": "Other",
+    "address": "412 WEST MCCARTY STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-REG-015 | 412 West McCarty Street, 1717 and 1721 Chadwick Street Center Township, Council District #18 CBD-2 (RC) TWG 412 McCarty Street, LLC, by Joseph D. Calderon Regional Center Approval to provide for a six-story, mixed-use development, consisting of 270 dwelling units, 204 parking spaces within an integrated parking garage, and approximately 6,500 square feet of commercial and retail space. Petitions for Public Hearing PETITIONS FOR PUBLIC HEARING: 10. PROPOSAL TO AMEND THE ZONING AND SUBDIVISION CONTROL ORDINANCE OF INDIANAPOLIS-MARION COUNTY, INDIANA:",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+    "ingested": "2026-08-17"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.135837,
+     39.868962
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-060",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "1305 BROAD RIPPLE AVENUE",
+    "township": "Washington",
+    "council_district": 7,
+    "zoning_from": "D-5",
+    "zoning_to": "D-P",
+    "summary": "2026-ZON-060 | 1305 Broad Ripple Avenue Washington Township, Council District #7 Zinkan Enterprises, by Misha Rabinowitch Rezoning of 1.54 acres from the D-5 district to the D-P district to provide for a mixed-use development consisting of 94 multi-family dwellings and approximately 9,000 square feet of neighborhood and service commercial uses. **Petitioner request for continuance for cause to October 21, 2026 Additional Business: **The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. Copies of the proposals are available for examin",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-08-19",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+    "ingested": "2026-08-17"
+   }
   }
  ],
- "updated": "2026-08-14T11:41:57+00:00"
+ "updated": "2026-08-17T11:23:40+00:00"
 }

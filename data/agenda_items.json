@@ -178,5 +178,53 @@
   "meeting_date": "2026-08-05",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-6dd2140018cf4d86a47000312122ff90.pdf",
   "ingested": "2026-08-03"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-016",
+  "title": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+  "summary": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of ten (10) year real property tax abatement.) **Request will be made to continue to September 2, 2026 6.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-19",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+  "ingested": "2026-08-17"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-017",
+  "title": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+  "summary": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of fifteen (15) year enhanced personal property tax abatement.) **Request will be made to continue to September 2, 2026 7.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-19",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+  "ingested": "2026-08-17"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-042",
+  "title": "2026-A-042 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Deca",
+  "summary": "2026-A-042 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Decatur Township. (IEDI recommends approval of ten (10) year real property tax abatement.) 8.",
+  "address": "6400 Kentucky Avenue",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-19",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+  "ingested": "2026-08-17"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-043",
+  "title": "2026-A-043 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Deca",
+  "summary": "2026-A-043 Preliminary Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Decatur Township. (IEDI recommends approval of fifteen (15) year enhanced personal property tax abatement.) Zoning Petitions: PETITIONS OF NO APPEAL (RECOMMENDED FOR APPROVAL): 9.",
+  "address": "6400 Kentucky Avenue",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-08-19",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36c6744d7e24442d9a400f2a90682b6a.pdf",
+  "ingested": "2026-08-17"
  }
 ]

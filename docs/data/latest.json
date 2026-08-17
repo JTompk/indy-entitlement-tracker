@@ -1,5 +1,53 @@
 [
  {
+  "case": "2026-A-016",
+  "type": "Tax incentive",
+  "address": "2505 North Sherman Drive",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
+ },
+ {
+  "case": "2026-A-017",
+  "type": "Tax incentive",
+  "address": "2505 North Sherman Drive",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
+ },
+ {
+  "case": "2026-A-042",
+  "type": "Tax incentive",
+  "address": "6400 Kentucky Avenue",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 6400 Kentucky Avenue."
+ },
+ {
+  "case": "2026-A-043",
+  "type": "Tax incentive",
+  "address": "6400 Kentucky Avenue",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 6400 Kentucky Avenue."
+ },
+ {
+  "case": "2026-REG-015",
+  "type": "Other",
+  "address": "412 WEST MCCARTY STREET",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 412 West Mccarty Street proposes six-story."
+ },
+ {
+  "case": "2026-ZON-060",
+  "type": "Rezoning",
+  "address": "1305 BROAD RIPPLE AVENUE",
+  "meeting_date": "2026-08-19",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 1.54-acre site at 1305 Broad Ripple Avenue from compact single-family/two-family (D-5) to planned residential (D-P) zoning to build mixed-use development consisting of 94 multi-family dwellings and approximately 9."
+ },
+ {
   "case": "2026-UV3-007",
   "type": "Variance / Special Exception",
   "address": "1531 HUNTER ROAD",
@@ -30,53 +78,5 @@
   "meeting_date": "2026-08-18",
   "board": "BZA III",
   "summary": "The owner of 4040 Otterbein Avenue is asking permission for a use the current zoning doesn't allow."
- },
- {
-  "case": "2026-DV3-014",
-  "type": "Variance / Special Exception",
-  "address": "4202 CARSON AVENUE",
-  "meeting_date": "2026-08-18",
-  "board": "BZA III",
-  "summary": "The owner of 4202 Carson Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
- },
- {
-  "case": "2026-DV3-016",
-  "type": "Variance / Special Exception",
-  "address": "10220 EAST WASHINGTON STREET",
-  "meeting_date": "2026-08-18",
-  "board": "BZA III",
-  "summary": "The owner of 10220 East Washington Street is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
- },
- {
-  "case": "2026-UV3-015",
-  "type": "Variance / Special Exception",
-  "address": "3305 PINETOP DRIVE",
-  "meeting_date": "2026-08-18",
-  "board": "BZA III",
-  "summary": "The owner of 3305 Pinetop Drive is asking permission for a use the current zoning doesn't allow."
- },
- {
-  "case": "2026-REG-015",
-  "type": "Other",
-  "address": "412 WEST MCCARTY STREET",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 412 West Mccarty Street proposes six-story."
- },
- {
-  "case": "2026-ZON-060",
-  "type": "Rezoning",
-  "address": "1305 BROAD RIPPLE AVENUE",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 1.54-acre site at 1305 Broad Ripple Avenue from compact single-family/two-family (D-5) to planned residential (D-P) zoning to build mixed-use development consisting of 94 multi-family dwellings and approximately 9."
- },
- {
-  "case": "2026-REG-044",
-  "type": "Other",
-  "address": "2955 NORTH MERIDIAN STREET",
-  "meeting_date": "2026-08-13",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 2955 North Meridian Street proposes one-story bank branch."
  }
 ]
