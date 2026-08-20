@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Corridor Tracker — IndyIMBY</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Development entitlement filings inside Indianapolis's Transit-Oriented Development overlay and within a quarter mile of a built trail.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#232320; --paper:#FBFBF8; --accent:#FAD980; --accent-tint:#FDF2D7;
+    --blue:#2378C3;
+    --ink-soft:#6E6E68; --hairline:#E3E2DB; --card:#FBFBF8;
+    /* filing-type data colors — functional, not decorative */
+    --c-rezoning:#E9695F; --c-variance:#2378C3; --c-plat:#4F8A5B;
+    --c-devplan:#8A6FB0; --c-mod:#8A5A44; --c-commit:#8C9196; --c-other:#6B7280;
+    --gold:#E5A000;
+    /* corridor zone colors */
+    --z-tod:#B5651D; --z-trail:#3E7A52;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{font-family:'Fraunces',Georgia,serif;color:var(--ink);background:var(--paper);display:flex;-webkit-font-smoothing:antialiased}
+
+  #panel{width:320px;min-width:320px;height:auto;overflow-y:auto;padding:24px 20px 32px;background:var(--paper);border-right:1px solid var(--hairline)}
+  .titleblock{padding-bottom:16px;border-bottom:1px solid var(--ink)}
+  .eyebrow{font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+  .titleblock h1{font-size:23px;font-weight:500;line-height:1.15;margin-top:8px;letter-spacing:-.01em}
+  .titleblock .sub{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--ink-soft);margin-top:8px;letter-spacing:.03em}
+  .stamp{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);display:flex;justify-content:space-between;margin-top:12px}
+  .stamp b{color:var(--ink);font-weight:500}
+
+  .stats{display:flex;gap:28px;margin-top:18px;padding:14px 0;border-bottom:1px solid var(--hairline)}
+  .stat .num{font-family:'Jost',sans-serif;font-size:28px;font-weight:500;color:var(--blue);line-height:1;letter-spacing:-.01em}
+  .stat .lbl{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;font-weight:500;color:var(--ink-soft);text-transform:uppercase;margin-top:4px}
+
+  .coverage-note{margin-top:14px;font-size:13px;color:var(--ink-soft);line-height:1.6}
+  .coverage-note summary{font-family:'Jost',sans-serif;font-size:10px;
+    letter-spacing:.16em;text-transform:uppercase;cursor:pointer;color:var(--ink-soft)}
+  .coverage-note summary:hover{background:var(--accent);color:var(--ink)}
+  .coverage-note p{margin:10px 0 0}
+  .coverage-note b{color:var(--ink);font-weight:600}
+  .coverage-note a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px}
+
+  h2{font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);margin:26px 0 10px;border-bottom:1px solid var(--hairline);padding-bottom:6px}
+  .filters label.row{font-family:'Jost',sans-serif;display:flex;align-items:center;gap:9px;padding:5px 2px;font-size:13px;cursor:pointer}
+  .filters label.row:hover{background:var(--accent-tint)}
+  .swatch{width:10px;height:10px;flex:none}
+  .swatch.ring{background:transparent!important;border:2px solid}
+  .swatch.zone{border:1.5px dashed;background-clip:padding-box}
+  .count{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft)}
+  select,input[type=search]{font-family:'Jost',sans-serif;width:100%;padding:9px 10px;background:var(--paper);color:var(--ink);border:1px solid var(--hairline);border-radius:0;font-size:13.5px}
+  select:focus,input[type=search]:focus{outline:2px solid var(--ink);outline-offset:-1px}
+  input[type=checkbox]{accent-color:var(--ink);width:13px;height:13px}
+  .note{font-family:'Jost',sans-serif;font-size:12px;color:var(--ink-soft);line-height:1.6;margin-top:28px;padding-top:14px;border-top:1px solid var(--hairline)}
+  .note a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px}
+
+  #map{flex:1;height:auto;background:#EFEEE8}
+  .leaflet-popup-content-wrapper{border-radius:0;font-family:'Jost',sans-serif;background:var(--paper);color:var(--ink);border:1px solid var(--hairline);box-shadow:0 2px 14px rgba(0,0,0,.10)}
+  .leaflet-popup-tip{background:var(--paper)}
+  .pop .case{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px;color:var(--blue)}
+  .pop .badge{display:inline-block;font-family:'Jost',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:2px 7px;margin-left:6px;vertical-align:1px}
+  .pop .addr{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:15px;margin:7px 0 2px}
+  .pop .meta{font-size:12px;color:var(--ink-soft);margin-bottom:6px}
+  .pop .zones{margin-bottom:6px}
+  .pop .ztag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 6px;margin-right:5px;border:1px solid}
+  .pop .ztag.tod{color:var(--z-tod);border-color:var(--z-tod)}
+  .pop .ztag.trail{color:var(--z-trail);border-color:var(--z-trail)}
+  .pop .zoning{font-family:'IBM Plex Mono',monospace;font-size:12px;background:var(--accent-tint);color:var(--ink);padding:2px 6px;display:inline-block;margin-bottom:6px}
+  .pop .summary{font-size:12.5px;line-height:1.5;max-height:110px;overflow:auto;color:var(--ink)}
+  .pop a{font-size:12px;color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .pop a:hover{background:var(--accent)}
+
+  #empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:900;pointer-events:none}
+  #empty[hidden]{display:none}
+  #empty .card{pointer-events:auto;background:var(--paper);color:var(--ink);border:1px solid var(--ink);max-width:420px;padding:26px;font-size:14.5px;line-height:1.6}
+  #empty code{font-family:'IBM Plex Mono',monospace;background:var(--accent-tint);padding:1px 5px;font-size:12.5px}
+  #grab{display:none}
+
+  @media (max-width:760px){
+    body{flex-direction:column}
+    #panel{width:100%;min-width:0;height:auto;max-height:calc(46vh - 26px);order:2;border-right:none;border-top:1px solid var(--hairline);padding:18px 20px 24px}
+    select,input[type=search]{font-size:16px}
+    #map{order:1;min-height:calc(54vh - 26px);transition:min-height .28s ease}
+    #grab{display:block;margin:-8px -20px 10px;padding:10px 0 8px;cursor:grab;touch-action:none}
+    #grab span{display:block;width:44px;height:4px;margin:0 auto;background:var(--hairline);border-radius:2px}
+    #panel{transition:max-height .28s ease}
+    body.panel-big #panel{max-height:calc(72vh - 26px)}
+    body.panel-big #map{min-height:calc(28vh - 26px)}
+    body.map-big #map{min-height:calc(72vh - 26px)}
+    body.map-big #panel{max-height:calc(28vh - 26px)}
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+  /* ---------- site topbar ---------- */
+  .topbar{position:fixed;top:0;left:0;right:0;height:52px;z-index:1100;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:0 18px;background:var(--paper);border-bottom:1px solid var(--hairline)}
+  .tb-wordmark{font-family:'Jost',sans-serif;font-weight:600;font-size:15px;
+    letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);white-space:nowrap}
+  .tb-wordmark span{background:var(--accent);padding:1px 4px;margin-left:2px}
+  .topbar nav{display:flex;gap:2px;flex-wrap:nowrap;overflow:hidden}
+  .topbar nav a{font-family:'Jost',sans-serif;font-size:11.5px;font-weight:500;
+    letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink);
+    padding:5px 8px;white-space:nowrap}
+  .topbar nav a:hover{background:var(--accent)}
+  .tb-menu{display:none;flex-direction:column;justify-content:center;gap:6px;
+    width:44px;height:44px;padding:10px;background:none;border:none;cursor:pointer}
+  .tb-menu span{display:block;height:1.5px;background:var(--ink);transition:transform .18s ease,opacity .18s ease}
+  .topbar.open .tb-menu span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .topbar.open .tb-menu span:nth-child(2){opacity:0}
+  .topbar.open .tb-menu span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  body{padding-top:52px}
+  html.embedded .topbar{display:none}
+  html.embedded body{padding-top:0}
+  @media (max-width:880px){
+    .tb-menu{display:flex}
+    .topbar nav{display:none}
+    .topbar.open nav{display:flex;position:fixed;top:52px;left:0;right:0;bottom:0;
+      z-index:1099;flex-direction:column;gap:0;background:var(--paper);
+      padding:16px 24px 40px;overflow-y:auto}
+    .topbar.open nav a{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:500;
+      letter-spacing:-.01em;text-transform:none;padding:14px 2px;
+      border-bottom:1px solid var(--hairline);white-space:normal}
+    .topbar.open nav a:hover{background:none;box-shadow:inset 0 -0.45em 0 var(--accent)}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a class="tb-wordmark" href="https://indyimby.com">INDY<span>IMBY</span></a>
+  <button class="tb-menu" id="tbBtn" aria-expanded="false" aria-controls="tbNav" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="tbNav">
+    <a href="https://indyimby.com/start-here/">Start here</a>
+    <a href="https://indyimby.com/about/">About</a>
+    <a href="/">Live map</a>
+    <a href="/corridors">Corridors</a>
+    <a href="/build">What can I build?</a>
+    <a href="https://indyimby.com/digest/">Digest</a>
+    <a href="https://indyimby.com/zoning-gap/">Zoning Gap</a>
+    <a href="https://indyimby.com/how-to-testify/">Testify</a>
+  </nav>
+</header>
+
+<aside id="panel">
+  <div id="grab" aria-hidden="true"><span></span></div>
+  <div class="titleblock">
+    <div class="eyebrow">IndyIMBY</div>
+    <h1>Corridor Tracker</h1>
+    <div class="sub">TOD OVERLAY · TRAIL QUARTER-MILE WALKSHEDS</div>
+    <div class="stamp"><span>SOURCE: DMD + MAPINDY + DPW</span><span>UPDATED <b id="updated">—</b></span></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num" id="shown">0</div><div class="lbl">records shown</div></div>
+    <div class="stat"><div class="num" id="total">0</div><div class="lbl">in corridors</div></div>
+  </div>
+
+  <h2>Corridors</h2>
+  <div class="filters" id="zoneFilters"></div>
+
+  <h2>Filing type — weekly agendas</h2>
+  <div class="filters" id="typeFilters"></div>
+
+  <h2>Board</h2>
+  <select id="boardFilter"><option value="">All boards</option></select>
+
+  <h2>Years</h2>
+  <div style="display:flex;gap:8px">
+    <select id="yearFrom" style="flex:1"><option value="">From</option></select>
+    <select id="yearTo" style="flex:1"><option value="">To</option></select>
+  </div>
+
+  <h2>Search</h2>
+  <input type="search" id="q" placeholder="Case no., address, petitioner…">
+
+  <details class="coverage-note">
+    <summary>How the corridors are drawn</summary>
+    <p><b>TOD overlay</b> polygons come from the Marion County Land Use
+    Plan's Transit-Oriented Development overlay, the same layer used in
+    our <a href="https://indyimby.com/zoning-gap/">Zoning Gap</a> work.</p>
+    <p><b>Trail walksheds</b> are a quarter mile (1,320&nbsp;ft) drawn
+    around every <b>built</b> trail in the city's DPW trails inventory —
+    the Monon, Fall Creek, Pleasant Run, the Cultural Trail, and hundreds
+    of smaller segments. Planned trails and segments the inventory labels
+    as plain sidewalks are excluded.</p>
+    <p><b>Weekly agenda records</b> begin <b>mid-2025</b>, when the
+    tracker started reading DMD and IHPC agendas. A quiet corridor before
+    that means we weren't watching yet, not that nothing happened.</p>
+    <p>Spot something wrong?
+    <a href="https://indyimby.com/about/">Tell us.</a></p>
+  </details>
+
+  <p class="note">Only petitions that fall inside a checked corridor are
+  shown. Shaded areas are the corridors themselves. Locations may be
+  approximate; verify against the linked source.
+  <a href="/">See every filing citywide →</a></p>
+</aside>
+
+<div id="map">
+  <div id="empty" hidden><div class="card">
+    <strong>No corridor data loaded.</strong><br><br>
+    Confirm <code>data/filings.geojson</code> and
+    <code>data/corridor_zones.geojson</code> exist in <code>docs/data/</code>,
+    then hard-refresh.
+  </div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const AGENDA_COLORS = {
+  "Tax incentive": getCss('--gold'),
+  "DMD contract": '#7a7a7a',
+  "MDC Resolution": '#9A8AB5',
+  "Historic (IHPC)": '#7A5C3E',
+  "Rezoning": getCss('--c-rezoning'),
+  "Variance / Special Exception": getCss('--c-variance'),
+  "Plat / Subdivision": getCss('--c-plat'),
+  "Development Plan": getCss('--c-devplan'),
+  "Modification": getCss('--c-mod'),
+  "Commitment / Covenant": getCss('--c-commit'),
+  "Approval / Appeal": getCss('--c-commit'),
+  "Other": getCss('--c-other'),
+};
+const ZONE_META = {
+  tod:    { label:'TOD overlay',            color:getCss('--z-tod')   },
+  trails: { label:'¼ mi of a built trail',  color:getCss('--z-trail') },
+};
+function getCss(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function colorFor(p){return AGENDA_COLORS[p.type] || AGENDA_COLORS.Other}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+const map = L.map('map').setView([39.7838,-86.1520],11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  {attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19}).addTo(map);
+
+let features = [], layerGroup = L.layerGroup().addTo(map);
+const zoneLayers = {};   // zone id -> Leaflet polygon layer
+const zoneIndex  = {};   // zone id -> [{bbox, outer, holes}] for point tests
+const state = { zones:new Set(['tod','trails']), agendaTypes:new Set(),
+                board:'', yearFrom:'', yearTo:'', q:'' };
+
+// Embed mode: ?embed=1 hides the filter panel — used by digest post iframes.
+const urlq = new URLSearchParams(location.search);
+if(urlq.get('embed') === '1'){window.__embed=1;
+  const st = document.createElement('style');
+  st.textContent = '#panel{display:none!important}#map{left:0!important;width:100%!important}.topbar{display:none!important}body{padding-top:0!important}';
+  document.head.appendChild(st);
+  setTimeout(()=>map.invalidateSize(), 100);
+}
+
+/* ---------- point-in-polygon (even–odd ray cast, MultiPolygon + holes) ---------- */
+function ringContains(ring, x, y){
+  let inside = false;
+  for(let i=0, j=ring.length-1; i<ring.length; j=i++){
+    const xi=ring[i][0], yi=ring[i][1], xj=ring[j][0], yj=ring[j][1];
+    if(((yi>y)!==(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi)) inside = !inside;
+  }
+  return inside;
+}
+function buildZoneIndex(geom){
+  // Normalize Polygon/MultiPolygon into parts with a cheap bbox pre-check.
+  const polys = geom.type==='MultiPolygon' ? geom.coordinates
+              : geom.type==='Polygon'      ? [geom.coordinates] : [];
+  return polys.map(rings=>{
+    const outer = rings[0];
+    let minX=1e9,minY=1e9,maxX=-1e9,maxY=-1e9;
+    for(const [x,y] of outer){
+      if(x<minX)minX=x; if(x>maxX)maxX=x;
+      if(y<minY)minY=y; if(y>maxY)maxY=y;
+    }
+    return { bbox:[minX,minY,maxX,maxY], outer, holes:rings.slice(1) };
+  });
+}
+function zoneContains(parts, x, y){
+  for(const p of parts){
+    const b=p.bbox;
+    if(x<b[0]||x>b[2]||y<b[1]||y>b[3]) continue;
+    if(!ringContains(p.outer,x,y)) continue;
+    let inHole=false;
+    for(const h of p.holes){ if(ringContains(h,x,y)){inHole=true;break;} }
+    if(!inHole) return true;
+  }
+  return false;
+}
+
+Promise.allSettled([
+  fetch('data/filings.geojson').then(r=>r.json()),
+  fetch('data/corridor_zones.geojson').then(r=>r.json())
+]).then(([agenda, zones])=>{
+  if(zones.status!=='fulfilled' || agenda.status!=='fulfilled'){
+    document.getElementById('empty').hidden=false; return;
+  }
+  // Build zone index + shaded polygon layers
+  (zones.value.features||[]).forEach(zf=>{
+    const id = zf.properties.zone;
+    if(!ZONE_META[id]) return;
+    zoneIndex[id] = buildZoneIndex(zf.geometry);
+    zoneLayers[id] = L.geoJSON(zf, {style:{
+      color:ZONE_META[id].color, weight:1.2, dashArray:'4 3',
+      fillColor:ZONE_META[id].color, fillOpacity:.08, interactive:false
+    }}).addTo(map);
+  });
+  // Tag each filing once; keep only corridor cases
+  const counts = {tod:0, trails:0};
+  (agenda.value.features||[]).forEach(f=>{
+    const [x,y]=f.geometry.coordinates, p=f.properties;
+    p._tod   = zoneIndex.tod    ? zoneContains(zoneIndex.tod,x,y)    : false;
+    p._trail = zoneIndex.trails ? zoneContains(zoneIndex.trails,x,y) : false;
+    if(p._tod) counts.tod++;
+    if(p._trail) counts.trails++;
+    if(p._tod || p._trail) features.push(f);
+  });
+  const updated = agenda.value.updated || null;
+  document.getElementById('updated').textContent = updated ? updated.slice(0,10) : '—';
+  document.getElementById('total').textContent = features.length;
+  if(!features.length){document.getElementById('empty').hidden=false;}
+  buildZoneFilters(counts); buildFilters(); render();
+});
+
+function checkboxRow(container, label, count, color, cls, onToggle, checked=true){
+  const l=document.createElement('label'); l.className='row';
+  l.innerHTML=`<input type="checkbox" ${checked?'checked':''}>
+    <span class="swatch ${cls}" style="${cls?'border-color:'+color+';background:'+color+'22':'background:'+color}"></span>
+    <span>${esc(label)}</span><span class="count">${count}</span>`;
+  l.querySelector('input').addEventListener('change',e=>onToggle(e.target.checked));
+  container.appendChild(l);
+}
+
+function buildZoneFilters(counts){
+  const zf=document.getElementById('zoneFilters');
+  Object.keys(ZONE_META).forEach(id=>{
+    checkboxRow(zf, ZONE_META[id].label, counts[id]||0, ZONE_META[id].color, 'zone', on=>{
+      if(on){ state.zones.add(id); if(zoneLayers[id]) zoneLayers[id].addTo(map); }
+      else  { state.zones.delete(id); if(zoneLayers[id]) map.removeLayer(zoneLayers[id]); }
+      render();
+    });
+  });
+}
+
+function buildFilters(){
+  const aCounts={}, boards=new Set(), years=new Set();
+  features.forEach(f=>{
+    const p=f.properties;
+    aCounts[p.type]=(aCounts[p.type]||0)+1;
+    if(p.board) boards.add(p.board);
+    if(p.year && p.year >= 1990 && p.year <= new Date().getFullYear() + 2) years.add(p.year);
+  });
+  const tf=document.getElementById('typeFilters');
+  const order=Object.keys(AGENDA_COLORS).filter(t=>aCounts[t])
+    .concat(Object.keys(aCounts).filter(t=>!(t in AGENDA_COLORS)));
+  if(!order.length) tf.innerHTML='<span class="count">— none yet —</span>';
+  order.forEach(t=>{
+    state.agendaTypes.add(t);
+    checkboxRow(tf,t,aCounts[t],AGENDA_COLORS[t]||AGENDA_COLORS.Other,'',
+      on=>{on?state.agendaTypes.add(t):state.agendaTypes.delete(t);render()});
+  });
+  const bf=document.getElementById('boardFilter');
+  [...boards].sort().forEach(b=>bf.add(new Option(b,b)));
+  bf.addEventListener('change',()=>{state.board=bf.value;render()});
+  const sorted=[...years].sort((a,b)=>b-a);
+  const yFrom=document.getElementById('yearFrom'), yTo=document.getElementById('yearTo');
+  sorted.forEach(y=>{yFrom.add(new Option(y,y));yTo.add(new Option(y,y))});
+  yFrom.addEventListener('change',()=>{state.yearFrom=yFrom.value;render()});
+  yTo.addEventListener('change',()=>{state.yearTo=yTo.value;render()});
+  document.getElementById('q').addEventListener('input',e=>{
+    state.q=e.target.value.toLowerCase();render();
+  });
+}
+
+function render(){
+  layerGroup.clearLayers(); let shown=0; render._stack={};
+  features.forEach(f=>{
+    const p=f.properties;
+    const inZone = (state.zones.has('tod') && p._tod)
+                || (state.zones.has('trails') && p._trail);
+    if(!inZone) return;
+    if(!state.agendaTypes.has(p.type)) return;
+    if(state.board && p.board!==state.board) return;
+    if(state.yearFrom && (!p.year || p.year < +state.yearFrom)) return;
+    if(state.yearTo && (!p.year || p.year > +state.yearTo)) return;
+    if(state.q){
+      const hay=`${p.case||''} ${p.address||''} ${p.summary||''} ${p.board||''}`.toLowerCase();
+      if(!hay.includes(state.q)) return;
+    }
+    shown++;
+    let [lon,lat]=f.geometry.coordinates;
+    // Multiple resolutions often share one site (e.g. real + personal
+    // property abatements) — fan stacked incentive markers out slightly.
+    if(p.kind==='resolution'){
+      const ck = lon.toFixed(5)+','+lat.toFixed(5);
+      const n = (render._stack[ck] = (render._stack[ck]||0) + 1) - 1;
+      if(n > 0){ lon += 0.0006 * n; lat += 0.0003 * n; }
+    }
+    const c=colorFor(p);
+    const style = p.type==='Tax incentive'
+      ? {radius:10, weight:1.5, color:'#232320', fillColor:c, fillOpacity:.95}
+      : {radius:7, weight:1.5, color:'#ffffff', fillColor:c, fillOpacity:.9};
+    const mk=L.circleMarker([lat,lon],style).bindPopup(popup(p),{maxWidth:320});
+    mk.feature=p; mk.addTo(layerGroup);
+  });
+  document.getElementById('shown').textContent=shown;
+}
+
+function popup(p){
+  const zoning = p.zoning_from&&p.zoning_to
+    ? `<div class="zoning">${esc(p.zoning_from)} → ${esc(p.zoning_to)}</div>` : '';
+  const meta=[p.board,p.meeting_date,
+    p.township?`${esc(p.township)} Twp`:null,
+    p.council_district?`Council #${p.council_district}`:null
+  ].filter(Boolean).join(' · ');
+  const ztags = [
+    p._tod   ? '<span class="ztag tod">TOD OVERLAY</span>'   : '',
+    p._trail ? '<span class="ztag trail">¼ MI OF TRAIL</span>' : ''
+  ].join('');
+  const link = p.agenda_url
+    ? `<a href="${esc(p.agenda_url)}" target="_blank" rel="noopener">View agenda PDF →</a>`
+    : (p.source_url?`<a href="${esc(p.source_url)}" target="_blank" rel="noopener">City GIS layer →</a>`:'');
+  return `<div class="pop">
+    <span class="case">${esc(p.case||'')}</span>
+    <span class="badge" style="background:${colorFor(p)}">${esc(p.type)}</span>
+    <div class="addr">${esc(p.address||'')}</div>
+    <div class="meta">${meta}</div>
+    <div class="zones">${ztags}</div>
+    ${zoning}
+    <div class="summary">${esc(p.summary||'')}</div>
+    ${link}
+  </div>`;
+}
+
+/* ---------- mobile: reciprocal map/panel expansion ---------- */
+(function(){
+  if(window.__embed) return;
+  const mq=window.matchMedia('(max-width:760px)');
+  const panel=document.getElementById('panel'), mapEl=document.getElementById('map');
+  if(!panel||!mapEl) return;
+  let t;
+  function settle(){clearTimeout(t);t=setTimeout(()=>{try{map.invalidateSize()}catch(e){}},320)}
+  function panelBig(){
+    if(!mq.matches) return;
+    if(document.body.classList.contains('panel-big')) return;
+    document.body.classList.remove('map-big');
+    document.body.classList.add('panel-big'); settle();
+  }
+  function mapBig(){
+    if(!mq.matches) return;
+    if(document.body.classList.contains('map-big')) return;
+    document.body.classList.remove('panel-big');
+    document.body.classList.add('map-big'); settle();
+  }
+  function panelDefault(){
+    if(!mq.matches) return;
+    if(!document.body.classList.contains('panel-big')) return;
+    document.body.classList.remove('panel-big'); settle();
+  }
+  /* panel grows on click/focus (after the tap resolves — no mid-tap layout shift) */
+  panel.addEventListener('click',panelBig);
+  panel.addEventListener('focusin',panelBig);
+  /* bottom-sheet gestures: swipe up anywhere on the panel to expand,
+     swipe down from the top of its scroll to tuck it back */
+  let sy=null, st=0;
+  panel.addEventListener('touchstart',e=>{sy=e.touches[0].clientY; st=panel.scrollTop;},{passive:true});
+  panel.addEventListener('touchmove',e=>{
+    if(sy===null||!mq.matches) return;
+    const dy=e.touches[0].clientY-sy;
+    if(dy<-12) panelBig();
+    else if(dy>18 && st<=0) panelDefault();
+  },{passive:true});
+  panel.addEventListener('touchend',()=>{sy=null},{passive:true});
+  /* scrolling the panel implies using it */
+  panel.addEventListener('scroll',panelBig,{passive:true});
+  /* grabber tap toggles */
+  const grab=document.getElementById('grab');
+  if(grab) grab.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(document.body.classList.contains('panel-big')) panelDefault(); else panelBig();
+  });
+  /* map grows on touch (it's the top element — nothing above it moves) */
+  ['touchstart','mousedown'].forEach(ev=>mapEl.addEventListener(ev,mapBig,{passive:true}));
+})();
+</script>
+<script>
+(function(){
+  if(window.self!==window.top){document.documentElement.classList.add('embedded');return;}
+  var tb=document.getElementById('topbar'),btn=document.getElementById('tbBtn');
+  if(!tb||!btn)return;
+  function set(open){
+    tb.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);
+    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.body.style.overflow=open?'hidden':'';
+  }
+  btn.addEventListener('click',function(){set(!tb.classList.contains('open'))});
+  tb.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
+</script>
+</body>
+</html>
