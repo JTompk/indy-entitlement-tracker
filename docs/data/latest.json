@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-A-016",
-  "type": "Tax incentive",
-  "address": "2505 North Sherman Drive",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
+  "case": "2026-MOD-003",
+  "type": "Modification",
+  "address": "8600 COMBS ROAD",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "2026-MOD-003 | 8600 Combs Road Franklin Township, Council District #25 I-3 Punjab Property Inc., by Patrick Rooney Modification of Commitmen"
  },
  {
-  "case": "2026-A-017",
-  "type": "Tax incentive",
-  "address": "2505 North Sherman Drive",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
- },
- {
-  "case": "2026-A-042",
-  "type": "Tax incentive",
-  "address": "6400 Kentucky Avenue",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "The city is considering a property-tax break (abatement) for a project at 6400 Kentucky Avenue."
- },
- {
-  "case": "2026-A-043",
-  "type": "Tax incentive",
-  "address": "6400 Kentucky Avenue",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "The city is considering a property-tax break (abatement) for a project at 6400 Kentucky Avenue."
- },
- {
-  "case": "2026-REG-015",
-  "type": "Other",
-  "address": "412 WEST MCCARTY STREET",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 412 West Mccarty Street proposes six-story."
- },
- {
-  "case": "2026-ZON-060",
+  "case": "2026-ZON-045",
   "type": "Rezoning",
-  "address": "1305 BROAD RIPPLE AVENUE",
-  "meeting_date": "2026-08-19",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 1.54-acre site at 1305 Broad Ripple Avenue from compact single-family/two-family (D-5) to planned residential (D-P) zoning to build mixed-use development consisting of 94 multi-family dwellings and approximately 9."
+  "address": "2003 NORTH COLLEGE AVENUE",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.11-acre site at 2003 North College Avenue from low-rise apartment (D-8) to mixed-use (MU-2) zoning to build small mixed-use development."
  },
  {
-  "case": "2026-UV3-007",
-  "type": "Variance / Special Exception",
-  "address": "1531 HUNTER ROAD",
-  "meeting_date": "2026-08-18",
-  "board": "BZA III",
-  "summary": "The owner of 1531 Hunter Road is asking permission for a use the current zoning doesn't allow: side setback of 21 feet and 9 inches (minimum 30 feet required)."
+  "case": "2026-ZON-051",
+  "type": "Rezoning",
+  "address": "4150 NORTH HIGH SCHOOL ROAD",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 1.9-acre site at 4150 North High School Road from community commercial (C-4) to high-intensity commercial (C-7) zoning to build used car sales and heavy vehicle repair."
  },
  {
-  "case": "2026-UV3-011",
-  "type": "Variance / Special Exception",
-  "address": "2001 WEST WASHINGTON STREET",
-  "meeting_date": "2026-08-18",
-  "board": "BZA III",
-  "summary": "The owner of 2001 West Washington Street is asking permission for a use the current zoning doesn't allow: operation of an automobile parts and supply store on a lot greater than 0."
+  "case": "2026-ZON-055",
+  "type": "Rezoning",
+  "address": "1624 EAST 46TH STREET",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.14-acre site at 1624 East 46th Street from SU-1 to compact single-family/two-family (D-5) zoning to build for residential uses."
  },
  {
-  "case": "2026-DV3-028",
-  "type": "Variance / Special Exception",
-  "address": "6335 OLD ORCHARD ROAD",
-  "meeting_date": "2026-08-18",
-  "board": "BZA III",
-  "summary": "The owner of 6335 Old Orchard Road is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+  "case": "2026-ZON-059",
+  "type": "Rezoning",
+  "address": "337 EAST MORRIS STREET",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.093-acre site at 337 East Morris Street from SU-1 to low-rise apartment (D-8) zoning to build residential uses."
  },
  {
-  "case": "2026-UV3-014",
-  "type": "Variance / Special Exception",
-  "address": "4040 OTTERBEIN AVENUE",
-  "meeting_date": "2026-08-18",
-  "board": "BZA III",
-  "summary": "The owner of 4040 Otterbein Avenue is asking permission for a use the current zoning doesn't allow."
+  "case": "2026-CPL-827",
+  "type": "Other",
+  "address": "2015 WAGNER LANE",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 2.27-acre site at 2015 Wagner Lane from D-6II to compact single-family/two-family (D-5) zoning."
+ },
+ {
+  "case": "2026-APP-015",
+  "type": "Approval / Appeal",
+  "address": "1807 CENTRAL AVENUE",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 1807 Central Avenue proposes construction of a single-family dwelling and a detached garage."
+ },
+ {
+  "case": "2026-ZON-065",
+  "type": "Rezoning",
+  "address": "4402 MADISON AVENUE",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 2.13-acre site at 4402 Madison Avenue from single-family (D-3) to heavy commercial (C-5) zoning to build commercial contractor uses."
+ },
+ {
+  "case": "2026-ZON-069",
+  "type": "Rezoning",
+  "address": "11150 SOUTHEASTERN AVENUE",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 26.7-acre site at 11150 Southeastern Avenue from SU-1 to agricultural/estate residential (D-A) zoning to build residential and agricultural uses."
+ },
+ {
+  "case": "2026-ZON-072",
+  "type": "Rezoning",
+  "address": "7644 BIG BEND BOULEVARD",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 27.28-acre site at 7644 Big Bend Boulevard from planned residential (D-P) to park (PK-1) zoning to build for use as a community park."
  }
 ]
