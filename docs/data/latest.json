@@ -1,19 +1,35 @@
 [
  {
-  "case": "2026-MOD-003",
-  "type": "Modification",
-  "address": "8600 COMBS ROAD",
+  "case": "2026-ZON-072",
+  "type": "Rezoning",
+  "address": "7644 BIG BEND BOULEVARD",
   "meeting_date": "2026-08-27",
   "board": "Hearing Examiner",
-  "summary": "2026-MOD-003 | 8600 Combs Road Franklin Township, Council District #25 I-3 Punjab Property Inc., by Patrick Rooney Modification of Commitmen"
+  "summary": "A property owner wants to rezone the 27.28-acre site at 7644 Big Bend Boulevard from planned residential (D-P) to park (PK-1) zoning to build for use as a community park."
  },
  {
-  "case": "2026-ZON-045",
-  "type": "Rezoning",
-  "address": "2003 NORTH COLLEGE AVENUE",
+  "case": "2026-CVR-836",
+  "type": "Commitment / Covenant",
+  "address": "2326 EAST 44TH STREET",
   "meeting_date": "2026-08-27",
   "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.11-acre site at 2003 North College Avenue from low-rise apartment (D-8) to mixed-use (MU-2) zoning to build small mixed-use development."
+  "summary": "The owner of 2326 East 44th Street is asking permission for a use the current zoning doesn't allow: commercial uses including automotive service and repair."
+ },
+ {
+  "case": "2026-CVR-838",
+  "type": "Commitment / Covenant",
+  "address": "6915 EAST WASHINGTON STREET",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 6915 East Washington Street proposes food pantry and child-care services."
+ },
+ {
+  "case": "2026-APP-015",
+  "type": "Approval / Appeal",
+  "address": "1807 CENTRAL AVENUE",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 1807 Central Avenue proposes construction of a single-family dwelling and a detached garage."
  },
  {
   "case": "2026-ZON-051",
@@ -40,30 +56,6 @@
   "summary": "A property owner wants to rezone the 0.093-acre site at 337 East Morris Street from SU-1 to low-rise apartment (D-8) zoning to build residential uses."
  },
  {
-  "case": "2026-CPL-827",
-  "type": "Other",
-  "address": "2015 WAGNER LANE",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 2.27-acre site at 2015 Wagner Lane from D-6II to compact single-family/two-family (D-5) zoning."
- },
- {
-  "case": "2026-APP-015",
-  "type": "Approval / Appeal",
-  "address": "1807 CENTRAL AVENUE",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 1807 Central Avenue proposes construction of a single-family dwelling and a detached garage."
- },
- {
-  "case": "2026-ZON-065",
-  "type": "Rezoning",
-  "address": "4402 MADISON AVENUE",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 2.13-acre site at 4402 Madison Avenue from single-family (D-3) to heavy commercial (C-5) zoning to build commercial contractor uses."
- },
- {
   "case": "2026-ZON-069",
   "type": "Rezoning",
   "address": "11150 SOUTHEASTERN AVENUE",
@@ -72,11 +64,19 @@
   "summary": "A property owner wants to rezone the 26.7-acre site at 11150 Southeastern Avenue from SU-1 to agricultural/estate residential (D-A) zoning to build residential and agricultural uses."
  },
  {
-  "case": "2026-ZON-072",
+  "case": "2026-ZON-073",
   "type": "Rezoning",
-  "address": "7644 BIG BEND BOULEVARD",
+  "address": "2355 NORTH COLLEGE AVENUE",
   "meeting_date": "2026-08-27",
   "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 27.28-acre site at 7644 Big Bend Boulevard from planned residential (D-P) to park (PK-1) zoning to build for use as a community park."
+  "summary": "A property owner wants to rezone the 0.16-acre site at 2355 North College Avenue from office (C-1) to low-rise apartment (D-8) zoning to build detached single-family residential use."
+ },
+ {
+  "case": "2026-CPL-827",
+  "type": "Other",
+  "address": "2015 WAGNER LANE",
+  "meeting_date": "2026-08-27",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 2.27-acre site at 2015 Wagner Lane from D-6II to compact single-family/two-family (D-5) zoning."
  }
 ]
