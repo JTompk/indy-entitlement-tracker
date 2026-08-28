@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-ZON-072",
-  "type": "Rezoning",
-  "address": "7644 BIG BEND BOULEVARD",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 27.28-acre site at 7644 Big Bend Boulevard from planned residential (D-P) to park (PK-1) zoning to build for use as a community park."
- },
- {
-  "case": "2026-CVR-836",
-  "type": "Commitment / Covenant",
-  "address": "2326 EAST 44TH STREET",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "The owner of 2326 East 44th Street is asking permission for a use the current zoning doesn't allow: commercial uses including automotive service and repair."
- },
- {
-  "case": "2026-CVR-838",
-  "type": "Commitment / Covenant",
-  "address": "6915 EAST WASHINGTON STREET",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 6915 East Washington Street proposes food pantry and child-care services."
- },
- {
-  "case": "2026-APP-015",
+  "case": "2026-APP-012",
   "type": "Approval / Appeal",
-  "address": "1807 CENTRAL AVENUE",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 1807 Central Avenue proposes construction of a single-family dwelling and a detached garage."
+  "address": "7431 WEST 34TH STREET",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 7431 West 34th Street proposes addition to an existing single-family detached dwelling and a detached garage."
  },
  {
-  "case": "2026-ZON-051",
+  "case": "2026-MOD-001",
+  "type": "Modification",
+  "address": "7536 SOUTH EMERSON AVENUE",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "2026-MOD-001 | 7536 South Emerson Avenue Perry Township, Council District #24 D-P HSL Emerson, LLC, by Joseph D. Calderon Modification of th"
+ },
+ {
+  "case": "2026-MOD-004",
+  "type": "Modification",
+  "address": "8133 EAST 96TH STREET",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 8133 East 96th Street proposes development that is consistent and generally in conformance with the submitted site plan."
+ },
+ {
+  "case": "2026-ZON-062",
   "type": "Rezoning",
-  "address": "4150 NORTH HIGH SCHOOL ROAD",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 1.9-acre site at 4150 North High School Road from community commercial (C-4) to high-intensity commercial (C-7) zoning to build used car sales and heavy vehicle repair."
+  "address": "1234 WEST 30TH STREET",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.13-acre site at 1234 West 30th Street from general commercial (C-3) to compact single-family/two-family (D-5) zoning to build single-family residential development."
  },
  {
-  "case": "2026-ZON-055",
+  "case": "2026-ZON-063",
   "type": "Rezoning",
-  "address": "1624 EAST 46TH STREET",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.14-acre site at 1624 East 46th Street from SU-1 to compact single-family/two-family (D-5) zoning to build for residential uses."
+  "address": "3009 AND 3015 NORTH GALE STREET",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.35-acre site at 3009 and 3015 North Gale Street from SU-1 to compact single-family/two-family (D-5) zoning to build residential purposes."
  },
  {
-  "case": "2026-ZON-059",
+  "case": "2026-ZON-064",
   "type": "Rezoning",
-  "address": "337 EAST MORRIS STREET",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.093-acre site at 337 East Morris Street from SU-1 to low-rise apartment (D-8) zoning to build residential uses."
+  "address": "1004 SOUTH KEYSTONE AVENUE",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.11-acre site at 1004 South Keystone Avenue from industrial (I-3) to compact single-family/two-family (D-5) zoning."
  },
  {
-  "case": "2026-ZON-069",
+  "case": "2026-APP-013",
+  "type": "Approval / Appeal",
+  "address": "8700 WEST 30TH STREET",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 28.53-acre site at 8700 West 30th Street from SU-2 to park (PK-1) zoning."
+ },
+ {
+  "case": "2026-CZN-828",
   "type": "Rezoning",
-  "address": "11150 SOUTHEASTERN AVENUE",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 26.7-acre site at 11150 Southeastern Avenue from SU-1 to agricultural/estate residential (D-A) zoning to build residential and agricultural uses."
+  "address": "1170 KENTUCKY AVENUE",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 1170 Kentucky Avenue proposes commercial uses."
  },
  {
-  "case": "2026-ZON-073",
+  "case": "2026-CZN-831",
   "type": "Rezoning",
-  "address": "2355 NORTH COLLEGE AVENUE",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.16-acre site at 2355 North College Avenue from office (C-1) to low-rise apartment (D-8) zoning to build detached single-family residential use."
+  "address": "1144 SOUTH BELMONT AVENUE",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.25-acre site at 1144 South Belmont Avenue from compact single-family/two-family (D-5) to general commercial (C-3) zoning to build commercial uses."
  },
  {
-  "case": "2026-CPL-827",
-  "type": "Other",
-  "address": "2015 WAGNER LANE",
-  "meeting_date": "2026-08-27",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 2.27-acre site at 2015 Wagner Lane from D-6II to compact single-family/two-family (D-5) zoning."
+  "case": "2026-CZN-839",
+  "type": "Rezoning",
+  "address": "947 EASTERN AVENUE",
+  "meeting_date": "2026-09-02",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.08-acre site at 947 Eastern Avenue from general commercial (C-3) to compact single-family/two-family (D-5) zoning."
  }
 ]

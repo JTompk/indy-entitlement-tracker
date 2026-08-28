@@ -10494,5 +10494,37 @@
   "meeting_date": "2026-08-27",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-b42358d442ce4eaeb103a7d57dc3bdb7.pdf",
   "ingested": "2026-08-24"
+ },
+ {
+  "case": "2023-ZON-050",
+  "year": 2023,
+  "prefix": "ZON",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2023-ZON-050 to remove age restriction of head of household (head of household being at least 55 years of age); allow multi-family units within five buildings (multi-family units limited to a single building); remove all references to Lot A; provide for a clubhouse and pool as a permitted accessory use; reduce accessory use setback along southern property line to 10 feet (accessory use setback along southern property line required 20 feet); provide for no less than 200 parking spaces (no less than 130 parking spaces allowed); provide for required bicycle parking spaces; and amend site plan in ",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-09-02",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-db919543063b4a98ab8d11d71c968ba5.pdf",
+  "ingested": "2026-08-28"
+ },
+ {
+  "case": "2026-ZON-052",
+  "year": 2026,
+  "prefix": "ZON",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-ZON-052 and",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-09-02",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-db919543063b4a98ab8d11d71c968ba5.pdf",
+  "ingested": "2026-08-28"
  }
 ]
