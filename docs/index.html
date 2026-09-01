@@ -209,7 +209,7 @@
   </div></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/protomaps-leaflet@5.1.0/dist/protomaps-leaflet.js"></script>
 <script>
 const AGENDA_COLORS = {
   "Tax incentive": getCss('--gold'),
@@ -236,8 +236,14 @@ function colorFor(p){
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
 const map = L.map('map').setView([39.7838,-86.1520],11);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-  {attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19}).addTo(map);
+protomapsL.leafletLayer({
+  url: 'https://map.indyimby.com/data/indy.pmtiles',
+  flavor: 'light',
+  lang: 'en',
+  maxDataZoom: 15,
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &middot; <a href="https://protomaps.com">Protomaps</a>'
+}).addTo(map);
 
 let features = [], layerGroup = L.layerGroup().addTo(map);
 const state = { agendaTypes:new Set(), cityTypes:new Set(), board:'', yearFrom:'', yearTo:'', q:'' };
