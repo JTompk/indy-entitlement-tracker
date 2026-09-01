@@ -1,0 +1,101 @@
+name: Basemap extract
+
+# Manual only. Each run that commits adds ~50 MB to git history,
+# so re-run rarely (yearly, or when the basemap looks stale).
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Report size only, do not download or commit"
+        type: boolean
+        default: true
+      build:
+        description: "Protomaps build date YYYYMMDD (blank = newest nightly)"
+        type: string
+        default: ""
+      bbox:
+        description: "min_lon,min_lat,max_lon,max_lat"
+        type: string
+        default: "-86.36,39.60,-85.90,39.96"
+      maxzoom:
+        description: "Max zoom (15 = full detail; each level ~doubles size)"
+        type: string
+        default: "15"
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pmtiles CLI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo protomaps/go-pmtiles \
+            --pattern 'go-pmtiles_*_Linux_x86_64.tar.gz' \
+            --output pmtiles.tar.gz
+          tar -xzf pmtiles.tar.gz pmtiles
+          chmod +x pmtiles
+          ./pmtiles version
+
+      - name: Resolve build date
+        id: build
+        run: |
+          if [ -n "${{ inputs.build }}" ]; then
+            echo "date=${{ inputs.build }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          for d in 1 2 3 4; do
+            cand=$(date -u -d "$d days ago" +%Y%m%d)
+            if curl -sfI "https://build.protomaps.com/$cand.pmtiles" > /dev/null; then
+              echo "date=$cand" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "No nightly build found in the last 4 days" >&2
+          exit 1
+
+      - name: Dry run (size estimate)
+        run: |
+          ./pmtiles extract \
+            "https://build.protomaps.com/${{ steps.build.outputs.date }}.pmtiles" \
+            /tmp/estimate.pmtiles \
+            --bbox="${{ inputs.bbox }}" \
+            --maxzoom=${{ inputs.maxzoom }} \
+            --dry-run
+
+      - name: Extract
+        if: ${{ !inputs.dry_run }}
+        run: |
+          mkdir -p docs/data
+          ./pmtiles extract \
+            "https://build.protomaps.com/${{ steps.build.outputs.date }}.pmtiles" \
+            docs/data/indy.pmtiles \
+            --bbox="${{ inputs.bbox }}" \
+            --maxzoom=${{ inputs.maxzoom }}
+          ./pmtiles show docs/data/indy.pmtiles
+
+      - name: Size guard
+        if: ${{ !inputs.dry_run }}
+        run: |
+          bytes=$(stat -c %s docs/data/indy.pmtiles)
+          mb=$((bytes / 1048576))
+          echo "indy.pmtiles is ${mb} MB"
+          if [ "$bytes" -gt 99614720 ]; then
+            echo "Over 95 MB — GitHub rejects files above 100 MB. Lower maxzoom or shrink bbox." >&2
+            exit 1
+          fi
+
+      - name: Commit
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/indy.pmtiles
+          git commit -m "basemap: Protomaps ${{ steps.build.outputs.date }} bbox ${{ inputs.bbox }} z0-${{ inputs.maxzoom }}" \
+            || echo "No change to commit"
+          git push
