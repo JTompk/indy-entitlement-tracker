@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-APP-012",
-  "type": "Approval / Appeal",
-  "address": "7431 WEST 34TH STREET",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 7431 West 34th Street proposes addition to an existing single-family detached dwelling and a detached garage."
+  "case": "2026-PLT-035",
+  "type": "Plat / Subdivision",
+  "address": "931 SOUTH EAST STREET",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 0.471-acre site at 931 South East Street into new lots."
  },
  {
-  "case": "2026-MOD-001",
-  "type": "Modification",
-  "address": "7536 SOUTH EMERSON AVENUE",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "2026-MOD-001 | 7536 South Emerson Avenue Perry Township, Council District #24 D-P HSL Emerson, LLC, by Joseph D. Calderon Modification of th"
+  "case": "2026-PLT-039",
+  "type": "Plat / Subdivision",
+  "address": "5151 EAST 82ND STREET",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 18.24-acre site at 5151 East 82nd Street into new lots."
  },
  {
-  "case": "2026-MOD-004",
-  "type": "Modification",
-  "address": "8133 EAST 96TH STREET",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 8133 East 96th Street proposes development that is consistent and generally in conformance with the submitted site plan."
+  "case": "2026-PLT-042",
+  "type": "Plat / Subdivision",
+  "address": "7500 SOUTH SHERMAN DRIVE",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 27.5-acre site at 7500 South Sherman Drive into new lots."
  },
  {
-  "case": "2026-ZON-062",
-  "type": "Rezoning",
-  "address": "1234 WEST 30TH STREET",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.13-acre site at 1234 West 30th Street from general commercial (C-3) to compact single-family/two-family (D-5) zoning to build single-family residential development."
+  "case": "2026-PLT-045",
+  "type": "Plat / Subdivision",
+  "address": "4514 E. 79TH STREET",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 2.58-acre site at 4514 E. 79th Street into new lots."
  },
  {
-  "case": "2026-ZON-063",
-  "type": "Rezoning",
-  "address": "3009 AND 3015 NORTH GALE STREET",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.35-acre site at 3009 and 3015 North Gale Street from SU-1 to compact single-family/two-family (D-5) zoning to build residential purposes."
+  "case": "2026-PLT-050",
+  "type": "Plat / Subdivision",
+  "address": "2913 E HANNA AVENUE",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 39.642-acre site at 2913 E Hanna Avenue into new lots."
  },
  {
-  "case": "2026-ZON-064",
-  "type": "Rezoning",
-  "address": "1004 SOUTH KEYSTONE AVENUE",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.11-acre site at 1004 South Keystone Avenue from industrial (I-3) to compact single-family/two-family (D-5) zoning."
+  "case": "2026-VAC-007",
+  "type": "Other",
+  "address": "1543 WEST OHIO STREET",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "2026-VAC-007 | 1525, 1540, and 1543 West Ohio Street; 211, 217 and 221 North Reisner Street; & 126 and 130 Koehne Street Center Township, Co"
  },
  {
-  "case": "2026-APP-013",
-  "type": "Approval / Appeal",
-  "address": "8700 WEST 30TH STREET",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 28.53-acre site at 8700 West 30th Street from SU-2 to park (PK-1) zoning."
+  "case": "2026-PLT-043",
+  "type": "Plat / Subdivision",
+  "address": "8025 SWEET LANE",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 13.493-acre site at 8025 Sweet Lane into new lots."
  },
  {
-  "case": "2026-CZN-828",
-  "type": "Rezoning",
-  "address": "1170 KENTUCKY AVENUE",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 1170 Kentucky Avenue proposes commercial uses."
+  "case": "2026-PLT-046",
+  "type": "Plat / Subdivision",
+  "address": "1050 SOUTH EMERSON AVENUE",
+  "meeting_date": "2026-09-09",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 8.22-acre site at 1050 South Emerson Avenue into new lots."
  },
  {
-  "case": "2026-CZN-831",
-  "type": "Rezoning",
-  "address": "1144 SOUTH BELMONT AVENUE",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.25-acre site at 1144 South Belmont Avenue from compact single-family/two-family (D-5) to general commercial (C-3) zoning to build commercial uses."
+  "case": "2026-DV1-025",
+  "type": "Variance / Special Exception",
+  "address": "7279 NORTH KEYSTONE AVENUE",
+  "meeting_date": "2026-09-08",
+  "board": "BZA II",
+  "summary": "The owner of 7279 North Keystone Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  },
  {
-  "case": "2026-CZN-839",
-  "type": "Rezoning",
-  "address": "947 EASTERN AVENUE",
-  "meeting_date": "2026-09-02",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.08-acre site at 947 Eastern Avenue from general commercial (C-3) to compact single-family/two-family (D-5) zoning."
+  "case": "2026-DV2-027",
+  "type": "Variance / Special Exception",
+  "address": "7009 W THOMPSON ROAD",
+  "meeting_date": "2026-09-08",
+  "board": "BZA II",
+  "summary": "The owner of 7009 W Thompson Road is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  }
 ]

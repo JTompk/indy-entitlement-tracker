@@ -10526,5 +10526,21 @@
   "meeting_date": "2026-09-02",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-db919543063b4a98ab8d11d71c968ba5.pdf",
   "ingested": "2026-08-28"
+ },
+ {
+  "case": "2022-CPL-828",
+  "year": 2022,
+  "prefix": "CPL",
+  "type": "Other",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2022-CPL-828 but not recorded prior to the two-year time limit to record. 5.",
+  "board": "Plat Committee",
+  "meeting_date": "2026-09-09",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6d789af36fb4e6188a8b3c384391bee.pdf",
+  "ingested": "2026-09-04"
  }
 ]
