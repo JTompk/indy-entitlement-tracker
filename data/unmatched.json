@@ -10542,5 +10542,53 @@
   "meeting_date": "2026-09-09",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6d789af36fb4e6188a8b3c384391bee.pdf",
   "ingested": "2026-09-04"
+ },
+ {
+  "case": "2026-CZN-834",
+  "year": 2026,
+  "prefix": "CZN",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CZN-834 /",
+  "board": "Hearing Examiner",
+  "meeting_date": "2026-09-10",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-bf035eb85ace4e59bdd1dc3c3561d1eb.pdf",
+  "ingested": "2026-09-07"
+ },
+ {
+  "case": "2026-CZN-845",
+  "year": 2026,
+  "prefix": "CZN",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CZN-845 /",
+  "board": "Hearing Examiner",
+  "meeting_date": "2026-09-10",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-bf035eb85ace4e59bdd1dc3c3561d1eb.pdf",
+  "ingested": "2026-09-07"
+ },
+ {
+  "case": "2026-CZN-829",
+  "year": 2026,
+  "prefix": "CZN",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CZN-829 (Withdrawn) /",
+  "board": "Hearing Examiner",
+  "meeting_date": "2026-09-10",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-bf035eb85ace4e59bdd1dc3c3561d1eb.pdf",
+  "ingested": "2026-09-07"
  }
 ]

@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-PLT-035",
-  "type": "Plat / Subdivision",
-  "address": "931 SOUTH EAST STREET",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 0.471-acre site at 931 South East Street into new lots."
+  "case": "2026-ZON-041",
+  "type": "Rezoning",
+  "address": "3553 SHELBY STREET",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 3553 Shelby Street proposes multifamily housing."
  },
  {
-  "case": "2026-PLT-039",
-  "type": "Plat / Subdivision",
-  "address": "5151 EAST 82ND STREET",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 18.24-acre site at 5151 East 82nd Street into new lots."
+  "case": "2026-APP-016",
+  "type": "Approval / Appeal",
+  "address": "45 WEST 40TH STREET",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 45 West 40th Street proposes replacement of existing playground equipment."
  },
  {
-  "case": "2026-PLT-042",
-  "type": "Plat / Subdivision",
-  "address": "7500 SOUTH SHERMAN DRIVE",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 27.5-acre site at 7500 South Sherman Drive into new lots."
+  "case": "2026-ZON-077",
+  "type": "Rezoning",
+  "address": "2004 EAST 86TH STREET",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "2026-ZON-077 | 2004 East 86th Street Washington Township, Council District #2 Justin Kingen Rezoning of 3.02 acres from the D-A (FF) (FW) di"
  },
  {
-  "case": "2026-PLT-045",
-  "type": "Plat / Subdivision",
-  "address": "4514 E. 79TH STREET",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 2.58-acre site at 4514 E. 79th Street into new lots."
+  "case": "2026-ZON-068",
+  "type": "Rezoning",
+  "address": "7440 WOODLAND DRIVE",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 7440 Woodland Drive proposes light industrial uses."
  },
  {
-  "case": "2026-PLT-050",
-  "type": "Plat / Subdivision",
-  "address": "2913 E HANNA AVENUE",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 39.642-acre site at 2913 E Hanna Avenue into new lots."
+  "case": "2026-ZON-071",
+  "type": "Rezoning",
+  "address": "610 SOUTH DROVER STREET",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 610 South Drover Street proposes commercial uses."
  },
  {
-  "case": "2026-VAC-007",
+  "case": "2026-ZON-076",
+  "type": "Rezoning",
+  "address": "2507 COLUMBIA AVENUE",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.17-acre site at 2507 Columbia Avenue from general commercial (C-3) to low-rise apartment (D-8) zoning to build residential uses."
+ },
+ {
+  "case": "2026-CPL-834",
   "type": "Other",
-  "address": "1543 WEST OHIO STREET",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "2026-VAC-007 | 1525, 1540, and 1543 West Ohio Street; 211, 217 and 221 North Reisner Street; & 126 and 130 Koehne Street Center Township, Co"
+  "address": "6509 DEAN ROAD",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 1.73-acre site at 6509 Dean Road from suburban residential (D-S) to large-lot single-family (D-1) zoning to build two, detached single-family dwellings."
  },
  {
-  "case": "2026-PLT-043",
-  "type": "Plat / Subdivision",
-  "address": "8025 SWEET LANE",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 13.493-acre site at 8025 Sweet Lane into new lots."
+  "case": "2026-CVR-845",
+  "type": "Commitment / Covenant",
+  "address": "3949 SOUTH STATE AVENUE",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "The owner of 3949 South State Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
  },
  {
-  "case": "2026-PLT-046",
-  "type": "Plat / Subdivision",
-  "address": "1050 SOUTH EMERSON AVENUE",
-  "meeting_date": "2026-09-09",
-  "board": "Plat Committee",
-  "summary": "A landowner wants to split or replat the 8.22-acre site at 1050 South Emerson Avenue into new lots."
+  "case": "2026-ZON-018",
+  "type": "Rezoning",
+  "address": "5510 MILLERSVILLE ROAD",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 5510 Millersville Road proposes veterinary hospital."
  },
  {
-  "case": "2026-DV1-025",
-  "type": "Variance / Special Exception",
-  "address": "7279 NORTH KEYSTONE AVENUE",
-  "meeting_date": "2026-09-08",
-  "board": "BZA II",
-  "summary": "The owner of 7279 North Keystone Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
- },
- {
-  "case": "2026-DV2-027",
-  "type": "Variance / Special Exception",
-  "address": "7009 W THOMPSON ROAD",
-  "meeting_date": "2026-09-08",
-  "board": "BZA II",
-  "summary": "The owner of 7009 W Thompson Road is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+  "case": "2026-ZON-043",
+  "type": "Rezoning",
+  "address": "7030 EAST 33RD STREET",
+  "meeting_date": "2026-09-10",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 1.19-acre site at 7030 East 33rd Street from mixed-use (MU-1) to heavy commercial (C-5) zoning."
  }
 ]
