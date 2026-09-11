@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-ZON-041",
-  "type": "Rezoning",
-  "address": "3553 SHELBY STREET",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 3553 Shelby Street proposes multifamily housing."
+  "case": "2026-A-016",
+  "type": "Tax incentive",
+  "address": "2505 North Sherman Drive",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
  },
  {
-  "case": "2026-APP-016",
+  "case": "2026-A-017",
+  "type": "Tax incentive",
+  "address": "2505 North Sherman Drive",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
+ },
+ {
+  "case": "2026-A-044",
+  "type": "Tax incentive",
+  "address": "6400 Kentucky Avenue",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 6400 Kentucky Avenue."
+ },
+ {
+  "case": "2026-A-045",
+  "type": "Tax incentive",
+  "address": "6400 Kentucky Avenue",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 6400 Kentucky Avenue."
+ },
+ {
+  "case": "2025-A-011",
+  "type": "MDC Resolution",
+  "address": "011 at 2060 Yandes Street",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "2025-A-011 at 2060 Yandes Street, Council District #13, Councilor Jesse Brown. 7."
+ },
+ {
+  "case": "2021-A-015",
+  "type": "MDC Resolution",
+  "address": "8735 East 33rd Street",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "2021-A-015, 2021, as well as a Waiver of the 2025 deduction application filing deadline for Greenleaf Foods SPC, Inc., located at 8735 East "
+ },
+ {
+  "case": "2026-APP-015",
   "type": "Approval / Appeal",
-  "address": "45 WEST 40TH STREET",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 45 West 40th Street proposes replacement of existing playground equipment."
+  "address": "1807 CENTRAL AVENUE",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 1807 Central Avenue proposes construction of a single-family dwelling and a detached garage."
  },
  {
-  "case": "2026-ZON-077",
+  "case": "2026-ZON-045",
   "type": "Rezoning",
-  "address": "2004 EAST 86TH STREET",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "2026-ZON-077 | 2004 East 86th Street Washington Township, Council District #2 Justin Kingen Rezoning of 3.02 acres from the D-A (FF) (FW) di"
+  "address": "2003 NORTH COLLEGE AVENUE",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.11-acre site at 2003 North College Avenue from low-rise apartment (D-8) to mixed-use (MU-2) zoning to build small mixed-use development."
  },
  {
-  "case": "2026-ZON-068",
+  "case": "2026-ZON-051",
   "type": "Rezoning",
-  "address": "7440 WOODLAND DRIVE",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 7440 Woodland Drive proposes light industrial uses."
+  "address": "4150 NORTH HIGH SCHOOL ROAD",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 1.9-acre site at 4150 North High School Road from community commercial (C-4) to high-intensity commercial (C-7) zoning to build used car sales and heavy vehicle repair."
  },
  {
-  "case": "2026-ZON-071",
+  "case": "2026-ZON-055",
   "type": "Rezoning",
-  "address": "610 SOUTH DROVER STREET",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 610 South Drover Street proposes commercial uses."
- },
- {
-  "case": "2026-ZON-076",
-  "type": "Rezoning",
-  "address": "2507 COLUMBIA AVENUE",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.17-acre site at 2507 Columbia Avenue from general commercial (C-3) to low-rise apartment (D-8) zoning to build residential uses."
- },
- {
-  "case": "2026-CPL-834",
-  "type": "Other",
-  "address": "6509 DEAN ROAD",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 1.73-acre site at 6509 Dean Road from suburban residential (D-S) to large-lot single-family (D-1) zoning to build two, detached single-family dwellings."
- },
- {
-  "case": "2026-CVR-845",
-  "type": "Commitment / Covenant",
-  "address": "3949 SOUTH STATE AVENUE",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "The owner of 3949 South State Avenue is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
- },
- {
-  "case": "2026-ZON-018",
-  "type": "Rezoning",
-  "address": "5510 MILLERSVILLE ROAD",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 5510 Millersville Road proposes veterinary hospital."
- },
- {
-  "case": "2026-ZON-043",
-  "type": "Rezoning",
-  "address": "7030 EAST 33RD STREET",
-  "meeting_date": "2026-09-10",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 1.19-acre site at 7030 East 33rd Street from mixed-use (MU-1) to heavy commercial (C-5) zoning."
+  "address": "1624 EAST 46TH STREET",
+  "meeting_date": "2026-09-16",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.14-acre site at 1624 East 46th Street from SU-1 to compact single-family/two-family (D-5) zoning to build for residential uses."
  }
 ]

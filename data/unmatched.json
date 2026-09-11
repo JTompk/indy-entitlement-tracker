@@ -10590,5 +10590,53 @@
   "meeting_date": "2026-09-10",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-bf035eb85ace4e59bdd1dc3c3561d1eb.pdf",
   "ingested": "2026-09-07"
+ },
+ {
+  "case": "2026-CZN-833",
+  "year": 2026,
+  "prefix": "CZN",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CZN-833 /",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-09-16",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+  "ingested": "2026-09-11"
+ },
+ {
+  "case": "2026-CZN-841",
+  "year": 2026,
+  "prefix": "CZN",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CZN-841 /",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-09-16",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+  "ingested": "2026-09-11"
+ },
+ {
+  "case": "2023-SE3-004",
+  "year": 2023,
+  "prefix": "SE3",
+  "type": "Variance / Special Exception",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2023-SE3-004). **This petition will be withdrawn.",
+  "board": "BZA III",
+  "meeting_date": "2026-09-15",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+  "ingested": "2026-09-11"
  }
 ]

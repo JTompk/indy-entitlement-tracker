@@ -59720,7 +59720,749 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-22d09cdab17f471f921e1ee57d0ef015.pdf",
     "ingested": "2026-09-07"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.1024,
+     39.803534
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-016",
+    "title": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+    "summary": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of ten (10) years real property tax abatement.) **Request will be made for continuance to October 21, 2026 3.",
+    "address": "2505 North Sherman Drive",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.1024,
+     39.803534
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-017",
+    "title": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+    "summary": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of fifteen (15) years enhanced personal property tax abatement.) **Request will be made for continuance to October 21, 2026 4.",
+    "address": "2505 North Sherman Drive",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.300596,
+     39.670231
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-044",
+    "title": "2026-A-044 (For Public Hearing) Final Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council Dis",
+    "summary": "2026-A-044 (For Public Hearing) Final Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Decatur Township. (IEDI recommends approval of ten (10) years real property tax abatement.) 5.",
+    "address": "6400 Kentucky Avenue",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.300596,
+     39.670231
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2026-A-045",
+    "title": "2026-A-045 (For Public Hearing) Final Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council Dis",
+    "summary": "2026-A-045 (For Public Hearing) Final Economic Revitalization Area Resolution for Sabey Data Center Properties LLC, located at 6400 Kentucky Avenue, Council District #21, Decatur Township. (IEDI recommends approval of fifteen (15) years enhanced personal property tax abatement.) 6.",
+    "address": "6400 Kentucky Avenue",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "type": "Tax incentive",
+    "year": 2026,
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.138134,
+     39.795226
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2025-A-011",
+    "title": "2025-A-011 at 2060 Yandes Street, Council District #13, Councilor Jesse Brown. 7.",
+    "summary": "2025-A-011 at 2060 Yandes Street, Council District #13, Councilor Jesse Brown. 7.",
+    "address": "011 at 2060 Yandes Street",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "type": "MDC Resolution",
+    "year": 2025,
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.014692,
+     39.816553
+    ]
+   },
+   "properties": {
+    "kind": "resolution",
+    "case": "2021-A-015",
+    "title": "2021-A-015, 2021, as well as a Waiver of the 2025 deduction application filing deadline for Greenleaf Foods SPC, Inc., located at 8735 East 33rd Street, Council",
+    "summary": "2021-A-015, 2021, as well as a Waiver of the 2025 deduction application filing deadline for Greenleaf Foods SPC, Inc., located at 8735 East 33rd Street, Council District #9, Warren Township. PLANNING: 8. 2026-P-008 (For Public Hearing) Amends a segment of the Comprehensive Plan of Marion County, Indiana. This amendment to the Marion County Land Use Plan is an update to integrate the twenty specific area plans, provide language and format updates for ease of use of the Pattern Book, and adjust existing land use typologies to meet current needs throughout Indianapolis Marion County. **Request wi",
+    "address": "8735 East 33rd Street",
+    "dollars": null,
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "type": "MDC Resolution",
+    "year": 2021,
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.149405,
+     39.791215
+    ]
+   },
+   "properties": {
+    "case": "2026-APP-015",
+    "year": 2026,
+    "prefix": "APP",
+    "type": "Approval / Appeal",
+    "address": "1807 CENTRAL AVENUE",
+    "township": "Center",
+    "council_district": 13,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-APP-015 | 1807 Central Avenue Center Township, Council District #13 PK-2 Moose Holdings LLC, by Paul Musielak Park District Two approval to provide for the construction of a single-family dwelling and a detached garage. 11.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.144671,
+     39.794054
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-045",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "2003 NORTH COLLEGE AVENUE",
+    "township": "Center",
+    "council_district": 13,
+    "zoning_from": "D-8",
+    "zoning_to": "MU-2",
+    "summary": "2026-ZON-045 | 2003 North College Avenue Center Township, Council District #13 Maigida Investment LLC, by David Gilman Rezoning of 0.11-acre from the D-8 district to the MU-2 district to provide for a small mixed-use development. 12.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.270541,
+     39.831082
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-051",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "4150 NORTH HIGH SCHOOL ROAD",
+    "township": "Pike",
+    "council_district": 5,
+    "zoning_from": "C-4",
+    "zoning_to": "C-7",
+    "summary": "2026-ZON-051 | 4150 North High School Road Pike Township, Council District #5 Nica Auto & Fleet Repair, LLC, by David Dearing Rezoning of 1.9 acres from the C-4 district to the C-7 district to provide for used car sales and heavy vehicle repair. 13.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.132205,
+     39.84026
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-055",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "1624 EAST 46TH STREET",
+    "township": "Washington",
+    "council_district": 7,
+    "zoning_from": "SU-1",
+    "zoning_to": "D-5",
+    "summary": "2026-ZON-055 | 1624 East 46th Street Washington Township, Council District #7 K & D Epic Holdings LLC, by David Gilman Rezoning of 0.14-acre from the SU-1 district to the D-5 district to allow for residential uses. 14.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.152093,
+     39.751549
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-059",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "337 EAST MORRIS STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": "SU-1",
+    "zoning_to": "D-8",
+    "summary": "2026-ZON-059 | 337 East Morris Street Center Township, Council District #18 Habitat for Humanity of Greater Indianapolis, Inc, by Chris Barnett Rezoning of 0.093-acre from the SU-1 district to the D-8 district to provide for residential uses. 15.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.967703,
+     39.679654
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-069",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "11150 SOUTHEASTERN AVENUE",
+    "township": "Franklin",
+    "council_district": 25,
+    "zoning_from": "SU-1",
+    "zoning_to": "D-A",
+    "summary": "2026-ZON-069 | 11150 Southeastern Avenue Franklin Township, Council District #25 Anton and Jennifer Howard Rezoning of 26.7 acres from the SU-1 district to the D-A district to provide for residential and agricultural uses. 16.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.144685,
+     39.800425
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-073",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "2355 NORTH COLLEGE AVENUE",
+    "township": "Center",
+    "council_district": 8,
+    "zoning_from": "C-1",
+    "zoning_to": "D-8",
+    "summary": "2026-ZON-073 | 2355 North College Avenue and 717 East 24th Street Center Township, Council District #8 Brooke Bernhardt, by Paul Musielak Rezoning of 0.16-acre from the C-1 district to the D-8 district to provide for detached single-family residential use. 17.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.105146,
+     39.741445
+    ]
+   },
+   "properties": {
+    "case": "2026-CZN-827",
+    "year": 2026,
+    "prefix": "CZN",
+    "type": "Rezoning",
+    "address": "2015 WAGNER LANE",
+    "township": "Center",
+    "council_district": 19,
+    "zoning_from": "D-6II",
+    "zoning_to": "D-5",
+    "summary": "2026-CZN-827 | 2015 Wagner Lane and 3669 Van Buren Street Center Township, Council District #19 D-6II Habitat for Humanity for Greater Indianapolis, Inc., by Leslie Steinert Rezoning of 2.27 acres from D-6II to D-5 for residential development. 18.",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.116854,
+     39.82563
+    ]
+   },
+   "properties": {
+    "case": "2026-CZN-842",
+    "year": 2026,
+    "prefix": "CZN",
+    "type": "Rezoning",
+    "address": "3830 NORTH RURAL STREET",
+    "township": "Washington",
+    "council_district": 8,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-CZN-842 | 3830 North Rural Street, 3801 North Temple Avenue, 3830 Meadows Drive, and 2806 and 2840 East 38th Street Washington Township, Council District #8 Health and Hospital Corporation of Marion County, by Joseph D. Calderon Rezoning of 9.33 acres from the D-5 (W-1) (TOD), D-P (W-1) (TOD), C-1 (W-1) (TOD), and C-4 (W-1) (TOD) districts to the SU-9 (W-1) (TOD) district to provide for offices for public health uses. PETITIONS OF NO APPEAL (RECOMMENDED FOR DENIAL): Petitions for Public Hearing PETITIONS FOR PUBLIC HEARING: 19. COMPANION PETITIONS SCHEDULED FOR INTIAL HEARING:",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.200595,
+     39.853642
+    ]
+   },
+   "properties": {
+    "case": "2026-CPL-833",
+    "year": 2026,
+    "prefix": "CPL",
+    "type": "Other",
+    "address": "2155 KESSLER BOULEVARD",
+    "township": "Washington",
+    "council_district": 2,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-CPL-833 | 2155 Kessler Boulevard, West Drive Washington Township., Council District #2 Broadmoor Investments, LLC, by Joseph D. Calderon Rezoning of 16.881 acres from the SU-34 (FF) district to the D-P (FF) district to provide for a single-family detached development. Approval of a Subdivision Plat to be known as Ross Village at Broadmoor, dividing 16.881 acres into 21 single- family detached lots, with a waiver of the required basic and additional open space components and minimum standards for residential subdivisions (subdivisions with more than 20 dwelling units shall provide a multip",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.265673,
+     39.852873
+    ]
+   },
+   "properties": {
+    "case": "2026-CVR-841",
+    "year": 2026,
+    "prefix": "CVR",
+    "type": "Commitment / Covenant",
+    "address": "5935 WEST 56TH STREET",
+    "township": "Pike",
+    "council_district": 5,
+    "zoning_from": "SU-1",
+    "zoning_to": "D-P",
+    "summary": "2026-CVR-841 | 5935 West 56th Street Pike Township., Council District #5 Exponential Equity Group, Inc., by Misha Rabinowitch Rezoning of 10.3 acres, from the SU-1 district to the D-P district to provide for a development consisting of 34 multi-family units and 10 townhomes, and existing religious uses. Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a total of 214 parking spaces (minimum 232 parking spaces required). **Automatic continuance to October 21, 2026, filed by a Registered Neighborhood Organization Additional Business: **The addr",
+    "board": "Metropolitan Development Commission",
+    "meeting_date": "2026-09-16",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.050382,
+     39.905694
+    ]
+   },
+   "properties": {
+    "case": "2025-DV3-035",
+    "year": 2025,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "7930 CASTLETON ROAD",
+    "township": "Lawrence",
+    "council_district": 4,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2025-DV3-035 | 7930 Castleton Road Lawrence Township, Council District #4, zoned C-5 Outfront Media LLC, by Alan S. Townsend Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to increase the height of a legally established, legally non-conforming outdoor advertising sign to 60 feet (40-foot maximum height per the grant of",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.117478,
+     39.768233
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-016",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "2705 EAST WASHINGTON STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-016 | 2705 East Washington Street Center Township, Council District #18, zoned I-3 (TOD) Good News Mission Inc., by Tim Dunlop Variance of use of the Consolidated Zoning and Subdivision Ordinance to provide for the light retail use of a thrift store (not permitted as a primary use) with accessory outdoor sales and display of merchandise (not permitted). **This petition will be withdrawn. PETITIONS REQUESTING TO BE CONTINUED: 1.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.130967,
+     39.693557
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-027",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "1633 EAST THOMPSON ROAD",
+    "township": "Perry",
+    "council_district": 23,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-027 | 1633 East Thompson Road Perry Township, Council District #23, zoned D-3 Justin Myers Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to legally establish a detached garage within the established front yard setback (not permitted) and to allow for a parking area in the front yard to exceed the lesser of 30 feet in width or 50% of the lot width (not permitted). **Petitioner to request continuance to October 20, 2026 hearing. 2.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.983733,
+     39.775142
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-031",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "10401 EAST WASHINGTON STREET",
+    "township": "Warren",
+    "council_district": 20,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-031 | 10401 East Washington Street Warren Township, Council District #20, zoned C-4 (TOD) Washington Market Realty, LLC, % Sander Development Company, by Matt Yanda Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the development of a restaurant with a three-foot west side transitional yard (20-foot side transitional yard required), and a 29% front building line (40% front building line in buffer/suburban frontage required). **This petition has been automatically continued to the October 20, 2026 hearing. Petitions for Public Hearin",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.093635,
+     39.814505
+    ]
+   },
+   "properties": {
+    "case": "2026-SE2-001",
+    "year": 2026,
+    "prefix": "SE2",
+    "type": "Variance / Special Exception",
+    "address": "4501 EAST 32ND STREET",
+    "township": "Center",
+    "council_district": 8,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-SE2-001 | 4501 East 32nd Street Center Township, Council District #8, zoned SU-2 / D-5 Paramount Schools of Excellence LLC, by Joseph Csikos Special Exception of the Consolidated Zoning and Subdivision Ordinance to provide for a proposed 165-foot-tall wireless communication facility (not permitted). 4.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.079943,
+     39.804059
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-032",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "2522 NORTH BUTLER AVENUE",
+    "township": "Warren",
+    "council_district": 9,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-032 | 2522 North Butler Avenue Warren Township, Council District #9, zoned I-2 Eastside Coverage I70 LLC, by Joe Calderon Variance of Development Standards to permit the erection of a 6-foot-tall wooden privacy fence within the front yard (fences in front yard limited to 3.5 feet in height or may be 4 feet tall if 30% or less opaque). 5.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.120349,
+     39.693727
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-036",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "2403 EAST THOMPSON ROAD",
+    "township": "Perry",
+    "council_district": 23,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-036 | 2403 East Thompson Road Perry Township, Council District #23, zoned D-A Bruce W. Potts, by Alejandro Lopez Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the construction of a single-family residence resulting in a 24-foot front yard setback (40 feet required), a 12-foot side yard setback (15 feet required), a 32-foot aggregate side yard setback (75 feet required), an open space ratio of 81% (85% required). 6.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.135452,
+     39.707008
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-014",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "4040 OTTERBEIN AVENUE",
+    "township": "Perry",
+    "council_district": 23,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-014 | 4038 & 4040 Otterbein Avenue Perry Township, Council District #23, zoned D-4 (TOD) Roberta Lopez, by Anthony S. Ridolfo Variance of Use of the Consolidated Zoning and Subdivision Ordinance to allow for a secondary dwelling unit with a size of 727 square feet (maximum 720 feet permitted) and to allow for a primary and secondary dwelling unit without permanent occupancy by the owner (occupancy of either the primary or secondary dwelling unit by the owner required). 7.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.961274,
+     39.738139
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-017",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "2331 MUESSING ROAD",
+    "township": "Warren",
+    "council_district": 25,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-017 | 2331 Muessing Road Warren Township, Council District #25, zoned SU-9 (FF) Paredes Castello LLC, by David Gilman Variance of Use and Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a tree service commercial contractor (not permitted) with a 56-foot wide gravel driveway (driveway limited to 30-feet in width, gravel not permitted), with a five-foot north side yard setback and a five-foot south side yard setback, (ten-foot side setbacks required). PETITIONS FOR PUBLIC HEARING (Transferred Petitions): PETITIONS FOR PUBLIC HEARING (Continued P",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.985228,
+     39.775188
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-016A",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "10220 EAST WASHINGTON STREET",
+    "township": "Warren",
+    "council_district": 20,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-016A | 10220 East Washington Street Warren Township, Council District #20, zoned C-4 (TOD) Indy WS40 LLC, by Barnes & Thornburg LLP (Joseph Calderon) Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a drive through with access provided by Ring Road instead of an alley (drive throughs prohibited within 600 feet of a transit station except where located behind the building and all access is provided by alleys). 9.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.195447,
+     39.766328
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-011",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "2001 WEST WASHINGTON STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-011 | 2001 West Washington Street Center Township, Council District #18, zoned C-4 (TOD) Don\u2019s Legacy LLC, by Jennifer Wright Variance of Use of the Consolidated Zoning and Subdivision Ordinance to provide for the operation of an automobile parts and supply store on a lot greater than 0.5-acre (automobile service and repair prohibited on lots larger than 0.5-acre in the TOD district). PETITIONS FOR PUBLIC HEARING (New Petitions): 10.",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.1111,
+     39.680961
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-013",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "5930 MCFARLAND ROAD",
+    "township": "Perry",
+    "council_district": 23,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-013 | 5930 McFarland Road Perry Township, Council District #23, zoned D-A Noah Worley Variance of Use and Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a home occupation (electrical contractor office and material storage) within 500 square feet of an existing 4,000-square-foot accessory structure, to legally establish a 4,000-square-foot accessory structure with a horizontal land area greater than the primary building (accessory building larger than primary building not permitted), and an accessory structure with a 13.5-foot side setback (15",
+    "board": "BZA III",
+    "meeting_date": "2026-09-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-46c072dfcded412d8719bdf8119276ef.pdf",
+    "ingested": "2026-09-11"
+   }
   }
  ],
- "updated": "2026-09-09T15:01:08+00:00"
+ "updated": "2026-09-11T14:50:40+00:00"
 }
