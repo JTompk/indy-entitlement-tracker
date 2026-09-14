@@ -76,6 +76,11 @@
   #map{flex:1;height:auto;background:#EFEEE8}
   .leaflet-popup-content-wrapper{border-radius:0;font-family:'Jost',sans-serif;background:var(--paper);border:1px solid var(--hairline);box-shadow:0 2px 14px rgba(0,0,0,.10)}
   .leaflet-popup-tip{background:var(--paper)}
+  .leaflet-popup-content{margin:13px 16px 12px;line-height:1.45}
+  .pop-cta{display:block;margin-top:9px;padding-top:8px;border-top:1px solid var(--hairline);
+    font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px}
+  .pop-cta:hover{background:var(--accent);text-decoration:none}
 
   #zoomhint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1000;display:none;
     background:var(--paper);border:1px solid var(--ink);padding:9px 16px;
@@ -258,6 +263,25 @@ const CLSNAME = {
   A:'accessory use only', X:'special district \u2014 its own rulebook applies',
   N:'not allowed \u2014 rezoning territory',
 };
+/* One-line Proformus hook per verdict class, shown at the foot of every polygon popup.
+   ACC = accessory use that the chosen use is allowed to be. */
+const POPUP_CTA = {
+  N:'Need a rezoning? We can help with that',
+  S:'Need a BZA hearing? We can help with that',
+  X:'Special-district approvals? We can help with that',
+  V:'Need to prove the vacancy? We can help with that',
+  P:'Ready to build? We can pressure-test the site',
+  A:'Want it standalone? That takes a rezoning \u2014 we can help',
+  ACC:'Checking the accessory-use rules? We can help with that',
+  U:'Not sure what this parcel is? We can help with that',
+};
+function popupHtml(d,cls){
+  const acc=currentUse.acc&&cls==='A';
+  const what=acc?'allowed as an accessory use':(CLSNAME[cls]||'district not in the 2026 use table');
+  const cta=POPUP_CTA[acc?'ACC':cls]||POPUP_CTA.U;
+  return `<b>${esc(d)}</b> \u2014 ${what} for ${esc(currentUse.label.toLowerCase())}`
+    +`<a class="pop-cta" href="#lead">${cta} &rarr;</a>`;
+}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=v=>String(v||'').toUpperCase().replace(/\s+/g,'');
 
@@ -393,7 +417,7 @@ function paint(){
       let cls=classify(d);
       const styleKey=(currentUse.acc&&cls==='A')?'P':(STYLE[cls]?cls:'X');
       L.geoJSON(f,{style:STYLE[styleKey]})
-        .bindPopup(`<b>${esc(d)}</b> — ${(currentUse.acc&&cls==='A')?'allowed as an accessory use':CLSNAME[cls]||'district not in the 2026 use table'} for ${esc(currentUse.label.toLowerCase())}`)
+        .bindPopup(popupHtml(d,cls))
         .addTo(zoningLayer);
     });
   }).catch(e=>warn('Zoning layer request failed — check <code>CFG.layerUrl</code> against the MapIndy REST directory. ('+esc(e.message)+')'));
@@ -431,6 +455,29 @@ async function fetchZoning(bounds,seq){
 
 /* ---------- verdict at a point ---------- */
 map.on('click',e=>{ if(currentUse) verdictAt(e.latlng); });
+
+/* ---------- popup CTA → lead card ---------- */
+let popupLatLng=null;
+map.on('popupopen',e=>{ popupLatLng=e.popup.getLatLng(); });
+document.addEventListener('click',e=>{
+  const a=e.target.closest('.pop-cta'); if(!a) return;
+  e.preventDefault(); goToLead();
+});
+async function goToLead(){
+  const lead=document.getElementById('lead');
+  // the polygon click already dropped a pin and ran the verdict; re-run only if that didn't happen
+  if(popupLatLng && (!lead.classList.contains('show') || !(pin && pin.getLatLng().equals(popupLatLng)))){
+    await verdictAt(popupLatLng);
+  }
+  map.closePopup();
+  if(window.matchMedia('(max-width:760px)').matches){
+    if(window.__revealVerdict) window.__revealVerdict('lead');
+    return;
+  }
+  try{lead.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){lead.scrollIntoView()}
+  const n=lead.querySelector('input[name=name]');
+  if(n) setTimeout(()=>{try{n.focus({preventScroll:true})}catch(e){n.focus()}},400);
+}
 
 async function verdictAt(latlng,label){
   if(pin) pin.remove();
@@ -603,11 +650,11 @@ function warn(html){const w=document.getElementById('configwarn');w.innerHTML=ht
   /* map grows when actually navigated — pan or zoom, not a verdict tap */
   try{map.on('dragstart zoomstart',mapBig)}catch(e){}
   /* the lead moment: a verdict lands -> grow the panel and put the card on screen */
-  window.__revealVerdict=function(){
+  window.__revealVerdict=function(id){
     if(!mq.matches) return;
     panelBig();
     setTimeout(()=>{
-      try{document.getElementById('verdict').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
+      try{document.getElementById(id||'verdict').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
     },340);
   };
 })();
