@@ -293,8 +293,28 @@ Promise.allSettled([
   document.getElementById('updated').textContent = updated ? updated.slice(0,10) : '—';
   document.getElementById('total').textContent = features.length;
   if(!features.length){document.getElementById('empty').hidden=false;}
-  buildFilters(); render();
+  buildFilters(); render(); focusCase();
 });
+
+// Case mode: ?case=2026-ZON-076 zooms to one filing and opens its popup —
+// digest items deep-link here. If the current filters hide it, a temporary
+// marker is added so the link never lands on an empty map.
+function focusCase(){
+  const want = (urlq.get('case') || '').trim().toUpperCase();
+  if(!want) return;
+  let hit = null;
+  layerGroup.eachLayer(l=>{ if(!hit && l.feature && String(l.feature.case||'').toUpperCase()===want) hit=l; });
+  if(!hit){
+    const f = features.find(f=>f.geometry && String(f.properties.case||'').toUpperCase()===want);
+    if(!f) return;
+    const [lon,lat] = f.geometry.coordinates, p = f.properties;
+    hit = L.circleMarker([lat,lon],{radius:7, weight:1.5, color:'#ffffff', fillColor:colorFor(p), fillOpacity:.9})
+      .bindPopup(popup(p),{maxWidth:320});
+    hit.feature = p; hit.addTo(layerGroup);
+  }
+  map.setView(hit.getLatLng(), 16);
+  setTimeout(()=>hit.openPopup(), 300);
+}
 
 function checkboxRow(container, label, count, color, ring, onToggle, checked=true){
   const l=document.createElement('label'); l.className='row';
