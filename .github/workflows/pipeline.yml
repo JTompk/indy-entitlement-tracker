@@ -60,11 +60,26 @@ jobs:
         if: steps.gate.outputs.digest == 'true'
         run: python scraper/digest.py
 
+      # ------------------------------------- Mondays only: email edition --
+      # Screenshot the live docket map (served from this run's docs/), render
+      # a locator PNG per filing, and write digest_drafts/<date>-email.html.
+      # Images are committed to docs/img/ so GitHub Pages serves them at
+      # map.indyimby.com/img/... for the email.
+      - name: Install browser for the map screenshot
+        if: steps.gate.outputs.digest == 'true'
+        run: python -m playwright install --with-deps chromium
+
+      - name: Build email edition
+        if: steps.gate.outputs.digest == 'true'
+        run: |
+          python scraper/email_digest.py --screenshot
+          python scraper/email_digest.py
+
       - name: Commit updated data
         run: |
           git config user.name "filings-bot"
           git config user.email "actions@github.com"
-          git add docs/data/ data/ digest_drafts/ || true
+          git add docs/data/ docs/img/ data/ digest_drafts/ || true
           if git diff --cached --quiet; then
             echo "No new filings this run."
           else
@@ -109,3 +124,13 @@ jobs:
           git add content/posts/
           git commit -m "Monday digest: $(date -u +%Y-%m-%d)"
           git push
+
+      # ----------------------------------- Mondays only: Buttondown draft --
+      # Creates a DRAFT in Buttondown (review + send by hand). To send
+      # automatically, set BUTTONDOWN_STATUS to about_to_send.
+      - name: Create Buttondown draft
+        if: steps.gate.outputs.digest == 'true'
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          BUTTONDOWN_STATUS: draft
+        run: python scraper/email_digest.py --push
