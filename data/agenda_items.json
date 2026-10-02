@@ -322,5 +322,29 @@
   "meeting_date": "2026-09-16",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-65d69ceab1f84dda973823c1cf0ccdb0.pdf",
   "ingested": "2026-09-11"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-053",
+  "title": "2026-A-053 (For Public Hearing) Authorizes termination of the 2023 Real Property Tax Abatement approved by Resolution #",
+  "summary": "2026-A-053 (For Public Hearing) Authorizes termination of the 2023 Real Property Tax Abatement approved by Resolution #",
+  "address": null,
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-10-07",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d885c97968be48818cd30328da0b2263.pdf",
+  "ingested": "2026-10-02"
+ },
+ {
+  "kind": "resolution",
+  "case": "2023-A-044",
+  "title": "2023-A-044 at 820 South Post Road, Council District #20, Councilor Michael-Paul Hart. 5. 2026-E-004 Authorizes the Department of Metropolitan Development to ame",
+  "summary": "2023-A-044 at 820 South Post Road, Council District #20, Councilor Michael-Paul Hart. 5. 2026-E-004 Authorizes the Department of Metropolitan Development to amend the Agreement with Raven Commercial Group LLC to increase the total contractual not-to-exceed amount to $325,000 in order to provide security enhancements at Union Station needs. COMMUNITY INVESTMENTS: 6. 2026-C-003 Authorizes the Department of Metropolitan Development to amend the Agreement with Club 720 Development Corporation to extend the term through March 31, 2027. 7. 2026-C-004 Authorizes the Department of Metropolitan Develop",
+  "address": "044 at 820 South Post Road",
+  "dollars": 4658130,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-10-07",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d885c97968be48818cd30328da0b2263.pdf",
+  "ingested": "2026-10-02"
  }
 ]

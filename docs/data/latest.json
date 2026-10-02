@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-ZON-039",
+  "case": "2023-A-044",
+  "type": "DMD contract",
+  "address": "044 at 820 South Post Road",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "The MDC would authorize the planning department to sign a contract."
+ },
+ {
+  "case": "2026-ZON-051",
   "type": "Rezoning",
-  "address": "6501 MANN ROAD",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 6501 Mann Road proposes multi-family residential development."
+  "address": "4150 NORTH HIGH SCHOOL ROAD",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 1.9-acre site at 4150 North High School Road from community commercial (C-4) to high-intensity commercial (C-7) zoning to build used car sales and heavy vehicle repair."
  },
  {
-  "case": "2026-ZON-065",
+  "case": "2026-ZON-066",
   "type": "Rezoning",
-  "address": "4402 MADISON AVENUE",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 2.13-acre site at 4402 Madison Avenue from single-family (D-3) to heavy commercial (C-5) zoning to build commercial contractor uses."
+  "address": "931 SOUTH EAST STREET",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 931 South East Street proposes residential development."
  },
  {
-  "case": "2026-CVR-836",
-  "type": "Commitment / Covenant",
-  "address": "2326 EAST 44TH STREET",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "The owner of 2326 East 44th Street is asking permission for a use the current zoning doesn't allow: commercial uses including automotive service and repair."
- },
- {
-  "case": "2026-CVR-848",
-  "type": "Commitment / Covenant",
-  "address": "7705 MICHIGAN ROAD",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "The owner of 7705 Michigan Road is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
- },
- {
-  "case": "2026-CPL-849",
-  "type": "Other",
-  "address": "3808 NORTH KITLEY AVENUE",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 3808 North Kitley Avenue proposes residential development."
- },
- {
-  "case": "2026-APP-017",
-  "type": "Approval / Appeal",
-  "address": "2345 WEST 86TH STREET",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "2026-APP-017 | 2345 West 86th Street Washington Township, Council District #13 HD-2 Little Sisters of the Poor of Indianapolis, Inc., by Cha"
- },
- {
-  "case": "2026-APP-018",
-  "type": "Approval / Appeal",
-  "address": "2063 RUCKLE STREET",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 2063 Ruckle Street proposes two-family dwelling and a detached garage."
- },
- {
-  "case": "2026-ZON-072",
+  "case": "2026-ZON-068",
   "type": "Rezoning",
-  "address": "7644 BIG BEND BOULEVARD",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 27.28-acre site at 7644 Big Bend Boulevard from planned residential (D-P) to park (PK-1) zoning to build for use as a community park."
+  "address": "7440 WOODLAND DRIVE",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 7440 Woodland Drive proposes light industrial uses."
  },
  {
-  "case": "2026-ZON-078",
+  "case": "2026-ZON-071",
   "type": "Rezoning",
-  "address": "1131 PLEASANT STREET",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 1131 Pleasant Street proposes residential development."
+  "address": "610 SOUTH DROVER STREET",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 610 South Drover Street proposes commercial uses."
  },
  {
-  "case": "2026-CPL-846",
-  "type": "Other",
-  "address": "5611 MICHIGAN ROAD",
-  "meeting_date": "2026-09-24",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 3.04-acre site at 5611 Michigan Road from planned commercial (C-S) to planned commercial (C-S) zoning to build veterinarian office."
+  "case": "2026-ZON-076",
+  "type": "Rezoning",
+  "address": "2507 COLUMBIA AVENUE",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.17-acre site at 2507 Columbia Avenue from general commercial (C-3) to low-rise apartment (D-8) zoning to build residential uses."
+ },
+ {
+  "case": "2026-CZN-834",
+  "type": "Rezoning",
+  "address": "6509 DEAN ROAD",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 1.73-acre site at 6509 Dean Road from suburban residential (D-S) to large-lot single-family (D-1) zoning to build two, detached single-family dwellings."
+ },
+ {
+  "case": "2026-CZN-845",
+  "type": "Rezoning",
+  "address": "3949 SOUTH STATE AVENUE",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 3949 South State Avenue proposes school uses (K through 12)."
+ },
+ {
+  "case": "2026-ZON-043",
+  "type": "Rezoning",
+  "address": "7030 EAST 33RD STREET",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 1.19-acre site at 7030 East 33rd Street from mixed-use (MU-1) to heavy commercial (C-5) zoning."
+ },
+ {
+  "case": "2026-CZN-828",
+  "type": "Rezoning",
+  "address": "1170 KENTUCKY AVENUE",
+  "meeting_date": "2026-10-07",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 1170 Kentucky Avenue proposes commercial uses."
  }
 ]
