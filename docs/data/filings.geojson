@@ -62488,7 +62488,397 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-8208afb9a2aa48638b612dff36fecf26.pdf",
     "ingested": "2026-10-09"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.07522,
+     39.811024
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-080",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "5448 EAST 30TH STREET",
+    "township": "Warren",
+    "council_district": 9,
+    "zoning_from": "D-5",
+    "zoning_to": "I-2",
+    "summary": "2026-ZON-080 | 5448 East 30th Street Warren Township, Council District #9 Elisa P. Amezcua, by Molina & Amaya Co. LLC Rezoning of 0.52-acre from the D-5 district to the I-2 district to allow for commercial building & contractor uses. **Petitioner has withdrawn the Petition. PETITIONS REQUESTING TO BE CONTINUED: 1.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.126603,
+     39.912566
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-077",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "2004 EAST 86TH STREET",
+    "township": "Washington",
+    "council_district": 2,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-077 | 2004 East 86th Street Washington Township, Council District #2 Michael J. and Maureen Surak by Justin Kingen Rezoning of 3.02 acres from the D-A (FF) (FW) district to the C-1 (FF) (FW) district to provide commercial office uses. **Petitioner request for continuance for cause to October 29, 2026 2.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.2093,
+     39.798826
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-081",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "2307 LAFAYETTE ROAD",
+    "township": "Wayne",
+    "council_district": 12,
+    "zoning_from": "C-4",
+    "zoning_to": "C-5",
+    "summary": "2026-ZON-081 | 2307 Lafayette Road Wayne Township, Council District #12 Adrian Carpio Torres Rezoning of 1.25 acres from the C-4 to the C-5 district to provide for a used car sales business. **Staff and Petitioner request for continuance for cause to November 12, 2026 3.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.198938,
+     39.862101
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-084",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "6014 MICHIGAN ROAD",
+    "township": "Washington",
+    "council_district": 2,
+    "zoning_from": "C-3",
+    "zoning_to": "I-1",
+    "summary": "2026-ZON-084 | 6014 Michigan Road Washington Township, Council District #2 AREC, by Sahithya Cheruku Rezoning of 5.62 acres from the I-2 district, D-2 district and C-3 district to the I-1 district to provide for a mini- warehouse / self-storage facility. **Petitioner request for continuance for cause to November 19, 2026 Petitions for Public Hearing PETITIONS TO BE EXPEDITED: 4.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.953399,
+     39.834391
+    ]
+   },
+   "properties": {
+    "case": "2026-MOD-008",
+    "year": 2026,
+    "prefix": "MOD",
+    "type": "Modification",
+    "address": "4310 NORTH CARROLL ROAD",
+    "township": "Lawrence",
+    "council_district": 15,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-MOD-008 | 4310 North Carroll Road Lawrence Township, Council District #15 D-P Lennar Homes of Indiana, LLC, by Brian J. Tuohy Modification of the Development Statement for",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.145594,
+     39.762997
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-083",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "707 BATES STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-083 | 707 Bates Street Center Township, Council District #18 Daniel Phair Rezoning of 0.134-acre from the I-4 (RC) district to the D-8 (RC) district to provide for residential development. 6.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.148474,
+     39.807507
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-086",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "2826 RUCKLE STREET",
+    "township": "Center",
+    "council_district": 12,
+    "zoning_from": "MU-2",
+    "zoning_to": "D-8",
+    "summary": "2026-ZON-086 | 2826 Ruckle Street Center Township, Council District #12 Bruce E Webb, by Josh Smith of RG Development LLC Rezoning of 0.24 acres from the MU-2 district to the D-8 district to provide for residential uses. 7.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.141417,
+     39.847049
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-087",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "1022 EAST 52ND STREET",
+    "township": "Washington",
+    "council_district": 7,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-087 | 1022 East 52nd Street & 5235 Winthrop Avenue Washington Township, Council District # 7 TCC Real Estate Holdings LLC, by Justin Kingen Rezoning of 3.34 acres from the I-4 (W-5) district to the MU-2 (W-5) district to provide for office, personal service, retail and food service uses within two existing buildings. 8.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.246902,
+     39.676502
+    ]
+   },
+   "properties": {
+    "case": "2026-CPL-850",
+    "year": 2026,
+    "prefix": "CPL",
+    "type": "Other",
+    "address": "6300 MANN ROAD",
+    "township": "Decatur",
+    "council_district": 21,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-CPL-850 | 6300 Mann Road Decatur Township, Council District #21 Anthony Elrod, by Justin Kingen Rezoning of 24.7 acres from the D-A (FF) (FW) district to the D-3 (FF) (FW) district to provide for residential development. Approval of a Subdivision Plat to be known as Elrod Estates, dividing 24.7 acres into two lots, with a waiver of sidewalks, per Chapter 741.306. PETITIONS FOR PUBLIC HEARING (Continued Petitions): 9.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.157949,
+     39.828398
+    ]
+   },
+   "properties": {
+    "case": "2026-APP-016",
+    "year": 2026,
+    "prefix": "APP",
+    "type": "Approval / Appeal",
+    "address": "45 WEST 40TH STREET",
+    "township": "Washington",
+    "council_district": 7,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-APP-016 | 45 West 40th Street Washington Township, Council District #7 PK-1 (TOD) City of Indianapolis Parks and Recreation, by Kyle Koger Park District One Approval to provide for the replacement of existing playground equipment, a new park shelter, and new internal concrete sidewalks. 10.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.251618,
+     39.750553
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-061",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "5330 WEST MORRIS STREET",
+    "township": "Center",
+    "council_district": 17,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-ZON-061 | 5330 West Morris Street Center Township, Council District #17 Jorge Gonzales Rezoning of 0.33-acre from the C-3 (TOD) district to the C-5 (TOD) district to provide for automotive uses, including repair. 11.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.158553,
+     39.668697
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-070",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "6650 SOUTH MERIDIAN STREET",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": "D-A",
+    "zoning_to": "SU-1",
+    "summary": "2026-ZON-070 | 6650 South Meridian Street Perry Township, Council District #22 Faith Assembly of God Indianapolis, Inc., by Joseph D. Calderon Rezoning of 5.0 acres from the D-A district to the SU-1 district to provide for religious uses. 12.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.082609,
+     39.683159
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-075",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "5820 SOUTH EMERSON AVENUE",
+    "township": "Perry",
+    "council_district": 24,
+    "zoning_from": "C-3",
+    "zoning_to": "C-4",
+    "summary": "2026-ZON-075 | 5820 South Emerson Avenue Perry Township, Council District #24 RCP Development, LLC, by Joseph D. Calderon Rezoning of 2.15 acres from the C-3 district to the C-4 district to provide for commercial uses. 13.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.158553,
+     39.668697
+    ]
+   },
+   "properties": {
+    "case": "2026-ZON-079",
+    "year": 2026,
+    "prefix": "ZON",
+    "type": "Rezoning",
+    "address": "6650 SOUTH MERIDIAN STREET",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": "D-A",
+    "zoning_to": "SU-1",
+    "summary": "2026-ZON-079 | 6650 South Meridian Street Perry Township, Council District #22 Immanuel Mizo Methodist Church, by Andi Metzel Rezoning of 8.68 acres from the D-A district to the SU-1 district to provide for religious uses. 14.",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.11302,
+     39.708653
+    ]
+   },
+   "properties": {
+    "case": "2026-CPL-847",
+    "year": 2026,
+    "prefix": "CPL",
+    "type": "Other",
+    "address": "2880 EAST HANNA AVENUE",
+    "township": "Perry",
+    "council_district": 19,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-CPL-847 | 2880 East Hanna Avenue Perry Township, Council District #19 D-7 and C-1 UP Hanna Commons, LP, by Tyler Thompson Variance of development standards of the Consolidated Zoning and Subdivision Ordinance to provide for proposed Lot Two without street frontage (minimum 100-foot of street frontage required). Approval of a Subdivision Plat to be known as Hanna Commons, dividing 9.8 acres into two lots. Additional Business: **The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. Copies of the proposals are available for examina",
+    "board": "Hearing Examiner",
+    "meeting_date": "2026-10-15",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
+    "ingested": "2026-10-12"
+   }
   }
  ],
- "updated": "2026-10-09T17:19:59+00:00"
+ "updated": "2026-10-12T15:07:19+00:00"
 }
