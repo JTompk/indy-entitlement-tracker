@@ -10942,5 +10942,37 @@
   "meeting_date": "2026-10-15",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d6e576896655470fac7bd54d5e5f35c2.pdf",
   "ingested": "2026-10-12"
+ },
+ {
+  "case": "2026-HP-002",
+  "year": 2026,
+  "prefix": "HP",
+  "type": "Historic (IHPC)",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-HP-002 (For Public Hearing) Adopts the \u201cThe Former St. Francis de Sales Catholic Church Preservation Plan 46 \u2013 the Former St. Francis de Sales Catholic Church (HA-46 SF)\u201d as part of the Comprehensive Plan for Indianapolis-Marion County. The Plan provides preservation guidelines and recommendations based on the historic, architectural, and cultural significance of the Former St. Francis de Sales Church. Zoning Petitions: PETITIONS OF NO APPEAL (RECOMMENDED FOR APPROVAL): 11.",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-10-21",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36ca91ca178946458c5a5e1fc6b7108f.pdf",
+  "ingested": "2026-10-16"
+ },
+ {
+  "case": "2026-CZN-841",
+  "year": 2026,
+  "prefix": "CZN",
+  "type": "Rezoning",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-CZN-841 /",
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-10-21",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36ca91ca178946458c5a5e1fc6b7108f.pdf",
+  "ingested": "2026-10-16"
  }
 ]

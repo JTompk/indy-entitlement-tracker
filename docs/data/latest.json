@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-ZON-080",
-  "type": "Rezoning",
-  "address": "5448 EAST 30TH STREET",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.52-acre site at 5448 East 30th Street from compact single-family/two-family (D-5) to industrial (I-2) zoning to build for commercial building & contractor uses."
+  "case": "2026-A-016",
+  "type": "Tax incentive",
+  "address": "2505 North Sherman Drive",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
  },
  {
-  "case": "2026-ZON-077",
-  "type": "Rezoning",
-  "address": "2004 EAST 86TH STREET",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "2026-ZON-077 | 2004 East 86th Street Washington Township, Council District #2 Michael J. and Maureen Surak by Justin Kingen Rezoning of 3.02"
+  "case": "2026-A-017",
+  "type": "Tax incentive",
+  "address": "2505 North Sherman Drive",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
  },
  {
-  "case": "2026-ZON-081",
-  "type": "Rezoning",
-  "address": "2307 LAFAYETTE ROAD",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 1.25-acre site at 2307 Lafayette Road from community commercial (C-4) to heavy commercial (C-5) zoning to build used car sales business."
+  "case": "2026-A-048",
+  "type": "Tax incentive",
+  "address": "2204 North Meridian Street",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "The city is considering a property-tax break (abatement) for a project at 2204 North Meridian Street."
  },
  {
-  "case": "2026-ZON-084",
-  "type": "Rezoning",
-  "address": "6014 MICHIGAN ROAD",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 5.62-acre site at 6014 Michigan Road from general commercial (C-3) to light industrial (I-1) zoning to build mini- warehouse / self-storage facility."
- },
- {
-  "case": "2026-MOD-008",
-  "type": "Modification",
-  "address": "4310 NORTH CARROLL ROAD",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "2026-MOD-008 | 4310 North Carroll Road Lawrence Township, Council District #15 D-P Lennar Homes of Indiana, LLC, by Brian J. Tuohy Modificat"
- },
- {
-  "case": "2026-ZON-083",
-  "type": "Rezoning",
-  "address": "707 BATES STREET",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 707 Bates Street proposes residential development."
- },
- {
-  "case": "2026-ZON-086",
-  "type": "Rezoning",
-  "address": "2826 RUCKLE STREET",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.24-acre site at 2826 Ruckle Street from mixed-use (MU-2) to low-rise apartment (D-8) zoning to build residential uses."
- },
- {
-  "case": "2026-ZON-087",
-  "type": "Rezoning",
-  "address": "1022 EAST 52ND STREET",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 1022 East 52nd Street proposes office."
- },
- {
-  "case": "2026-CPL-850",
-  "type": "Other",
-  "address": "6300 MANN ROAD",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 6300 Mann Road proposes residential development."
- },
- {
-  "case": "2026-APP-016",
+  "case": "2026-APP-017",
   "type": "Approval / Appeal",
-  "address": "45 WEST 40TH STREET",
-  "meeting_date": "2026-10-15",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 45 West 40th Street proposes replacement of existing playground equipment."
+  "address": "2345 WEST 86TH STREET",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "2026-APP-017 | 2345 West 86th Street Washington Township, Council District #13 HD-2 Little Sisters of the Poor of Indianapolis, Inc., by Cha"
+ },
+ {
+  "case": "2026-APP-018",
+  "type": "Approval / Appeal",
+  "address": "2063 RUCKLE STREET",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 2063 Ruckle Street proposes two-family dwelling and a detached garage."
+ },
+ {
+  "case": "2026-ZON-072",
+  "type": "Rezoning",
+  "address": "7644 BIG BEND BOULEVARD",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 27.28-acre site at 7644 Big Bend Boulevard from planned residential (D-P) to park (PK-1) zoning to build for use as a community park."
+ },
+ {
+  "case": "2026-ZON-078",
+  "type": "Rezoning",
+  "address": "1131 PLEASANT STREET",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 1131 Pleasant Street proposes residential development."
+ },
+ {
+  "case": "2026-CZN-846",
+  "type": "Rezoning",
+  "address": "5611 MICHIGAN ROAD",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 3.04-acre site at 5611 Michigan Road from planned commercial (C-S) to planned commercial (C-S) zoning to build veterinarian office."
+ },
+ {
+  "case": "2026-CZN-851",
+  "type": "Rezoning",
+  "address": "2202 NORTH SHERMAN DRIVE",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "A property owner wants to rezone the 0.24-acre site at 2202 North Sherman Drive from UQ-1 to compact single-family/two-family (D-5) zoning to build residential uses."
+ },
+ {
+  "case": "2026-CAP-852",
+  "type": "Commitment / Covenant",
+  "address": "524 EAST 16TH STREET",
+  "meeting_date": "2026-10-21",
+  "board": "Metropolitan Development Commission",
+  "summary": "A filing at 524 East 16th Street proposes one freestanding sign and one building sign on existing building."
  }
 ]

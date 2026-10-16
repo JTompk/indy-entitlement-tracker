@@ -346,5 +346,41 @@
   "meeting_date": "2026-10-07",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-d885c97968be48818cd30328da0b2263.pdf",
   "ingested": "2026-10-02"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-016",
+  "title": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+  "summary": "2026-A-016 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of ten (10) years real property tax abatement.) **Request will be made for continuance to November 18, 2026 7.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-10-21",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36ca91ca178946458c5a5e1fc6b7108f.pdf",
+  "ingested": "2026-10-16"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-017",
+  "title": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Cen",
+  "summary": "2026-A-017 (For Public Hearing) Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of fifteen (15) years enhanced personal property tax abatement.) **Request will be made for continuance to November 18, 2026 8.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-10-21",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36ca91ca178946458c5a5e1fc6b7108f.pdf",
+  "ingested": "2026-10-16"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-048",
+  "title": "2026-A-048 Preliminary Economic Revitalization Area M22 Housing, LP, located at 2204 North Meridian Street, Council District #12, Center Township. (Recommend ap",
+  "summary": "2026-A-048 Preliminary Economic Revitalization Area M22 Housing, LP, located at 2204 North Meridian Street, Council District #12, Center Township. (Recommend approval of ten (10) years real property tax abatement.) PLANNING: 9. 2026-P-008 (For Public Hearing) Amends a segment of the Comprehensive Plan of Marion County, Indiana. This amendment to the Marion County Land Use Plan is an update to integrate the twenty specific area plans, provide language and format updates for ease of use of the Pattern Book, and adjust existing land use typologies to meet current needs throughout Indianapolis Mar",
+  "address": "2204 North Meridian Street",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-10-21",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36ca91ca178946458c5a5e1fc6b7108f.pdf",
+  "ingested": "2026-10-16"
  }
 ]
