@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-A-016",
-  "type": "Tax incentive",
-  "address": "2505 North Sherman Drive",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
+  "case": "2026-MOD-003",
+  "type": "Modification",
+  "address": "8600 COMBS ROAD",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "2026-MOD-003 | 8600 Combs Road Franklin Township, Council District #25 I-3 Punjab Property Inc., by Patrick Rooney Modification of Commitmen"
  },
  {
-  "case": "2026-A-017",
-  "type": "Tax incentive",
-  "address": "2505 North Sherman Drive",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "The city is considering a property-tax break (abatement) for a project at 2505 North Sherman Drive."
+  "case": "2026-MOD-007",
+  "type": "Modification",
+  "address": "5261 ELMWOOD AVENUE",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "2026-MOD-007 | 5261 Elmwood Avenue Franklin Township, Council District #20 C-5 Expo Bowl, Inc., by Misha Rabinowitch Modification of Commitm"
  },
  {
-  "case": "2026-A-048",
-  "type": "Tax incentive",
-  "address": "2204 North Meridian Street",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "The city is considering a property-tax break (abatement) for a project at 2204 North Meridian Street."
- },
- {
-  "case": "2026-APP-017",
-  "type": "Approval / Appeal",
-  "address": "2345 WEST 86TH STREET",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "2026-APP-017 | 2345 West 86th Street Washington Township, Council District #13 HD-2 Little Sisters of the Poor of Indianapolis, Inc., by Cha"
- },
- {
-  "case": "2026-APP-018",
-  "type": "Approval / Appeal",
-  "address": "2063 RUCKLE STREET",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 2063 Ruckle Street proposes two-family dwelling and a detached garage."
- },
- {
-  "case": "2026-ZON-072",
+  "case": "2026-ZON-039",
   "type": "Rezoning",
-  "address": "7644 BIG BEND BOULEVARD",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 27.28-acre site at 7644 Big Bend Boulevard from planned residential (D-P) to park (PK-1) zoning to build for use as a community park."
+  "address": "6501 MANN ROAD",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 6501 Mann Road proposes multi-family residential development."
  },
  {
-  "case": "2026-ZON-078",
+  "case": "2026-ZON-092",
   "type": "Rezoning",
-  "address": "1131 PLEASANT STREET",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 1131 Pleasant Street proposes residential development."
+  "address": "6440 NORTH COLLEGE AVENUE",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 6440 North College Avenue proposes for commercial development."
  },
  {
-  "case": "2026-CZN-846",
+  "case": "2026-ZON-095",
   "type": "Rezoning",
-  "address": "5611 MICHIGAN ROAD",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 3.04-acre site at 5611 Michigan Road from planned commercial (C-S) to planned commercial (C-S) zoning to build veterinarian office."
+  "address": "5670 AND 5680 EDEN VILLAGE DRIVE",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 5670 and 5680 Eden Village Drive proposes residential development."
  },
  {
-  "case": "2026-CZN-851",
-  "type": "Rezoning",
-  "address": "2202 NORTH SHERMAN DRIVE",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "A property owner wants to rezone the 0.24-acre site at 2202 North Sherman Drive from UQ-1 to compact single-family/two-family (D-5) zoning to build residential uses."
- },
- {
-  "case": "2026-CAP-852",
+  "case": "2026-CVR-838",
   "type": "Commitment / Covenant",
-  "address": "524 EAST 16TH STREET",
-  "meeting_date": "2026-10-21",
-  "board": "Metropolitan Development Commission",
-  "summary": "A filing at 524 East 16th Street proposes one freestanding sign and one building sign on existing building."
+  "address": "6915 EAST WASHINGTON STREET",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 6915 East Washington Street proposes food pantry and child-care services."
+ },
+ {
+  "case": "2026-CVR-840",
+  "type": "Commitment / Covenant",
+  "address": "4402 MANN ROAD",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.451-acre site at 4402 Mann Road from general commercial (C-3) to community commercial (C-4) zoning to build gasoline station."
+ },
+ {
+  "case": "2026-CVR-848",
+  "type": "Commitment / Covenant",
+  "address": "7705 MICHIGAN ROAD",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "The owner of 7705 Michigan Road is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+ },
+ {
+  "case": "2026-ZON-088",
+  "type": "Rezoning",
+  "address": "1612 NORTH SOMERSET AVENUE",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "A property owner wants to rezone the 0.27-acre site at 1612 North Somerset Avenue from compact single-family/two-family (D-5) to community commercial (C-4) zoning to build expansion of existing commercial use."
+ },
+ {
+  "case": "2026-ZON-090",
+  "type": "Rezoning",
+  "address": "3431 NORTH ILLINOIS STREET",
+  "meeting_date": "2026-10-29",
+  "board": "Hearing Examiner",
+  "summary": "A filing at 3431 North Illinois Street proposes residential development."
  }
 ]
