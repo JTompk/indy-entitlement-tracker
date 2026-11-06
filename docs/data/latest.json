@@ -1,82 +1,82 @@
 [
  {
-  "case": "2026-MOD-003",
-  "type": "Modification",
-  "address": "8600 COMBS ROAD",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "2026-MOD-003 | 8600 Combs Road Franklin Township, Council District #25 I-3 Punjab Property Inc., by Patrick Rooney Modification of Commitmen"
+  "case": "2026-PLT-044",
+  "type": "Plat / Subdivision",
+  "address": "5617 LOWELL AVENUE",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 0.172-acre site at 5617 Lowell Avenue into new lots."
  },
  {
-  "case": "2026-MOD-007",
-  "type": "Modification",
-  "address": "5261 ELMWOOD AVENUE",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "2026-MOD-007 | 5261 Elmwood Avenue Franklin Township, Council District #20 C-5 Expo Bowl, Inc., by Misha Rabinowitch Modification of Commitm"
+  "case": "2026-PLT-046",
+  "type": "Plat / Subdivision",
+  "address": "1050 S EMERSON AVENUE",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 8.22-acre site at 1050 S Emerson Avenue into new lots."
  },
  {
-  "case": "2026-ZON-039",
-  "type": "Rezoning",
-  "address": "6501 MANN ROAD",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 6501 Mann Road proposes multi-family residential development."
+  "case": "2026-PLT-048",
+  "type": "Plat / Subdivision",
+  "address": "415 EAST 32ND STREET",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 0.17-acre site at 415 East 32nd Street into new lots."
  },
  {
-  "case": "2026-ZON-092",
-  "type": "Rezoning",
-  "address": "6440 NORTH COLLEGE AVENUE",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 6440 North College Avenue proposes for commercial development."
+  "case": "2026-PLT-049",
+  "type": "Plat / Subdivision",
+  "address": "3191 SOUTH TACOMA AVENUE",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 0.57-acre site at 3191 South Tacoma Avenue into new lots."
  },
  {
-  "case": "2026-ZON-095",
-  "type": "Rezoning",
-  "address": "5670 AND 5680 EDEN VILLAGE DRIVE",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 5670 and 5680 Eden Village Drive proposes residential development."
+  "case": "2026-PLT-051",
+  "type": "Plat / Subdivision",
+  "address": "3633 KENTUCKY AVENUE",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 8.03-acre site at 3633 Kentucky Avenue into new lots."
  },
  {
-  "case": "2026-CVR-838",
-  "type": "Commitment / Covenant",
-  "address": "6915 EAST WASHINGTON STREET",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 6915 East Washington Street proposes food pantry and child-care services."
+  "case": "2026-PLT-052",
+  "type": "Plat / Subdivision",
+  "address": "1302 MAIN STREET",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 0.994-acre site at 1302 Main Street into new lots."
  },
  {
-  "case": "2026-CVR-840",
-  "type": "Commitment / Covenant",
-  "address": "4402 MANN ROAD",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.451-acre site at 4402 Mann Road from general commercial (C-3) to community commercial (C-4) zoning to build gasoline station."
+  "case": "2026-PLT-053",
+  "type": "Plat / Subdivision",
+  "address": "1001 FOLTZ STREET",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 1.986-acre site at 1001 Foltz Street into new lots."
  },
  {
-  "case": "2026-CVR-848",
-  "type": "Commitment / Covenant",
-  "address": "7705 MICHIGAN ROAD",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "The owner of 7705 Michigan Road is asking to bend the site rules (things like setbacks, height, or parking) for a project there."
+  "case": "2026-PLT-054",
+  "type": "Plat / Subdivision",
+  "address": "6200 AND 6310 WEST SOUTHPORT ROAD",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 34.132-acre site at 6200 and 6310 West Southport Road into new lots."
  },
  {
-  "case": "2026-ZON-088",
-  "type": "Rezoning",
-  "address": "1612 NORTH SOMERSET AVENUE",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "A property owner wants to rezone the 0.27-acre site at 1612 North Somerset Avenue from compact single-family/two-family (D-5) to community commercial (C-4) zoning to build expansion of existing commercial use."
+  "case": "2026-PLT-056",
+  "type": "Plat / Subdivision",
+  "address": "6418 CARROLLTON AVENUE",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 0.34-acre site at 6418 Carrollton Avenue into new lots."
  },
  {
-  "case": "2026-ZON-090",
-  "type": "Rezoning",
-  "address": "3431 NORTH ILLINOIS STREET",
-  "meeting_date": "2026-10-29",
-  "board": "Hearing Examiner",
-  "summary": "A filing at 3431 North Illinois Street proposes residential development."
+  "case": "2026-PLT-059",
+  "type": "Plat / Subdivision",
+  "address": "811 NORTH HIGHLAND AVENUE",
+  "meeting_date": "2026-11-13",
+  "board": "Plat Committee",
+  "summary": "A landowner wants to split or replat the 0.394-acre site at 811 North Highland Avenue into new lots."
  }
 ]
