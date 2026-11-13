@@ -382,5 +382,77 @@
   "meeting_date": "2026-10-21",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-36ca91ca178946458c5a5e1fc6b7108f.pdf",
   "ingested": "2026-10-16"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-016",
+  "title": "2026-A-016 (For Public Hearing) Approves a Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council Distr",
+  "summary": "2026-A-016 (For Public Hearing) Approves a Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of ten (10) years real property tax abatement.) **Request will be made for continuance to December 16, 2026 5.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-11-18",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-c2ea8540f79e471d98547f7e624de51e.pdf",
+  "ingested": "2026-11-13"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-017",
+  "title": "2026-A-017 (For Public Hearing) Approves a Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council Distr",
+  "summary": "2026-A-017 (For Public Hearing) Approves a Final Economic Revitalization Area Resolution for Metrobloks, LLC, located at 2505 North Sherman Drive, Council District #8, Center Township. (IEDI recommends approval of fifteen (15) years enhanced personal property tax abatement.) **Request will be made for continuance to December 16, 2026 6.",
+  "address": "2505 North Sherman Drive",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-11-18",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-c2ea8540f79e471d98547f7e624de51e.pdf",
+  "ingested": "2026-11-13"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-051",
+  "title": "2026-A-051 Approves a Preliminary Economic Revitalization Area for Indy Nova Apartments, a subsidiary of New City Development, located at 2955 North Meridian St",
+  "summary": "2026-A-051 Approves a Preliminary Economic Revitalization Area for Indy Nova Apartments, a subsidiary of New City Development, located at 2955 North Meridian Street, Council District #12, Center Township. (Recommend approval of ten (10) years real property tax abatement.) 7.",
+  "address": "2955 North Meridian Street",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-11-18",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-c2ea8540f79e471d98547f7e624de51e.pdf",
+  "ingested": "2026-11-13"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-055",
+  "title": "2026-A-055 (For Public Hearing) Authorizes a hearing regarding termination of the Personal Property Tax Abatement associated with Economic Revitalization Area",
+  "summary": "2026-A-055 (For Public Hearing) Authorizes a hearing regarding termination of the Personal Property Tax Abatement associated with Economic Revitalization Area",
+  "address": null,
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-11-18",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-c2ea8540f79e471d98547f7e624de51e.pdf",
+  "ingested": "2026-11-13"
+ },
+ {
+  "kind": "resolution",
+  "case": "2023-A-019",
+  "title": "2023-A-019, 2023, Geniphys, located at 7750 Zionsville Road, Council District #1, Pike Township. 8.",
+  "summary": "2023-A-019, 2023, Geniphys, located at 7750 Zionsville Road, Council District #1, Pike Township. 8.",
+  "address": "7750 Zionsville Road",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-11-18",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-c2ea8540f79e471d98547f7e624de51e.pdf",
+  "ingested": "2026-11-13"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-056",
+  "title": "2026-A-056 Approves a Preliminary Economic Revitalization Area for Novartis Manufacturing, LLC, located at 8520 Challenger Drive, Council District #21, Decatur ",
+  "summary": "2026-A-056 Approves a Preliminary Economic Revitalization Area for Novartis Manufacturing, LLC, located at 8520 Challenger Drive, Council District #21, Decatur Township. (Recommend approval of six (6) years personal property tax abatement.) 9. 2026-E-006 Authorizes the Department of Metropolitan Development to extend a current contract with Butler, Fairman and Seufert through December 31, 2027, in order to complete tasks related to the Illinois and Capitol Streetscapes Project as construction progresses. COMMUNITY INVESTMENTS: 10. 2026-C-006 Authorizes the Department of Metropolitan Developmen",
+  "address": "8520 Challenger Drive",
+  "dollars": 831747,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-11-18",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-c2ea8540f79e471d98547f7e624de51e.pdf",
+  "ingested": "2026-11-13"
  }
 ]
