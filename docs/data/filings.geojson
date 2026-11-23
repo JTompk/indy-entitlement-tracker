@@ -66840,7 +66840,371 @@
     "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-eb07f441833a4e62a8600beaf2f076b4.pdf",
     "ingested": "2026-11-16"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.19256,
+     39.678298
+    ]
+   },
+   "properties": {
+    "case": "2026-SE3-004",
+    "year": 2026,
+    "prefix": "SE3",
+    "type": "Variance / Special Exception",
+    "address": "1735 W. EDGEWOOD AVENUE",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-SE3-004 | 1735 W. Edgewood Avenue Perry Township, Council District #22, zoned I-3, (FF) David Gilman Special Exception of the Consolidated Zoning and Subdivision Control Ordinance to provide for a commercial parking lot (special exception required) and a variance and use of development standards of the Consolidated Zoning and Subdivision Ordinance to provide for truck storage (not permitted within a flood zone). **This petition will be continued to the December 15, 2026 hearing. 2.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.158472,
+     39.692893
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-044",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "4914 SOUTH MERIDIAN STREET",
+    "township": "Perry",
+    "council_district": 22,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-044 | 4914 South Meridian Street Perry Township, Council District #22, zoned D-A Matthew Bowen Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a six- foot tall perimeter black chain link fence (maximum 3.5-foot-tall fence permitted in front yards). **This petition will be continued to the December 15, 2026 hearing. 3.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.076721,
+     39.823068
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-021",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "3665 NORTH IRVINGTON AVENUE",
+    "township": "Warren",
+    "council_district": 9,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-021 | 3665 North Irvington Avenue Warren Township, Council District #9, zoned D-4 (TOD) HJJ Scholtens of Scholtens LLC, by Miosotis Adorno Variance of Use and Development Standards of the Consolidated Zoning and Subdivision Ordinance to permit the outdoor storage of commercial vehicles (three box trucks) in D-4 (TOD) (not permitted), and vehicle parts (not permitted). To permit the outdoor storage of commercial vehicles on a non-paved surface (paved required). To permit a 0-foot transitional yard without required landscaping (15-foot transitional yard with landscaping required), and t",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.169048,
+     39.803502
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-046",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "2535 ETHEL AVENUE",
+    "township": "Center",
+    "council_district": 12,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-046 | 2535 Ethel Avenue Center Township, Council District #12, zoned D-5 Josh Smith Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to permit the construction of a single-family detached dwelling with a 5-foot front setback (12-foot permitted). 5.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.153259,
+     39.746236
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-047",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "1501 KENNINGTON STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-047 | 1501 Kennington Street Center Township, Council District #18, zoned D-5 DMD, by Richard Acevedo Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to allow a minimum lot width of 38 feet (60 feet required), a minimum lot size area of 3,250 SF (7,200 SF required), a zero-corner side yard setback (8 feet required) with a front yard setback of 35 feet (10-19.9 feet required) for the construction of a residential duplex. 6.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.128972,
+     39.731622
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-048",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "2543 WALKER PLACE",
+    "township": "Center",
+    "council_district": 19,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-048 (Amended) | 2511, 2513, 2516, 2517, 2518, 2519, 2522, 2523, 2524, 2525, 2528, 2529, 2530, 2531, 2534, 2535, 2536, 2537, 2540, 2541, 2542 & 2543 Walker Place Center Township, Council District #19, zoned D-5II IHR Builders LLC & Walker Place Equity Fund LLC, by Joe Calderon (Barnes & Thornburg LLP) Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for residential development with front-loaded garages in front of the front building line (not permitted) and with front- loaded garages comprising between 46.1% and 50% of the front fa\u00e7ade (",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.181471,
+     39.791148
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-049",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "1159 W 18TH STREET",
+    "township": "Center",
+    "council_district": 12,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-049 | 1159 W 18th Street Center Township, Council District #12, zoned C-1 Ryan Gorman, by Veracity (Michael Clust) Variance of development standards of the Consolidated Zoning and Subdivision Ordinance to allow for drive access off 18th street not exclusive access from abutting alley (greater than 200 feet of frontage on 18th street is required) and to keep the existing fence in current location without the installation of shrubs (3 smalls shrubs per 25 linear feet required). 8.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.082678,
+     39.694527
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-050",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "5095 EAST THOMPSON ROAD",
+    "township": "Perry",
+    "council_district": 24,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-050 | 5095 East Thompson Road Perry Township, Council District #24, zoned C-4 Suzanne Dark Most & Sharon L. David & BTR Indy I LLC, by Paige Weidner (CESO) & David Bruckmeyer (Sheetz) Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for the construction of a fueling canopy and convenience store with 0 feet of landscaped area along the northern frontage (depth of 10 feet required) and with a 10.2-foot setback for a dumpster enclosure (20 feet required). 9.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.167711,
+     39.7494
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-023",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "1310 SOUTH WEST STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-023 | 1310 South West Street Center Township, Council District #18, zoned I-4 GDW Realty V LLC, by Russell Brown Variance of Use of the Consolidated Zoning and Subdivision Ordinance to permit a 1,600 square-foot customer sales area with items exceeding 75 lbs. (not permitted). 10.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.116513,
+     39.792766
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-024",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "1901 NORTH RURAL STREET",
+    "township": "Center",
+    "council_district": 13,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-024 | 1901 North Rural Street Center Township, Council District #13, zoned MU-1 (TOD) Stacey Munns Variance of use and development standards of the Consolidated Zoning and Subdivision Ordinance to provide for the operation of outdoor storage of tires and outdoor services of existing tire shop (not permitted). PETITIONS FOR PUBLIC HEARING (Transferred Petitions): PETITIONS FOR PUBLIC HEARING (Continued Petitions): 11.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.156473,
+     39.763853
+    ]
+   },
+   "properties": {
+    "case": "2026-DV3-042",
+    "year": 2026,
+    "prefix": "DV3",
+    "type": "Variance / Special Exception",
+    "address": "240 SOUTH PENNSYLVANIA STREET",
+    "township": "Center",
+    "council_district": 18,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-DV3-042 | 240 South Pennsylvania Street Center Township, Council District #18, zoned CBD-2 (FF) (RC) (TOD) Boxcar Development, LLC, by Jennifer Milliken Variance of Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for permanent banner signs on the east fa\u00e7ade of a proposed entertainment facility and projecting into the right-of- way of Pennsylvania Street (only temporary banner signs permitted and banner signs not permitted in the right- of-way). 12.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.0827,
+     39.78148
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-018",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "5135 EAST 10TH STREET",
+    "township": "Warren",
+    "council_district": 14,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-018 | 5135 East 10th Street Warren Township, Council District #14, zoned C-4 Bhatti Brothers, Inc, by Joseph Csikos Variance of Use and Development Standards of the Consolidated Zoning and Subdivision Ordinance to provide for a 160-square foot accessory storage container (not permitted), with a one-foot south side transitional yard setback (10-foot transitional yard setback required). 13.",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.95928,
+     39.812046
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-019",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "11650 EAST 30TH STREET",
+    "township": "Warren",
+    "council_district": 15,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-019 | 11650 East 30th Street Warren Township, Council District #15, zoned D-A Kadeem Aman Brogan, by Clark, Quinn, Moses, Scott, & Grahn, LLP Variance of Use of the Consolidated Zoning and Subdivision Ordinance to allow for indoor/outdoor recreation and entertainment (not permitted in D-A) and to allow for the parking of commercial vehicles not intended for agricultural purposes (parking of commercial vehicles and equipment only permitted in D-A if related to agricultural uses). Variance of Development Standards to allow for an unpaved surface parking area (only permitted in D-A if re",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -86.159119,
+     39.823666
+    ]
+   },
+   "properties": {
+    "case": "2026-UV3-022",
+    "year": 2026,
+    "prefix": "UV3",
+    "type": "Variance / Special Exception",
+    "address": "3739 NORTH ILLINOIS STREET",
+    "township": "Center",
+    "council_district": 8,
+    "zoning_from": null,
+    "zoning_to": null,
+    "summary": "2026-UV3-022 | 3739 North Illinois Street Center Township, Council District #8, zoned C-4 / D-8 (TOD) Dolina Development LLC, by Todd Surinak Variance of Use of the Consolidated Zoning and Subdivision Ordinance to permit expansion of office space for professional services and light fabrication (not permitted in D-8). Additional Business: **The addresses of the proposals listed above are approximate and should be confirmed with the Division of Planning. Copies of the proposals are available for examination prior to the hearing by emailing planneroncall@indy.gov. Written objections to a proposal",
+    "board": "BZA III",
+    "meeting_date": "2026-11-24",
+    "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-0516310de713492983f1ce64b59d997c.pdf",
+    "ingested": "2026-11-23"
+   }
   }
  ],
- "updated": "2026-11-20T18:57:45+00:00"
+ "updated": "2026-11-23T22:27:08+00:00"
 }
