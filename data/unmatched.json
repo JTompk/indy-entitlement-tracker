@@ -11422,5 +11422,37 @@
   "meeting_date": "2026-11-19",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-eb07f441833a4e62a8600beaf2f076b4.pdf",
   "ingested": "2026-11-16"
+ },
+ {
+  "case": "2026-MO1-003",
+  "year": 2026,
+  "prefix": "MO1",
+  "type": "Other",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2026-MO1-003 /",
+  "board": "BZA I",
+  "meeting_date": "2026-12-01",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-4993c6f98889452da521ab48a36263d9.pdf",
+  "ingested": "2026-11-25"
+ },
+ {
+  "case": "2005-UV1-008",
+  "year": 2005,
+  "prefix": "UV1",
+  "type": "Variance / Special Exception",
+  "address": null,
+  "township": null,
+  "council_district": null,
+  "zoning_from": null,
+  "zoning_to": null,
+  "summary": "2005-UV1-008 to remove a commitment prohibiting the outdoor seating area to be enclosed by a permanent roof or awning and a variance of development standards of the Consolidated Zoning and Subdivision Ordinance to permit the permanent awning to encroach into the minimum required front setback of 10 feet (not permitted). 9.",
+  "board": "BZA I",
+  "meeting_date": "2026-12-01",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-4993c6f98889452da521ab48a36263d9.pdf",
+  "ingested": "2026-11-25"
  }
 ]

@@ -454,5 +454,17 @@
   "meeting_date": "2026-11-18",
   "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-c2ea8540f79e471d98547f7e624de51e.pdf",
   "ingested": "2026-11-13"
+ },
+ {
+  "kind": "resolution",
+  "case": "2026-A-052",
+  "title": "2026-A-052 (For Public Hearing) Approves the Final Economic Revitalization Area Resolution for Indy Nova Apartments, LLC located at 2955 North Meridian Street, ",
+  "summary": "2026-A-052 (For Public Hearing) Approves the Final Economic Revitalization Area Resolution for Indy Nova Apartments, LLC located at 2955 North Meridian Street, Council District #12, Center Township. (Recommend approval of ten (10) years real property tax abatement.) 4. 2026-E-007 Approves the allocation of revenues from the White River-North and State Ditch-Mars Hill FCID Funds to assist with carrying out FCID activities in 2026. 5. 2026-E-008 Approves the use of unobligated funds from various TIF districts to reimburse the Consolidated City for expenses associated with various local improveme",
+  "address": "2955 North Meridian Street",
+  "dollars": null,
+  "board": "Metropolitan Development Commission",
+  "meeting_date": "2026-12-02",
+  "agenda_url": "https://mccmeetings.blob.core.usgovcloudapi.net/indymarion-pubu/MEET-Agenda-39b16cc6e0664764ac65d4814e6c0e00.pdf",
+  "ingested": "2026-11-25"
  }
 ]
